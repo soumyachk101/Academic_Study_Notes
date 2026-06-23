@@ -383,21 +383,14 @@ for (int i = 0; i &lt; 1000; i++) {
 <div class="answer">
     <p>These are two distinct but related concepts that are essential for correctness in multiprocessor systems. They are often confused but address fundamentally different problems.</p>
 
-    <p><span class="highlight">Cache Coherence — "What value is returned for a read?"</span></p>
-    <ul>
-        <li><b>Scope:</b> Deals with <b>a single memory location</b>.</li>
-        <li><b>Problem:</b> When multiple processors have cached copies of the same memory address X, and one processor writes a new value to X, the other processors' copies become stale. Coherence ensures that eventually, all processors see the same, most recent value of X.</li>
-        <li><b>Mechanism:</b> Hardware protocols like MESI (snooping) or Directory-based protocols enforce coherence by invalidating or updating stale copies.</li>
-        <li><b>Guarantee:</b> A read to location X by any processor will eventually return the most recently written value to X.</li>
-    </ul>
-
-    <p><span class="highlight">Memory Consistency — "When does a write become visible, relative to other writes?"</span></p>
-    <ul>
-        <li><b>Scope:</b> Deals with the <b>ordering of accesses to different memory locations</b>.</li>
-        <li><b>Problem:</b> Processor 1 writes to location A, then writes to location B. Should Processor 2 be guaranteed to see the write to A before the write to B? Or can the memory system reorder these operations for performance?</li>
-        <li><b>Mechanism:</b> Defined by a <b>Memory Consistency Model</b> (e.g., Sequential Consistency, Total Store Order, Relaxed Consistency). This is a software contract between the hardware and the programmer.</li>
-        <li><b>Guarantee:</b> Defines the rules about the order in which memory operations from different processors appear to execute.</li>
-    </ul>
+    <table>
+        <tr><th>Feature</th><th>Cache Coherence</th><th>Memory Consistency</th></tr>
+        <tr><td><b>Scope</b></td><td>Deals with a <b>single memory location</b> (address X).</td><td>Deals with the <b>ordering of accesses to multiple different memory locations</b>.</td></tr>
+        <tr><td><b>Problem Addressed</b></td><td>Stale copies in private caches. Multiple processors must read the most recently written value for the same variable.</td><td>Instruction reordering by compiler or out-of-order execution hardware making writes visible in an unexpected sequence.</td></tr>
+        <tr><td><b>Protocol/Model</b></td><td>Enforced by hardware protocol (e.g., MESI, Snooping, Directory protocols).</td><td>Enforced by Memory Consistency Models (e.g., Sequential Consistency, TSO, Weak Consistency).</td></tr>
+        <tr><td><b>Enforcement Level</b></td><td>Invisible to software; handled entirely in the hardware cache hierarchy.</td><td>Exposed to software; programmers use memory fences/barriers or synchronization primitives.</td></tr>
+        <tr><td><b>Core Guarantee</b></td><td>A read to location X eventually returns the most recently written value to location X.</td><td>Updates to multiple variables (e.g., Flag and Data) are observed in a legal, consistent order.</td></tr>
+    </table>
 
     <p><span class="highlight">Summary:</span> Coherence guarantees that you get the <i>correct value</i> for a single variable. Consistency guarantees the <i>correct order</i> in which updates to multiple variables become visible across processors. Both are necessary for correct parallel programs.</p>
 </div>

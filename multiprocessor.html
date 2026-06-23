@@ -349,21 +349,18 @@
 
 <details><summary>13. Differentiate between strong and weak consistency models.</summary>
 <div class="answer">
-    <p><span class="highlight">Strong Consistency (Sequential Consistency):</span></p>
-    <ul>
-        <li><b>Definition:</b> The result of any parallel execution is the same as if the operations of all processors were executed in some sequential order, and each processor's operations appear in the order specified by its program.</li>
-        <li><b>Guarantee:</b> All processors see all memory writes in the <b>exact same global order</b>.</li>
-        <li><b>Programming:</b> Easiest to reason about. Programs behave "as expected" by the programmer.</li>
-        <li><b>Performance:</b> Most restrictive. The hardware cannot reorder memory operations for performance, severely limiting optimizations like write buffering and out-of-order execution of loads/stores.</li>
-    </ul>
-    <p><span class="highlight">Weak Consistency:</span></p>
-    <ul>
-        <li><b>Definition:</b> Memory operations can be reordered freely by the hardware for performance. The memory system only guarantees consistency at explicit <b>synchronization points</b> (e.g., lock acquire, lock release, barrier).</li>
-        <li><b>Guarantee:</b> Before a synchronization operation completes, all previous memory operations by that processor are guaranteed to be visible to other processors. Between synchronization points, anything goes.</li>
-        <li><b>Programming:</b> More complex. Programmers must explicitly insert memory barriers/fences at critical points to prevent bugs.</li>
-        <li><b>Performance:</b> Much higher. Hardware can aggressively reorder and buffer memory operations, maximizing throughput.</li>
-    </ul>
-    <p><b>Practical Impact:</b> Most modern processors (ARM, RISC-V) use relaxed/weak models for performance. x86 uses TSO (a middle ground). Programmers use high-level synchronization primitives (mutexes, atomics) provided by languages and libraries, which internally insert the correct barriers.</p>
+    <p>Memory consistency models define the hardware/software contract specifying the legal ordering of memory accesses across processors.</p>
+
+    <table>
+        <tr><th>Feature</th><th>Strong Consistency (Sequential Consistency)</th><th>Weak / Relaxed Consistency</th></tr>
+        <tr><td><b>Operation Ordering</b></td><td>Strict order. No reordering of memory operations (loads/stores) is allowed.</td><td>Memory operations can be reordered freely by hardware/compiler for performance, except at explicit synchronization points.</td></tr>
+        <tr><td><b>Global Visibility</b></td><td>All processors see all memory operations in the exact same global order.</td><td>Updates become globally visible only when a synchronization barrier or memory fence is executed.</td></tr>
+        <tr><td><b>Performance</b></td><td>Low. Severely limits optimizations like write buffering, caching, and out-of-order execution.</td><td>High. Hardware can aggressively schedule and buffer memory operations to hide memory latency.</td></tr>
+        <tr><td><b>Programmability</b></td><td>Easy. Programs behave in an intuitive, sequential manner.</td><td>Difficult. Programmers must manually insert memory barriers/fences to ensure correctness.</td></tr>
+        <tr><td><b>Implementation</b></td><td>Rarely implemented directly in modern hardware due to high performance costs.</td><td>Standard in modern architectures (ARM, RISC-V use weak models; x86 uses TSO - a relaxed model).</td></tr>
+    </table>
+
+    <p><b>Practical Impact:</b> Most modern processors use relaxed/weak models for performance. Programmers rely on high-level synchronization primitives (mutexes, atomics) provided by programming languages, which internally compile down to the correct hardware memory fences.</p>
 </div>
 </details>
 

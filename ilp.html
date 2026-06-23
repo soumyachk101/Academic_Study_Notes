@@ -100,23 +100,16 @@
 <div class="answer">
     <p>Static and Dynamic ILP refer to <i>who</i> is responsible for discovering and scheduling independent instructions — the compiler (software) or the processor hardware.</p>
 
-    <p><span class="highlight">Static ILP (Compiler-Based):</span></p>
-    <ul>
-        <li><b>Who:</b> The compiler analyzes the program at <b>compile time</b> and packages independent instructions together.</li>
-        <li><b>How:</b> The compiler reorders instructions, performs loop unrolling, software pipelining, and trace scheduling to expose parallelism. The resulting instruction stream is optimized for parallel execution.</li>
-        <li><b>Architecture:</b> VLIW (Very Long Instruction Word) processors are the primary example. The compiler packs multiple operations into one wide instruction word, and the hardware executes them all simultaneously without further analysis.</li>
-        <li><b>Pros:</b> Simple, power-efficient hardware. No complex runtime dependency checking logic needed.</li>
-        <li><b>Cons:</b> Cannot adapt to runtime events (cache misses, data-dependent branches). Requires recompilation for each new processor generation. Code compatibility is brittle.</li>
-    </ul>
-
-    <p><span class="highlight">Dynamic ILP (Hardware-Based):</span></p>
-    <ul>
-        <li><b>Who:</b> The processor hardware analyzes the instruction stream at <b>runtime</b> and determines which instructions can execute in parallel.</li>
-        <li><b>How:</b> Hardware uses Reservation Stations, Reorder Buffers, Register Renaming, and dynamic Branch Prediction to detect independent instructions, issue them out of program order, and speculatively execute past branches.</li>
-        <li><b>Architecture:</b> Superscalar processors (e.g., Intel Core, AMD Ryzen, Apple M-series).</li>
-        <li><b>Pros:</b> Adapts to runtime conditions (cache behavior, dynamic data). Binary compatible — old programs run on new processors without recompilation.</li>
-        <li><b>Cons:</b> Extremely complex, power-hungry hardware. The out-of-order logic consumes significant chip area and energy.</li>
-    </ul>
+    <table>
+        <tr><th>Feature</th><th>Static ILP (Compiler-Based)</th><th>Dynamic ILP (Hardware-Based)</th></tr>
+        <tr><td><b>Responsible Party</b></td><td>The compiler (software).</td><td>The processor (hardware).</td></tr>
+        <tr><td><b>Scheduling Time</b></td><td>Compile-time (static).</td><td>Run-time (dynamic).</td></tr>
+        <tr><td><b>Mechanism</b></td><td>Compiler reorders instructions, unrolls loops, and schedules VLIW execution.</td><td>Hardware uses Reservation Stations, Reorder Buffers, and Register Renaming to run instructions out-of-order.</td></tr>
+        <tr><td><b>Adaptability</b></td><td>Cannot adapt to dynamic runtime events (like cache misses or data-dependent branches).</td><td>Highly adaptable; dynamically schedules instructions around cache misses and runtime branches.</td></tr>
+        <tr><td><b>Binary Compatibility</b></td><td>Poor. Binaries are tied to the specific processor generation; require recompilation for newer CPUs.</td><td>Excellent. Legacy binaries run on newer processors without recompilation.</td></tr>
+        <tr><td><b>Hardware Overhead</b></td><td>Minimal. Simple control logic, highly power-efficient.</td><td>High. Complex control logic, power-hungry, and consumes significant chip area.</td></tr>
+        <tr><td><b>Examples</b></td><td>VLIW processors (e.g., Intel Itanium, TI C6000 DSPs).</td><td>Superscalar processors (e.g., Intel Core, AMD Ryzen, Apple Silicon).</td></tr>
+    </table>
 </div>
 </details>
 

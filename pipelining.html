@@ -813,23 +813,16 @@ SUB         IF  ID  EX  MEM WB
 
             <details><summary>29. Differentiate between exceptions and interrupts.</summary>
             <div class="answer">
-                <p>While often used interchangeably in casual context, computer architecture makes a strict distinction between the two based on their origin and synchronicity.</p>
+                <p>While often used interchangeably in a casual context, computer architecture makes a strict distinction between the two based on their origin, synchronicity, and handling behaviour.</p>
 
-                <p><span class="highlight">Exceptions (Internal and Synchronous):</span></p>
-                <ul>
-                    <li><b>Origin:</b> Generated internally by the CPU as a direct result of executing the current instruction.</li>
-                    <li><b>Synchronicity:</b> Synchronous. They happen exactly at the same place every time you run the same code with the same data.</li>
-                    <li><b>Examples:</b> Divide by zero, arithmetic overflow, page fault, invalid opcode, memory protection violation.</li>
-                    <li><b>Handling:</b> The CPU must handle the exception immediately before proceeding, as the current instruction is fundamentally flawed or needs OS intervention (like loading a page from disk).</li>
-                </ul>
-
-                <p><span class="highlight">Interrupts (External and Asynchronous):</span></p>
-                <ul>
-                    <li><b>Origin:</b> Generated externally by hardware devices (I/O) outside the CPU execution pipeline.</li>
-                    <li><b>Synchronicity:</b> Asynchronous. They can happen at any unpredictable moment, completely independent of the instruction currently executing.</li>
-                    <li><b>Examples:</b> Keyboard key press, mouse movement, network packet arrival, hardware timer expiration.</li>
-                    <li><b>Handling:</b> The CPU usually finishes the current instruction in the pipeline, saves its state, and then services the interrupt.</li>
-                </ul>
+                <table>
+                    <tr><th>Feature</th><th>Exceptions</th><th>Interrupts</th></tr>
+                    <tr><td><b>Origin</b></td><td>Generated internally by the CPU as a direct result of executing the current instruction.</td><td>Generated externally by hardware/peripheral devices (I/O) outside the CPU.</td></tr>
+                    <tr><td><b>Synchronicity</b></td><td><b>Synchronous:</b> They occur at the exact same instruction boundary every time the program runs with the same data.</td><td><b>Asynchronous:</b> Can occur at any random/unpredictable instruction boundary, independent of the code.</td></tr>
+                    <tr><td><b>Handling</b></td><td>Must be handled immediately before proceeding, as the faulting instruction cannot complete execution.</td><td>The CPU typically finishes the current instruction in the pipeline, saves state, and then services it.</td></tr>
+                    <tr><td><b>Program Counter (EPC)</b></td><td>EPC points to the faulting instruction itself (so it can be re-executed after correcting the exception).</td><td>EPC points to the next instruction to execute when the program resumes.</td></tr>
+                    <tr><td><b>Examples</b></td><td>Divide-by-zero, page fault, arithmetic overflow, invalid opcode, memory protection violation.</td><td>Keyboard keystroke, mouse movement, network packet arrival, hardware timer expiration.</td></tr>
+                </table>
             </div>
             </details>
 
@@ -857,19 +850,14 @@ SUB         IF  ID  EX  MEM WB
             <div class="answer">
                 <p>These are the two primary mechanisms a processor uses to figure out <i>which</i> device caused an interrupt and <i>how</i> to handle it.</p>
 
-                <p><span class="highlight">Polled Interrupts (Software Driven):</span></p>
-                <ul>
-                    <li><b>Mechanism:</b> All interrupting devices share a single interrupt request line to the CPU. When an interrupt occurs, the CPU jumps to one central, general-purpose Interrupt Service Routine (ISR).</li>
-                    <li><b>Process:</b> The ISR executes a software loop, checking (polling) the status register of every single attached device sequentially (e.g., "Keyboard, was it you? No. Mouse, was it you? Yes.").</li>
-                    <li><b>Pros/Cons:</b> Very simple hardware. However, it is very slow, especially if many devices are attached, because the software wastes time checking devices that didn't interrupt.</li>
-                </ul>
-
-                <p><span class="highlight">Vectored Interrupts (Hardware Driven):</span></p>
-                <ul>
-                    <li><b>Mechanism:</b> When a device interrupts the CPU, it also sends a unique identifier code over the data bus. This code is called the <b>Interrupt Vector</b>.</li>
-                    <li><b>Process:</b> The CPU uses this vector as an index into a hardware table in memory (the Interrupt Vector Table). The table contains the exact memory address of the specific ISR for that specific device. The CPU jumps directly to it.</li>
-                    <li><b>Pros/Cons:</b> Extremely fast and efficient, as there is zero software polling involved. Requires more complex hardware (Interrupt Controller) to manage the vectors and priorities.</li>
-                </ul>
+                <table>
+                    <tr><th>Feature</th><th>Polled Interrupts (Software-Driven)</th><th>Vectored Interrupts (Hardware-Driven)</th></tr>
+                    <tr><td><b>Mechanism</b></td><td>All devices share a single interrupt request line. The CPU jumps to one central, general-purpose Interrupt Service Routine (ISR).</td><td>Each device sends a unique identifier code called the <b>Interrupt Vector</b> over the data bus during interrupt acknowledgment.</td></tr>
+                    <tr><td><b>Identification</b></td><td>The ISR executes a software loop, checking (polling) the status register of each attached device sequentially.</td><td>The CPU uses the vector code as an index into the Interrupt Vector Table in memory to find the specific ISR address directly.</td></tr>
+                    <tr><td><b>Speed & Efficiency</b></td><td>Slow. Software polling loop wastes CPU clock cycles querying idle devices.</td><td>Extremely fast. Direct hardware mapping jumps to the target ISR instantly without scanning.</td></tr>
+                    <tr><td><b>Hardware Cost</b></td><td>Very simple and cheap. No extra hardware logic needed.</td><td>Complex. Requires a dedicated Interrupt Controller to handle vector generation and priorities.</td></tr>
+                    <tr><td><b>Scalability</b></td><td>Poor. Polling delay increases linearly as more devices are added.</td><td>Excellent. Scalable to many devices with low overhead.</td></tr>
+                </table>
             </div>
             </details>
 
