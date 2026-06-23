@@ -12,8 +12,8 @@
 
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
+            background: #f8fafc;
+            color: #334155;
             min-height: 100vh;
         }
 
@@ -23,7 +23,8 @@
             padding: 5rem 2rem 4rem;
             text-align: center;
             overflow: hidden;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .hero::before {
@@ -33,8 +34,8 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 50%, rgba(14, 165, 233, 0.06) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 50%, rgba(99, 102, 241, 0.04) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(14, 165, 233, 0.03) 0%, transparent 50%);
             animation: float 15s ease-in-out infinite;
         }
 
@@ -53,15 +54,15 @@
 
         .badge {
             display: inline-block;
-            background: rgba(99, 102, 241, 0.15);
-            color: #818cf8;
+            background: rgba(99, 102, 241, 0.08);
+            color: #4f46e5;
             font-size: 0.75rem;
             font-weight: 700;
             letter-spacing: 3px;
             text-transform: uppercase;
             padding: 0.5rem 1.5rem;
             border-radius: 999px;
-            border: 1px solid rgba(99, 102, 241, 0.25);
+            border: 1px solid rgba(99, 102, 241, 0.15);
             margin-bottom: 1.5rem;
         }
 
@@ -71,7 +72,7 @@
             letter-spacing: -1.5px;
             line-height: 1.1;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -79,7 +80,7 @@
 
         .hero p {
             font-size: 1.15rem;
-            color: #94a3b8;
+            color: #475569;
             line-height: 1.6;
             max-width: 550px;
             margin: 0 auto 2rem;
@@ -99,7 +100,7 @@
         .stat-number {
             font-size: 2rem;
             font-weight: 800;
-            color: #818cf8;
+            color: #4f46e5;
         }
 
         .stat-label {
@@ -122,20 +123,21 @@
         .module-card {
             display: flex;
             align-items: stretch;
-            background: #1e293b;
+            background: #ffffff;
             border-radius: 16px;
             margin-bottom: 1rem;
             overflow: hidden;
-            border: 1px solid #334155;
+            border: 1px solid #e2e8f0;
             transition: all 0.3s ease;
             text-decoration: none;
             color: inherit;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
         }
 
         .module-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: #475569;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            border-color: #cbd5e1;
         }
 
         .module-accent {
@@ -167,7 +169,7 @@
         .module-title {
             font-size: 1.2rem;
             font-weight: 700;
-            color: #f1f5f9;
+            color: #0f172a;
             margin-bottom: 0.25rem;
         }
 
@@ -184,23 +186,23 @@
         }
 
         .q-count {
-            background: rgba(255, 255, 255, 0.05);
+            background: #f1f5f9;
             padding: 0.4rem 0.9rem;
             border-radius: 8px;
             font-size: 0.85rem;
             font-weight: 600;
-            color: #94a3b8;
+            color: #475569;
             white-space: nowrap;
         }
 
         .arrow {
             font-size: 1.3rem;
-            color: #475569;
+            color: #94a3b8;
             transition: all 0.3s;
         }
 
         .module-card:hover .arrow {
-            color: #818cf8;
+            color: #4f46e5;
             transform: translateX(4px);
         }
 
@@ -211,22 +213,22 @@
         .c-sky { background: #0ea5e9; }
         .c-green { background: #10b981; }
 
-        .t-blue { color: #60a5fa; }
-        .t-purple { color: #a78bfa; }
-        .t-orange { color: #fb923c; }
-        .t-sky { color: #38bdf8; }
-        .t-green { color: #34d399; }
+        .t-blue { color: #2563eb; }
+        .t-purple { color: #7c3aed; }
+        .t-orange { color: #ea580c; }
+        .t-sky { color: #0284c7; }
+        .t-green { color: #059669; }
 
         /* FOOTER */
         footer {
             text-align: center;
             padding: 2rem;
-            border-top: 1px solid #1e293b;
-            color: #475569;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
             font-size: 0.8rem;
         }
 
-        footer a { color: #818cf8; text-decoration: none; }
+        footer a { color: #4f46e5; text-decoration: none; }
 
         /* RESPONSIVE */
         @media (max-width: 640px) {
@@ -244,7 +246,7 @@
 <section class="hero">
     <div class="hero-content">
         <div class="badge">Even Semester · 2026</div>
-        <h1>Computer Organization & Architecture</h1>
+        <h1>Computer Architecture</h1>
         <p>Comprehensive question & answer notes with fully detailed 5-7 mark level answers. Click any module to start studying.</p>
         <div class="stats">
             <div class="stat">
@@ -341,7 +343,7 @@
 </section>
 
 <footer>
-    <p>Instructor: Madhurima Halder · Built with ❤️ for exam prep</p>
+    <p>Author: Soumya Chakraborty · Built with ❤️ for exam prep</p>
 </footer>
 
 </body>
