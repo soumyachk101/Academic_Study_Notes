@@ -35,7 +35,7 @@
 <div class="container">
     <header>
         <h1>Module I: Performance, Pipelining &amp; Exception Handling</h1>
-        <p class="subtitle">Comprehensive 5-7 Mark Answers · 39 Questions</p>
+        <p class="subtitle">Simple Answers &amp; Key Points · 39 Questions</p>
         <div class="book-divider">
             <span class="line"></span>
             <span class="ornament">❖</span>
@@ -47,7 +47,7 @@
             <details><summary>1. Define: Benchmark programs.</summary>
             <div class="answer">
                 <p><b>Benchmark programs</b> are standardized applications, workloads, or suites of programs specifically designed to evaluate, measure, and compare the performance of different computer systems or components (like CPUs, GPUs, or memory).</p>
-                <p><b>Key Characteristics (5-7 Mark Detail):</b></p>
+                <p><b>Key Characteristics (Key Detail):</b></p>
                 <ul>
                     <li><span class="highlight">Objective Measurement:</span> They provide an objective baseline. Because the exact same source code is compiled and run on different architectures, the resulting execution times directly reflect the hardware/compiler performance differences.</li>
                     <li><span class="highlight">Real-World Representation:</span> Modern benchmarks (like SPEC CPU suites) consist of real-world applications (e.g., GCC compiler, video compression, AI physics simulations) rather than synthetic, artificial loops (like Dhrystone or Whetstone). This ensures the metric reflects actual user experience.</li>
@@ -191,7 +191,7 @@
                     <li><b>(1 - F):</b> The fraction of time that remains completely unaffected (the sequential bottleneck).</li>
                 </ul>
 
-                <p><span class="highlight">Example (5-7 Mark Application):</span></p>
+                <p><span class="highlight">Example Application:</span></p>
                 <p>Suppose a program spends 80% of its time doing floating-point (FP) math, and 20% doing integer logic. You invent a new FP unit that is 4 times faster.</p>
                 <ul>
                     <li>F = 0.80 (80%)</li>
@@ -464,7 +464,7 @@
                 <p><span class="highlight">The RAW Hazard Problem:</span></p>
                 <p>If Instruction A writes to R1, and Instruction B reads from R1, Instruction B normally has to wait until Instruction A completes its Write-Back (WB) stage. This would cause a 2- or 3-cycle stall.</p>
 
-                <p><span class="highlight">How Forwarding Works (5-7 Marks Details):</span></p>
+                <p><span class="highlight">How Forwarding Works (Details):</span></p>
                 <ul>
                     <li><b>Internal Data Paths:</b> Hardware designers add physical wires (buses) and multiplexers that connect the output of the ALU (the EX stage) and the output of the Data Memory (the MEM stage) directly back to the inputs of the ALU.</li>
                     <li><b>Forwarding Unit Logic:</b> A specialized forwarding control unit continuously monitors the pipeline. It compares the Destination Register of the instruction currently in the EX/MEM and MEM/WB registers with the Source Registers of the instruction currently entering the EX stage.</li>
@@ -596,7 +596,7 @@
 
             <details><summary>27. Illustrate pipeline execution of sequence with data dependencies.</summary>
             <div class="answer">
-                <p><i>Note: For a 5-7 mark exam question, you must draw a pipeline timing diagram. Let's assume the following common sequence demonstrating a RAW hazard:</i></p>
+                <p><i>Note: You can draw a pipeline timing diagram to show how hazards are resolved. Let's assume the following common sequence demonstrating a RAW hazard:</i></p>
                 <pre>
 1. ADD R1, R2, R3   (Writes to R1)
 2. SUB R4, R1, R5   (Reads R1)
@@ -665,7 +665,7 @@ SUB         IF  ID  EX  MEM WB
             <div class="answer">
                 <p>The <b>Status Register</b> (also known as the Condition Code Register or Flags Register) is a crucial hardware register containing a set of boolean flags. It is vital for control flow and system state management.</p>
 
-                <p><span class="highlight">Primary Functions (5-7 Marks):</span></p>
+                <p><span class="highlight">Primary Functions:</span></p>
                 <ol>
                     <li><b>Reflecting ALU Outcomes:</b> After an Arithmetic Logic Unit (ALU) operation, the hardware automatically sets flags in the status register to reflect the result. 
                         <ul>
@@ -778,7 +778,7 @@ SUB         IF  ID  EX  MEM WB
             <div class="answer">
                 <p>To design a robust system that handles multiple simultaneous exceptions while maintaining "precise exceptions," you must decouple the <i>detection</i> of an exception from the <i>handling</i> of the exception.</p>
 
-                <p><span class="highlight">The Hardware Design (5-7 Marks):</span></p>
+                <p><span class="highlight">The Hardware Design (Details):</span></p>
                 <ol>
                     <li><b>Add Status Vectors:</b> Expand every pipeline register (IF/ID, ID/EX, EX/MEM, MEM/WB) to include an "Exception Status Vector." This vector contains bits for every possible error (e.g., Bit 0 = Page Fault, Bit 1 = Overflow, Bit 2 = Invalid Opcode).</li>
                     <li><b>Detection & Tagging:</b> If a stage detects an error (e.g., ID detects an invalid opcode), it does NOT jump to the OS handler. Instead, it sets the corresponding bit in the instruction's Exception Status Vector. The instruction is allowed to continue moving down the pipeline.</li>
