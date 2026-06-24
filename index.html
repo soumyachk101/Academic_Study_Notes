@@ -5,346 +5,673 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COA Notes — Computer Architecture</title>
     <meta name="description" content="Comprehensive 5-7 mark Q&A notes for Computer Architecture. Covers Pipelining, Memory Hierarchy, ILP, Vector Processing, and Multiprocessor Architecture.">
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* CSS Reset & Variables */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        :root {
+            /* Palette for book spine accents */
+            --color-u1: #3b82f6; /* Blue/Indigo for Pipelining */
+            --color-u2: #8b5cf6; /* Royal Purple for Memory */
+            --color-u3: #f97316; /* Terracotta Orange for ILP */
+            --color-u4: #0ea5e9; /* Ocean Sky for Vector */
+            --color-u5: #10b981; /* Forest Green for Multiprocessor */
+            
+            --bg-desk: #eae6db; /* Desk/Surface ambient tone */
+            --bg-paper: #fefdfb; /* Fine book paper background */
+            --text-main: #1e293b; /* Charcoal ink */
+            --text-muted: #57687e; /* Muted ink */
+            --border-light: rgba(44, 62, 80, 0.1);
+        }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: #eef2f6;
-            color: #334155;
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background-color: var(--bg-desk);
+            /* Soft paper/desk texture overlay */
+            background-image: 
+                radial-gradient(rgba(30, 41, 59, 0.03) 1px, transparent 1px), 
+                radial-gradient(rgba(30, 41, 59, 0.03) 1px, var(--bg-desk) 1px);
+            background-size: 24px 24px;
+            background-position: 0 0, 12px 12px;
+            color: var(--text-main);
             min-height: 100vh;
+            padding: 2rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* HERO SECTION */
-        .hero {
+        /* FOLIO PAGE WRAPPER (Visual book simulator page) */
+        .folio-page {
+            max-width: 1100px;
+            width: 100%;
+            background-color: var(--bg-paper);
+            border: 1px solid rgba(44, 62, 80, 0.15);
+            border-radius: 4px;
+            padding: 4.5rem 3.5rem;
             position: relative;
-            padding: 5rem 2rem 4rem;
-            text-align: center;
-            overflow: hidden;
-            background: linear-gradient(135deg, #eef2f6 0%, #e2e8f0 50%, #cbd5e1 100%);
-            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 
+                0 1px 2px rgba(0, 0, 0, 0.05),
+                0 8px 32px -4px rgba(0, 0, 0, 0.08),
+                0 24px 64px -12px rgba(0, 0, 0, 0.12),
+                inset 0 0 100px rgba(253, 252, 251, 0.8);
         }
 
-        .hero::before {
+        /* Inset Folio Border Line */
+        .folio-page::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(99, 102, 241, 0.04) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 50%, rgba(14, 165, 233, 0.03) 0%, transparent 50%);
-            animation: float 15s ease-in-out infinite;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 1px dashed rgba(44, 62, 80, 0.08);
+            pointer-events: none;
+            border-radius: 2px;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(30px, -30px) rotate(1deg); }
-            66% { transform: translate(-20px, 20px) rotate(-1deg); }
-        }
-
-        .hero-content {
+        /* TITLE PAGE HEADER */
+        .title-page {
+            text-align: center;
             position: relative;
-            z-index: 1;
-            max-width: 700px;
-            margin: 0 auto;
+            z-index: 2;
+            max-width: 760px;
+            margin: 0 auto 3.5rem;
         }
 
-        .badge {
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.08);
-            color: #4f46e5;
+        .book-badge {
             font-size: 0.75rem;
             font-weight: 700;
-            letter-spacing: 3px;
+            color: var(--text-muted);
+            letter-spacing: 0.25em;
             text-transform: uppercase;
-            padding: 0.5rem 1.5rem;
-            border-radius: 999px;
-            border: 1px solid rgba(99, 102, 241, 0.15);
+            margin-bottom: 1.25rem;
+        }
+
+        .book-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.6rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        /* Book divider style with ornament */
+        .book-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0 1.75rem;
+        }
+
+        .book-divider .line {
+            height: 1px;
+            width: 90px;
+            background: linear-gradient(to var(--direction, right), rgba(44, 62, 80, 0.25), transparent);
+        }
+
+        .book-divider .line:first-child {
+            --direction: left;
+        }
+
+        .book-divider .ornament {
+            font-size: 1.2rem;
+            color: rgba(44, 62, 80, 0.45);
+            user-select: none;
+            line-height: 1;
+        }
+
+        .book-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 620px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .book-stats {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            border-top: 1px solid rgba(44, 62, 80, 0.08);
+            border-bottom: 1px solid rgba(44, 62, 80, 0.08);
+            padding: 0.75rem 2.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .stat-val {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .stat-lbl {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .stat-divider {
+            width: 1px;
+            height: 24px;
+            background-color: rgba(44, 62, 80, 0.08);
+        }
+
+        /* CHAPTERS GRID */
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
             margin-bottom: 1.5rem;
         }
 
-        .hero h1 {
-            font-size: 3.2rem;
-            font-weight: 900;
-            letter-spacing: -1.5px;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.15rem;
-            color: #475569;
-            line-height: 1.6;
-            max-width: 550px;
-            margin: 0 auto 2rem;
-        }
-
-        .stats {
+        /* CHAPTER CARDS (Individual dividers) */
+        .chapter-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(44, 62, 80, 0.1);
+            border-radius: 8px;
+            padding: 2.2rem 1.8rem;
+            text-decoration: none;
+            color: inherit;
             display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            margin-top: 2rem;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 390px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, box-shadow;
+            box-shadow: 
+                0 2px 4px rgba(0, 0, 0, 0.02),
+                0 4px 12px -2px rgba(0, 0, 0, 0.03);
         }
 
-        .stat {
-            text-align: center;
+        /* Colored Spine Bindings */
+        .chapter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 6px;
+            background-color: var(--chapter-color);
+            transition: width 0.3s ease;
         }
 
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #4f46e5;
+        /* Visual sheet shadow to mimic a thick paper page edge */
+        .chapter-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to right, rgba(0,0,0,0.01), rgba(0,0,0,0.04));
+            pointer-events: none;
         }
 
-        .stat-label {
-            font-size: 0.75rem;
-            color: #64748b;
+        .chapter-card:hover {
+            transform: translateY(-8px) rotate(-1deg);
+            border-color: rgba(44, 62, 80, 0.18);
+            box-shadow: 
+                0 16px 28px -8px rgba(30, 41, 59, 0.08),
+                0 6px 12px -2px rgba(30, 41, 59, 0.04);
+        }
+
+        .chapter-card:hover::before {
+            width: 10px;
+        }
+
+        /* Chapter Card Content details */
+        .chapter-header {
+            margin-bottom: 1.25rem;
+        }
+
+        .chapter-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--chapter-color);
+            margin-bottom: 0.4rem;
         }
 
-        /* MODULE CARDS */
-        .modules {
-            max-width: 900px;
-            margin: -2rem auto 4rem;
-            padding: 0 1.5rem;
+        .chapter-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.25;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-desc {
+            font-size: 0.8rem;
+            line-height: 1.45;
+            color: var(--text-muted);
+        }
+
+        /* MINI TABLE OF CONTENTS (Leader Dots index) */
+        .mini-toc {
+            margin-top: 1.25rem;
+            border-top: 1px dashed rgba(44, 62, 80, 0.06);
+            padding-top: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: baseline;
+            font-size: 0.78rem;
+            color: #475569;
+        }
+
+        .toc-lbl {
+            flex-shrink: 0;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 75%;
+        }
+
+        .toc-dots {
+            flex-grow: 1;
+            border-bottom: 1px dotted rgba(44, 62, 80, 0.2);
+            margin: 0 0.4rem;
+            position: relative;
+            top: -3px;
+        }
+
+        .toc-idx {
+            flex-shrink: 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        /* CARD FOOTER */
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            border-top: 1px solid rgba(44, 62, 80, 0.05);
+            padding-top: 1rem;
+        }
+
+        .badge-count {
+            background-color: rgba(44, 62, 80, 0.05);
+            color: var(--text-main);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.35rem 0.75rem;
+            border-radius: 4px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .read-action {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--chapter-color);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: gap 0.2s ease;
+        }
+
+        .read-action .arrow {
+            font-size: 1.1rem;
+            line-height: 1;
+            transition: transform 0.2s ease;
+        }
+
+        .chapter-card:hover .read-action {
+            gap: 0.4rem;
+        }
+
+        .chapter-card:hover .read-action .arrow {
+            transform: translateX(2px);
+        }
+
+        /* FOOTER / COLOPHON */
+        footer {
+            text-align: center;
+            margin-top: 4.5rem;
+            border-top: 1px solid rgba(44, 62, 80, 0.06);
+            padding-top: 1.75rem;
             position: relative;
             z-index: 2;
         }
 
-        .module-card {
-            display: flex;
-            align-items: stretch;
-            background: #ffffff;
-            border-radius: 16px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-            border: 1px solid #e2e8f0;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        .module-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-            border-color: #cbd5e1;
-        }
-
-        .module-accent {
-            width: 6px;
-            flex-shrink: 0;
-        }
-
-        .module-body {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1.5rem 2rem;
-            flex: 1;
-            gap: 1rem;
-        }
-
-        .module-info {
-            flex: 1;
-        }
-
-        .module-number {
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 0.35rem;
-        }
-
-        .module-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 0.25rem;
-        }
-
-        .module-desc {
-            font-size: 0.85rem;
-            color: #64748b;
-        }
-
-        .module-meta {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .q-count {
-            background: #f1f5f9;
-            padding: 0.4rem 0.9rem;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #475569;
-            white-space: nowrap;
-        }
-
-        .arrow {
-            font-size: 1.3rem;
-            color: #94a3b8;
-            transition: all 0.3s;
-        }
-
-        .module-card:hover .arrow {
-            color: #4f46e5;
-            transform: translateX(4px);
-        }
-
-        /* COLORS */
-        .c-blue { background: #3b82f6; }
-        .c-purple { background: #8b5cf6; }
-        .c-orange { background: #f97316; }
-        .c-sky { background: #0ea5e9; }
-        .c-green { background: #10b981; }
-
-        .t-blue { color: #2563eb; }
-        .t-purple { color: #7c3aed; }
-        .t-orange { color: #ea580c; }
-        .t-sky { color: #0284c7; }
-        .t-green { color: #059669; }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            border-top: 1px solid #e2e8f0;
-            color: #64748b;
+        .colophon-ornament {
             font-size: 0.8rem;
+            color: rgba(44, 62, 80, 0.25);
+            margin-bottom: 0.75rem;
         }
 
-        footer a { color: #4f46e5; text-decoration: none; }
+        .colophon-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
 
-        /* RESPONSIVE */
-        @media (max-width: 640px) {
-            .hero h1 { font-size: 2rem; }
-            .hero p { font-size: 1rem; }
-            .stats { gap: 1.5rem; }
-            .stat-number { font-size: 1.5rem; }
-            .module-body { flex-direction: column; align-items: flex-start; padding: 1.25rem 1.5rem; }
-            .module-meta { width: 100%; justify-content: space-between; }
+        .colophon-text a {
+            color: var(--text-main);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(30, 41, 59, 0.2);
+            transition: border-color 0.2s ease;
+        }
+
+        .colophon-text a:hover {
+            border-bottom-color: var(--text-main);
+        }
+
+        /* RESPONSIVE LAYOUT adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+            .folio-page {
+                padding: 3rem 1.75rem;
+            }
+            .book-title {
+                font-size: 2.5rem;
+            }
+            .book-stats {
+                gap: 1rem;
+                padding: 0.6rem 1.25rem;
+            }
+            .stat-val {
+                font-size: 1.05rem;
+            }
+            .stat-lbl {
+                font-size: 0.55rem;
+            }
+            .chapters-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .chapter-card {
+                min-height: auto;
+            }
         }
     </style>
 </head>
 <body>
 
-<section class="hero">
-    <div class="hero-content">
-        <div class="badge">Even Semester · 2026</div>
-        <h1>Computer Architecture</h1>
-        <p>Comprehensive question & answer notes with fully detailed 5-7 mark level answers. Click any module to start studying.</p>
-        <div class="stats">
-            <div class="stat">
-                <div class="stat-number">5</div>
-                <div class="stat-label">Modules</div>
+<main class="folio-page">
+    <!-- TITLE PAGE HEADER -->
+    <header class="title-page">
+        <div class="book-badge">Academic Solved Notes</div>
+        <h1 class="book-title">Computer Architecture</h1>
+        
+        <div class="book-divider">
+            <span class="line"></span>
+            <span class="ornament">❖</span>
+            <span class="line"></span>
+        </div>
+        
+        <p class="book-subtitle">
+            A comprehensive curriculum library containing expert-level 5-7 mark question-and-answer solutions designed to simplify exam preparation.
+        </p>
+        
+        <div class="book-stats">
+            <div class="stat-item">
+                <span class="stat-val">V</span>
+                <span class="stat-lbl">Chapters</span>
             </div>
-            <div class="stat">
-                <div class="stat-number">129</div>
-                <div class="stat-label">Questions</div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-val">129</span>
+                <span class="stat-lbl">Questions</span>
             </div>
-            <div class="stat">
-                <div class="stat-number">5-7</div>
-                <div class="stat-label">Mark Level</div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-val">5-7</span>
+                <span class="stat-lbl">Mark Level</span>
             </div>
         </div>
-    </div>
-</section>
+    </header>
 
-<section class="modules">
-    <a href="pipelining.html" class="module-card" id="module-1">
-        <div class="module-accent c-blue"></div>
-        <div class="module-body">
-            <div class="module-info">
-                <div class="module-number t-blue">Module 1</div>
-                <div class="module-title">Performance, Pipelining & Exception Handling</div>
-                <div class="module-desc">CPU performance metrics, 5-stage pipeline, hazards, forwarding, branch prediction, exceptions</div>
+    <!-- CHAPTERS GRID -->
+    <section class="chapters-grid">
+        
+        <!-- CHAPTER 1 -->
+        <a href="pipelining.html" class="chapter-card" style="--chapter-color: var(--color-u1);" id="module-1">
+            <div class="card-content">
+                <div class="chapter-header">
+                    <div class="chapter-num">Chapter I</div>
+                    <h2 class="chapter-title">Performance &amp; Pipelining</h2>
+                    <p class="chapter-desc">CPU execution metrics, the classical 5-stage pipeline, hazard types, forwarding hardware paths, and branch predictions.</p>
+                </div>
+                
+                <div class="mini-toc">
+                    <div class="toc-item">
+                        <span class="toc-lbl">CPU Execution Metrics</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 01</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">5-Stage Datapath Layout</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 08</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Hazards &amp; Forwarding</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 15</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Hardware Exceptions</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 29</span>
+                    </div>
+                </div>
             </div>
-            <div class="module-meta">
-                <span class="q-count">39 Qs</span>
-                <span class="arrow">→</span>
+            <div class="card-footer">
+                <span class="badge-count">39 Solved Qs</span>
+                <span class="read-action">Open Divider <span class="arrow">→</span></span>
             </div>
-        </div>
-    </a>
+        </a>
 
-    <a href="memory.html" class="module-card" id="module-2">
-        <div class="module-accent c-purple"></div>
-        <div class="module-body">
-            <div class="module-info">
-                <div class="module-number t-purple">Module 2</div>
-                <div class="module-title">Hierarchical Memory Technology</div>
-                <div class="module-desc">Cache organizations, MESI protocol, coherence, replacement policies, AMAT calculations</div>
+        <!-- CHAPTER 2 -->
+        <a href="memory.html" class="chapter-card" style="--chapter-color: var(--color-u2);" id="module-2">
+            <div class="card-content">
+                <div class="chapter-header">
+                    <div class="chapter-num">Chapter II</div>
+                    <h2 class="chapter-title">Memory Hierarchy Technology</h2>
+                    <p class="chapter-desc">Cache architecture layout, coherence protocols (MESI), replacement logic, write strategies, and memory latency calculations.</p>
+                </div>
+                
+                <div class="mini-toc">
+                    <div class="toc-item">
+                        <span class="toc-lbl">Cache Mapping Schemes</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 41</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Coherence &amp; MESI Protocol</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 50</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Replacement Strategies</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 62</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">AMAT Math &amp; Penalties</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 74</span>
+                    </div>
+                </div>
             </div>
-            <div class="module-meta">
-                <span class="q-count">23 Qs</span>
-                <span class="arrow">→</span>
+            <div class="card-footer">
+                <span class="badge-count">23 Solved Qs</span>
+                <span class="read-action">Open Divider <span class="arrow">→</span></span>
             </div>
-        </div>
-    </a>
+        </a>
 
-    <a href="ilp.html" class="module-card" id="module-3">
-        <div class="module-accent c-orange"></div>
-        <div class="module-body">
-            <div class="module-info">
-                <div class="module-number t-orange">Module 3</div>
-                <div class="module-title">Instruction-Level Parallelism (ILP)</div>
-                <div class="module-desc">Superscalar, VLIW, Tomasulo's algorithm, register renaming, out-of-order execution, ROB</div>
+        <!-- CHAPTER 3 -->
+        <a href="ilp.html" class="chapter-card" style="--chapter-color: var(--color-u3);" id="module-3">
+            <div class="card-content">
+                <div class="chapter-header">
+                    <div class="chapter-num">Chapter III</div>
+                    <h2 class="chapter-title">Instruction-Level Parallelism</h2>
+                    <p class="chapter-desc">Superscalar architectures, static VLIW design, dynamic Tomasulo execution, register renaming, and the Reorder Buffer.</p>
+                </div>
+                
+                <div class="mini-toc">
+                    <div class="toc-item">
+                        <span class="toc-lbl">Superscalar &amp; VLIW Design</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 83</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Tomasulo Out-of-Order Execution</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 91</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Register Renaming Paths</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 103</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Reorder Buffer Commits</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 112</span>
+                    </div>
+                </div>
             </div>
-            <div class="module-meta">
-                <span class="q-count">22 Qs</span>
-                <span class="arrow">→</span>
+            <div class="card-footer">
+                <span class="badge-count">22 Solved Qs</span>
+                <span class="read-action">Open Divider <span class="arrow">→</span></span>
             </div>
-        </div>
-    </a>
+        </a>
 
-    <a href="vector.html" class="module-card" id="module-4">
-        <div class="module-accent c-sky"></div>
-        <div class="module-body">
-            <div class="module-info">
-                <div class="module-number t-sky">Module 4</div>
-                <div class="module-title">Array & Vector Pipeline</div>
-                <div class="module-desc">Array processors, vector pipelines, chaining, mask registers, SIMD architectures</div>
+        <!-- CHAPTER 4 -->
+        <a href="vector.html" class="chapter-card" style="--chapter-color: var(--color-u4);" id="module-4">
+            <div class="card-content">
+                <div class="chapter-header">
+                    <div class="chapter-num">Chapter IV</div>
+                    <h2 class="chapter-title">Array &amp; Vector Processing</h2>
+                    <p class="chapter-desc">Array processing models, vector pipelines, functional unit chaining, mask registers, and SIMD instruction processing.</p>
+                </div>
+                
+                <div class="mini-toc">
+                    <div class="toc-item">
+                        <span class="toc-lbl">SIMD &amp; Array Processors</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 125</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Vector Execution Pipelines</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 132</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Vector Chaining Layouts</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 144</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Vector Mask &amp; Strip-Mining</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 155</span>
+                    </div>
+                </div>
             </div>
-            <div class="module-meta">
-                <span class="q-count">19 Qs</span>
-                <span class="arrow">→</span>
+            <div class="card-footer">
+                <span class="badge-count">19 Solved Qs</span>
+                <span class="read-action">Open Divider <span class="arrow">→</span></span>
             </div>
-        </div>
-    </a>
+        </a>
 
-    <a href="multiprocessor.html" class="module-card" id="module-5">
-        <div class="module-accent c-green"></div>
-        <div class="module-body">
-            <div class="module-info">
-                <div class="module-number t-green">Module 5</div>
-                <div class="module-title">Multiprocessor Architecture</div>
-                <div class="module-desc">Flynn's taxonomy, UMA/NUMA, interconnection networks, dataflow, systolic arrays, clusters</div>
+        <!-- CHAPTER 5 -->
+        <a href="multiprocessor.html" class="chapter-card" style="--chapter-color: var(--color-u5);" id="module-5">
+            <div class="card-content">
+                <div class="chapter-header">
+                    <div class="chapter-num">Chapter V</div>
+                    <h2 class="chapter-title">Multiprocessor Architecture</h2>
+                    <p class="chapter-desc">Flynn's taxonomical catalog, UMA vs. NUMA shared systems, network interconnections, and dataflow/systolic paradigms.</p>
+                </div>
+                
+                <div class="mini-toc">
+                    <div class="toc-item">
+                        <span class="toc-lbl">Flynn's Class Taxonomies</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 167</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Shared Memory (UMA/NUMA)</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 175</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Interconnection Networks</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 188</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Dataflow &amp; Systolic Arrays</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">p. 201</span>
+                    </div>
+                </div>
             </div>
-            <div class="module-meta">
-                <span class="q-count">26 Qs</span>
-                <span class="arrow">→</span>
+            <div class="card-footer">
+                <span class="badge-count">26 Solved Qs</span>
+                <span class="read-action">Open Divider <span class="arrow">→</span></span>
             </div>
-        </div>
-    </a>
-</section>
+        </a>
 
-<footer>
-    <p>Author: Soumya Chakraborty · Fueled by ⚡ to crush exam prep</p>
-</footer>
+    </section>
+
+    <!-- FOOTER / COLOPHON -->
+    <footer>
+        <div class="colophon-ornament">❦</div>
+        <p class="colophon-text">
+            Compounded and published by <a href="#">Soumya Chakraborty</a>. Hand-crafted notes to crush exam preparation.
+        </p>
+    </footer>
+</main>
 
 </body>
 </html>

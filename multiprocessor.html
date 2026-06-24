@@ -4,127 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Module 5: Multiprocessor Architecture - Detailed Answers</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Link to Shared Notes Stylesheet -->
+    <link rel="stylesheet" href="notes.css">
+
+    <!-- Page Specific Variable Colors -->
     <style>
         :root {
-            --primary: #059669;
-            --primary-light: #d1fae5;
-            --primary-lighter: #ecfdf5;
-            --bg: #eef2f6;
-            --text: #334155;
-            --heading: #0f172a;
-            --border: #e2e8f0;
+            --primary-color: var(--color-u5, #10b981); /* Forest Green Accent */
+            --primary-light: rgba(16, 185, 129, 0.05);
+            --border-color: rgba(16, 185, 129, 0.15);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', system-ui, sans-serif; line-height: 1.7; color: var(--text); background: var(--bg); }
-
-        /* NAV BAR */
-        .top-nav {
-            background: #ffffff;
-            border-bottom: 1px solid var(--border);
-            padding: 0.75rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(12px);
-        }
-        .top-nav a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            padding: 0.4rem 1rem;
-            border-radius: 6px;
-            transition: all 0.2s;
-        }
-        .top-nav a:hover { background: var(--primary-light); }
-        .nav-title { font-weight: 700; color: var(--heading); font-size: 0.95rem; }
-
-        header {
-            background: linear-gradient(135deg, #064e3b, #059669);
-            padding: 3rem 2rem;
-            text-align: center;
-            color: white;
-        }
-        header h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem; }
-        header .subtitle { opacity: 0.85; font-size: 1.1rem; font-weight: 400; }
-
-        .container { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
-
-        details {
-            background: #ffffff;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            margin-bottom: 0.85rem;
-            overflow: hidden;
-            transition: all 0.3s;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-        }
-        details[open] {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border-color: var(--primary);
-        }
-        summary {
-            font-weight: 700;
-            cursor: pointer;
-            color: var(--heading);
-            font-size: 1rem;
-            padding: 1rem 1.25rem;
-            list-style: none;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: var(--primary-lighter);
-            border-bottom: 1px solid transparent;
-        }
-        details[open] summary { border-bottom: 1px solid var(--border); background: var(--primary-light); }
-        summary::-webkit-details-marker { display: none; }
-        summary::after { content: '▸'; color: var(--primary); font-size: 1.2rem; transition: transform 0.2s; }
-        details[open] summary::after { content: '▾'; }
-        summary:hover { background: var(--primary-light); }
-
-        .answer { padding: 1.25rem; }
-        .answer p { margin-bottom: 0.85rem; }
-        .answer ul, .answer ol { margin-bottom: 1rem; padding-left: 1.5rem; }
-        .answer li { margin-bottom: 0.4rem; }
-        .highlight { font-weight: 700; color: var(--primary); }
-        .formula-box {
-            background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
-            border-left: 4px solid var(--primary);
-            padding: 0.75rem 1rem;
-            margin: 1rem 0;
-            font-family: 'Courier New', monospace;
-            font-weight: 700;
-            font-size: 0.9rem;
-            border-radius: 0 8px 8px 0;
-        }
-        pre { background: #f8fafc; border: 1px solid #e2e8f0; padding: 0.75rem; border-radius: 8px; font-family: monospace; font-size: 0.85rem; overflow-x: auto; margin: 0.75rem 0; }
-        table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.9rem; }
-        th { background: var(--primary-light); color: var(--heading); font-weight: 700; padding: 0.6rem 0.75rem; text-align: left; border: 1px solid #d1d5db; }
-        td { padding: 0.5rem 0.75rem; border: 1px solid #e5e7eb; vertical-align: top; }
-        tr:nth-child(even) td { background: #f9fafb; }
-        code { background: #f1f5f9; padding: 1px 5px; border-radius: 3px; font-size: 0.85em; color: #059669; }
-        .hard-title { display: inline-block; background: #dc2626; color: white; font-size: 0.75rem; font-weight: 700; padding: 3px 14px; border-radius: 999px; text-transform: uppercase; letter-spacing: 1px; margin: 1.5rem 0 1rem; }
     </style>
 </head>
 <body>
 
 <nav class="top-nav">
     <a href="index.html">← Home</a>
-    <span class="nav-title">Module 5 of 5</span>
-    <a href="vector.html">← Module 4</a>
+    <span class="nav-title">Module V of V</span>
+    <div style="display:flex;gap:0.5rem;">
+        <a href="vector.html">← Previous</a>
+        <span style="opacity: 0.3; cursor: not-allowed; padding: 0.4rem 0.9rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;">Next →</span>
+    </div>
 </nav>
 
-<header>
-    <h1>Module 5: Multiprocessor Architecture</h1>
-    <p class="subtitle">Comprehensive 5-7 Mark Answers · 26 Questions</p>
-</header>
-
 <div class="container">
+    <header>
+        <h1>Module V: Multiprocessor Architecture</h1>
+        <p class="subtitle">Comprehensive 5-7 Mark Answers · 26 Questions</p>
+        <div class="book-divider">
+            <span class="line"></span>
+            <span class="ornament">❖</span>
+            <span class="line"></span>
+        </div>
+    </header>
+    <div class="section">
 
 <details><summary>1. Define Flynn's Taxonomy. List the four categories.</summary>
 <div class="answer">
