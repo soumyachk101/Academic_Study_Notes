@@ -24,79 +24,84 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const pageMeta = getPageMetadata(pageKey);
 
-    // 2. STUDY PROGRESS TRACKER (BOOKMARKS & LOCALSTORAGE)
-    const getProgress = (key) => {
-        return JSON.parse(localStorage.getItem(`progress_${key}`) || '{}');
-    };
+    // 1. FLASHCARD MODE
+    const initFlashcardMode = () => {
+        const cards = document.querySelectorAll('.qa-card');
+        if (cards.length === 0) return;
 
-    const setProgress = (key, progress) => {
-        localStorage.setItem(`progress_${key}`, JSON.stringify(progress));
-    };
+        let currentIndex = 0;
 
-    const initProgressTracker = () => {
-        if (!container) return;
+        // Create pagination controls
+        const controls = document.createElement('div');
+        controls.className = 'flashcard-controls';
+        
+        const prevBtn = document.createElement('button');
+        prevBtn.id = 'flash-prev';
+        prevBtn.className = 'flash-btn';
+        prevBtn.textContent = '← Previous';
+        
+        const countDisplay = document.createElement('div');
+        countDisplay.className = 'flash-count';
+        countDisplay.innerHTML = `Question <span id="flash-current">1</span> of <span>${cards.length}</span>`;
+        
+        const nextBtn = document.createElement('button');
+        nextBtn.id = 'flash-next';
+        nextBtn.className = 'flash-btn';
+        nextBtn.textContent = 'Next →';
+        
+        controls.appendChild(prevBtn);
+        controls.appendChild(countDisplay);
+        controls.appendChild(nextBtn);
+        
+        // Append controls after the section containing cards
+        const section = document.querySelector('.section');
+        if (section) {
+            section.appendChild(controls);
+        }
 
-        // Prepend bookmark checkboxes inside summaries
-        const detailsList = document.querySelectorAll('details');
-        const progress = getProgress(pageKey);
+        const updateView = () => {
+            cards.forEach((card, idx) => {
+                card.style.display = (idx === currentIndex) ? 'block' : 'none';
+            });
+            
+            document.getElementById('flash-current').textContent = currentIndex + 1;
+            prevBtn.disabled = (currentIndex === 0);
+            nextBtn.disabled = (currentIndex === cards.length - 1);
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
 
-        detailsList.forEach((detail, index) => {
-            const summary = detail.querySelector('summary');
-            if (summary) {
-                const bookmark = document.createElement('span');
-                bookmark.className = 'bookmark-btn';
-                bookmark.title = 'Mark as completed';
-                bookmark.setAttribute('data-index', index);
-                
-                if (progress[index]) {
-                    bookmark.classList.add('active');
-                }
-
-                // Star bookmark click trigger
-                bookmark.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    bookmark.classList.toggle('active');
-                    const isActive = bookmark.classList.contains('active');
-                    
-                    const currentProgress = getProgress(pageKey);
-                    if (isActive) {
-                        currentProgress[index] = true;
-                    } else {
-                        delete currentProgress[index];
-                    }
-                    setProgress(pageKey, currentProgress);
-                    updateProgressUI();
-                });
-
-                summary.insertBefore(bookmark, summary.firstChild);
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateView();
             }
         });
 
-        // UI update function
-        const updateProgressUI = () => {
-            const total = detailsList.length;
-            if (total === 0) return;
-            const currentProgress = getProgress(pageKey);
-            const completed = Object.keys(currentProgress).length;
-            const percent = Math.round((completed / total) * 100);
-            
-            const percentText = document.querySelector('.progress-percent');
-            const countText = document.querySelector('.progress-count');
-            const fill = document.querySelector('.progress-bar-fill');
-            
-            if (percentText) percentText.textContent = `${percent}%`;
-            if (countText) countText.textContent = `${completed}/${total}`;
-            if (fill) fill.style.width = `${percent}%`;
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < cards.length - 1) {
+                currentIndex++;
+                updateView();
+            }
+        });
+
+        // Expose function globally for the Outline Drawer
+        window.jumpToFlashcard = (index) => {
+            if (index >= 0 && index < cards.length) {
+                currentIndex = index;
+                updateView();
+            }
         };
 
-        updateProgressUI();
+        // Initial setup
+        updateView();
     };
 
-    // 4. FLOATING OUTLINE NAV DRAWER (Quick Jump with Scroll Offset Fix)
+    // 2. FLOATING OUTLINE NAV DRAWER
     const initOutlineDrawer = () => {
         if (!container) return;
+        const cards = document.querySelectorAll('.qa-card');
+        if (cards.length === 0) return;
 
         // Toggle button
         const toggleBtn = document.createElement('button');
@@ -111,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const drawerHeader = document.createElement('div');
         drawerHeader.className = 'drawer-header';
-        drawerHeader.textContent = 'Chapter Outline';
+        drawerHeader.textContent = 'Question Outline';
         
         const list = document.createElement('ul');
         list.className = 'drawer-list';
@@ -121,12 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(drawer);
 
         // Populate drawer
-        const detailsList = document.querySelectorAll('details');
-        detailsList.forEach((detail, index) => {
-            const summary = detail.querySelector('summary');
-            if (summary) {
-                // Strip the bookmark stars and extra spacing
-                const summaryText = summary.textContent.replace('☆', '').replace('★', '').trim();
+        cards.forEach((card, index) => {
+            const questionEl = card.querySelector('.qa-question');
+            if (questionEl) {
+                const summaryText = questionEl.textContent.trim();
                 const li = document.createElement('li');
                 li.className = 'drawer-item';
                 li.textContent = summaryText;
@@ -134,26 +137,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 li.addEventListener('click', () => {
                     drawer.classList.remove('open');
-                    
-                    // Fixed Scroll Offset Calculation (Accounts for sticky nav height + spacing)
-                    const navHeight = document.querySelector('.top-nav')?.offsetHeight || 60;
-                    const targetTop = detail.getBoundingClientRect().top + window.scrollY - navHeight - 20;
-
-                    window.scrollTo({
-                        top: targetTop,
-                        behavior: 'smooth'
-                    });
-
-                    // Open details block
-                    detail.open = true;
-
-                    // Flash highlight outline
-                    detail.style.outline = '2px solid var(--primary-color)';
-                    setTimeout(() => {
-                        detail.style.outline = 'none';
-                    }, 1200);
+                    if (window.jumpToFlashcard) {
+                        window.jumpToFlashcard(index);
+                    }
                 });
-
                 list.appendChild(li);
             }
         });
@@ -172,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // 5. INJECT BOOK LAYOUT MARGIN & GUTTER LINE
+    // 3. INJECT BOOK LAYOUT MARGIN & GUTTER LINE
     const initPageGutter = () => {
         if (container && !document.querySelector('.container-gutter')) {
             const gutter = document.createElement('div');
@@ -181,11 +168,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // 6. TEXTBOOK RUNNING HEADER AND FOOTER INJECTION
+    // 4. TEXTBOOK RUNNING HEADER AND FOOTER INJECTION
     const initTextbookHeaderFooter = () => {
         if (!container) return;
 
-        // Create & Prepend Textbook Header Line
         if (!document.querySelector('.textbook-header-line')) {
             const headLine = document.createElement('div');
             headLine.className = 'textbook-header-line';
@@ -203,7 +189,6 @@ document.addEventListener('DOMContentLoaded', () => {
             container.insertBefore(headLine, container.firstChild);
         }
 
-        // Create & Append Textbook Footer Line with Page Numbering
         if (!document.querySelector('.textbook-footer-line')) {
             const footLine = document.createElement('div');
             footLine.className = 'textbook-footer-line';
@@ -221,21 +206,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // 7. PAGE TURN TRANSITION INTERCEPTOR
+    // 5. PAGE TURN TRANSITION INTERCEPTOR
     const initPageTurnNavigation = () => {
-        // Intercept navigation links (prev, next, home links)
-        const navLinks = document.querySelectorAll('.top-nav a, .read-action, .drawer-item');
+        const navLinks = document.querySelectorAll('.top-nav a, .read-action');
         navLinks.forEach(link => {
             const href = link.getAttribute('href');
             if (href && href.endsWith('.html')) {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    
                     if (container) {
-                        // Apply 3D exit swing animation
                         container.classList.add('turn-exit');
-                        
-                        // Wait for transition animation to finish before navigating
                         setTimeout(() => {
                             window.location.href = href;
                         }, 500);
@@ -250,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Execute all functions
     initPageGutter();
     initTextbookHeaderFooter();
-    initProgressTracker();
+    initFlashcardMode();
     initOutlineDrawer();
     initPageTurnNavigation();
 });

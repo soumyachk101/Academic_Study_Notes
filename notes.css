@@ -833,3 +833,71 @@ pre code {
     border-left: none;
     background: transparent;
 }
+
+/* ==========================================
+   Flashcard Pagination Controls
+   ========================================== */
+.flashcard-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+    border-top: 1px solid var(--border-light);
+}
+
+.flash-btn {
+    background-color: var(--primary-color, #3b82f6);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+#flash-prev {
+    position: fixed;
+    top: 50%;
+    left: 2vw;
+    transform: translateY(-50%);
+    z-index: 100;
+}
+
+#flash-next {
+    position: fixed;
+    top: 50%;
+    right: 2vw;
+    transform: translateY(-50%);
+    z-index: 100;
+}
+
+#flash-prev:hover:not(:disabled),
+#flash-next:hover:not(:disabled) {
+    background-color: #2563eb;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.flash-btn:disabled {
+    background-color: #cbd5e1;
+    color: #94a3b8;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.flash-count {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+#flash-current {
+    color: var(--primary-color, #3b82f6);
+    font-weight: 700;
+}
