@@ -12,9 +12,32 @@
     <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
-            --primary-color: #10b981; /* Emerald Accent for 2017 Paper */
+            --primary-color: #10b981; /* Green Accent for 2017 Paper */
             --primary-light: rgba(16, 185, 129, 0.05);
             --border-color: rgba(16, 185, 129, 0.15);
+        }
+        .mark-badge {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            white-space: nowrap;
+            letter-spacing: 0.05em;
+        }
+        .part-header {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
@@ -32,7 +55,7 @@
 <div class="container">
     <header>
         <h1>Design &amp; Analysis of Algorithms</h1>
-        <p class="subtitle">2016-17 Solved Paper · Detailed Solutions</p>
+        <p class="subtitle">2016-17 Solved Paper · Detailed Marks-Wise Solutions</p>
         <div class="book-divider">
             <span class="line"></span>
             <span class="ornament">❖</span>
@@ -41,333 +64,378 @@
     </header>
     
     <div class="section">
-        <h2 id="group-a" style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1.5rem; margin-top: 3rem;">Group A — Multiple Choice Questions</h2>
+        <h2 id="group-a" style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1.5rem; margin-top: 3rem;">Group A — Multiple Choice Type Questions [ 10 x 1 = 10 Marks ]</h2>
         
-        <div class="qa-card" id="q17-1-1">
-            <h4 class="qa-question">1. (i) Which of the following algorithm design techniques is used in quick sort algorithm?</h4>
+        <div class="qa-card" id="q17-1">
+            <h4 class="qa-question">1. (i) Quick sort is also known as: <span class="mark-badge">[ 1 Mark ]</span></h4>
             <div class="answer">
-                <p>Answer: <span class="highlight">c) Divide and Conquer</span> (by partitioning the array around a pivot and sorting subarrays recursively).</p>
+                <p><b>Answer:</b> <b>(a) partition and exchange sort</b>. Quick sort divides the array into partitions based on a pivot and systematically exchanges elements to sort them.</p>
             </div>
         </div>
 
-        <div class="qa-card" id="q17-1-2">
-            <h4 class="qa-question">1. (ii) Which of the following algorithms solves the All-Pair Shortest Path problem?</h4>
-            <div class="answer">
-                <p>Answer: <span class="highlight">b) Floyd's Warshall's</span> (which is a dynamic programming algorithm with complexity \(O(V^3)\)).</p>
-            </div>
-        </div>
-
-        <div class="qa-card" id="q17-1-3">
-            <h4 class="qa-question">1. (iii) Travelling Salesman problem is:</h4>
-            <div class="answer">
-                <p>Answer: <span class="highlight">a) NP Hard</span> (specifically the optimization version is NP-Hard, while the decision version is NP-Complete).</p>
-            </div>
-        </div>
-
-        <div class="qa-card" id="q17-1-4">
-            <h4 class="qa-question">1. (iv) Complexity of the recurrence relation T(n) = 8T(n/2) + n² is:</h4>
-            <div class="answer">
-                <p>Answer: <span class="highlight">d) O(n³)</span>.</p>
-                <p><b>Proof:</b> Using Master's Theorem with \(a=8, b=2, f(n)=n^2\).
-                    <br>\(n^{\log_b a} = n^{\log_2 8} = n^3\).
-                    <br>Since \(f(n) = O(n^{3 - \epsilon})\) for \(\epsilon=1\), this matches Case 1 of Master's Theorem, yielding \(T(n) = \Theta(n^3)\).
-                </p>
-            </div>
-        </div>
-
-        <div class="qa-card" id="q17-1-5">
-            <h4 class="qa-question">1. (v) The minimum number of colours needed to colour a graph having n > 3 vertices and 2 edges is:</h4>
-            <div class="answer">
-                <p>Answer: <span class="highlight">a) 2</span> (since the graph has at most two disjoint edges, its maximum degree is small, and there are no odd cycles. A simple 2-coloring is always feasible).</p>
-            </div>
-        </div>
-
-        <div class="qa-card" id="q17-1-6">
-            <h4 class="qa-question">1. (vi) The fractional Knapsack problem can be solved by using:</h4>
-            <div class="answer">
-                <p>Answer: <span class="highlight">a) Greedy method</span>.</p>
-            </div>
-        </div>
-
-        <div class="qa-card" id="q17-1-7">
-            <h4 class="qa-question">1. (vii) Time complexity of Binary Search Algorithm on n items is:</h4>
-            <div class="answer">
-                <p>Answer: <span class="highlight">d) O(log n)</span>.</p>
-            </div>
-        </div>
-
-        <div class="qa-card" id="q17-1-8">
-            <h4 class="qa-question">1. (viii) The time factor when determining the efficiency of an algorithm is measured by:</h4>
-            <div class="answer">
-                <p>Answer: <span class="highlight">b) counting number of key operations</span> (this provides a hardware-independent metric of complexity).</p>
-            </div>
-        </div>
-
-        <div class="qa-card" id="q17-1-9">
-            <h4 class="qa-question">1. (ix) The tight bound for building max heap is:</h4>
-            <div class="answer">
-                <p>Answer: <span class="highlight">a) O(n)</span>.</p>
-            </div>
-        </div>
-
-        <div class="qa-card" id="q17-1-10">
-            <h4 class="qa-question">1. (x) BFS of a graph G = (V, E) has running time:</h4>
-            <div class="answer">
-                <p>Answer: <span class="highlight">a) O(|V| + |E|)</span>.</p>
-            </div>
-        </div>
-
-        <h2 id="group-b" style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1.5rem; margin-top: 3rem;">Group B — Short Answer Type Questions</h2>
-        
         <div class="qa-card" id="q17-2">
-            <h4 class="qa-question">2. Find the best and worst case complexity of Quick sort.</h4>
+            <h4 class="qa-question">1. (ii) Which design paradigm does the All-Pair Shortest Path algorithm use? <span class="mark-badge">[ 1 Mark ]</span></h4>
             <div class="answer">
+                <p><b>Answer:</b> <b>(b) Dynamic Programming</b>. The Floyd-Warshall algorithm uses dynamic programming by iteratively finding shortest paths using intermediate vertices.</p>
+            </div>
+        </div>
+
+        <div class="qa-card" id="q17-3">
+            <h4 class="qa-question">1. (iii) Define Adjacency Matrix and Path Matrix. <span class="mark-badge">[ 1 Mark ]</span></h4>
+            <div class="answer">
+                <p><b>Answer:</b> An <b>Adjacency Matrix</b> records direct 1-step edge connections between vertices. A <b>Path Matrix</b> (Transitive Closure) records if any path (of any length) exists between vertices.</p>
+            </div>
+        </div>
+
+        <div class="qa-card" id="q17-4">
+            <h4 class="qa-question">1. (iv) In a heap, every element is _____ than all elements in its subtree. <span class="mark-badge">[ 1 Mark ]</span></h4>
+            <div class="answer">
+                <p><b>Answer:</b> <b>(a) maximum</b> (for a Max-Heap). In a max-heap, the parent node is strictly greater than or equal to its children.</p>
+            </div>
+        </div>
+
+        <div class="qa-card" id="q17-5">
+            <h4 class="qa-question">1. (v) Backtracking follows which traversal technique? <span class="mark-badge">[ 1 Mark ]</span></h4>
+            <div class="answer">
+                <p><b>Answer:</b> <b>(c) Depth-First Search (DFS)</b>. Backtracking inherently explores deep into state spaces and backtracks when a constraint fails, mimicking DFS.</p>
+            </div>
+        </div>
+
+        <div class="qa-card" id="q17-6">
+            <h4 class="qa-question">1. (vi) Travelling Salesman Problem (TSP) belongs to which class? <span class="mark-badge">[ 1 Mark ]</span></h4>
+            <div class="answer">
+                <p><b>Answer:</b> <b>(c) NP-Hard</b>. The exact TSP optimization problem is NP-Hard as no polynomial-time algorithm exists, though its decision version is NP-Complete.</p>
+            </div>
+        </div>
+
+        <div class="qa-card" id="q17-7">
+            <h4 class="qa-question">1. (vii) Best case time complexity of Binary Search is: <span class="mark-badge">[ 1 Mark ]</span></h4>
+            <div class="answer">
+                <p><b>Answer:</b> <b>(a) \(O(1)\)</b>. This happens when the exact middle element of the array happens to be the target element on the first check.</p>
+            </div>
+        </div>
+
+        <div class="qa-card" id="q17-8">
+            <h4 class="qa-question">1. (viii) Time complexity of Floyd's algorithm is: <span class="mark-badge">[ 1 Mark ]</span></h4>
+            <div class="answer">
+                <p><b>Answer:</b> <b>(c) \(O(V^3)\)</b>. It uses three nested loops over the \(V\) vertices to evaluate all intermediate paths.</p>
+            </div>
+        </div>
+
+        <div class="qa-card" id="q17-9">
+            <h4 class="qa-question">1. (ix) The Master's Theorem does not apply for which recurrence? <span class="mark-badge">[ 1 Mark ]</span></h4>
+            <div class="answer">
+                <p><b>Answer:</b> <b>(b) \(T(n) = 2T(n/2) + n \log n\)</b>. It falls into the gap between Case 2 and Case 3, requiring the advanced generalized version of Master's Theorem.</p>
+            </div>
+        </div>
+
+        <div class="qa-card" id="q17-10">
+            <h4 class="qa-question">1. (x) Fractional Knapsack problem is solved most efficiently using: <span class="mark-badge">[ 1 Mark ]</span></h4>
+            <div class="answer">
+                <p><b>Answer:</b> <b>(a) Greedy method</b>. By continuously picking items with the highest value/weight ratio, it trivially achieves an optimal solution in \(O(n \log n)\).</p>
+            </div>
+        </div>
+
+        <h2 id="group-b" style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1.5rem; margin-top: 3rem;">Group B — Short Answer Type Questions [ 3 x 5 = 15 Marks ]</h2>
+
+        <div class="qa-card" id="q17-2">
+            <h4 class="qa-question">2. Describe the best case and worst case time complexity of Quick Sort. <span class="mark-badge">[ 5 Marks ]</span></h4>
+            <div class="answer">
+                <p><b>1. Best Case Time Complexity: \(O(n \log n)\)</b></p>
+                <p>The best case occurs when the partition element perfectly splits the array into two exactly equal halves of size \(n/2\) at every step.</p>
                 <ul>
-                    <li><b>Best Case (\(O(n \log n)\)):</b> Occurs when partitions split the array into exactly equal halves. Recurrence: \(T(n) = 2T(n/2) + \Theta(n)\). Applying Case 2 of Master's Theorem yields \(T(n) = \Theta(n \log n)\).</li>
-                    <li><b>Worst Case (\(O(n^2)\)):</b> Occurs when partitions split the array in a highly unbalanced way (e.g. \(0\) and \(n-1\) elements), which happens when the array is already sorted and we pick the last/first element as pivot. Recurrence: \(T(n) = T(n-1) + \Theta(n)\), which expands to \(\Theta(n^2)\).</li>
+                    <li>Recurrence: \(T(n) = 2T(n/2) + \Theta(n)\).</li>
+                    <li>Solving via Master Theorem: \(a=2, b=2\), \(n^{\log_2 2} = n\). This matches Case 2, yielding \(O(n \log n)\).</li>
+                </ul>
+                <p><b>2. Worst Case Time Complexity: \(O(n^2)\)</b></p>
+                <p>The worst case happens when the partition process repeatedly picks the smallest or largest element as the pivot, yielding highly skewed partitions of size \(0\) and \(n-1\) (e.g., when the array is already sorted).</p>
+                <ul>
+                    <li>Recurrence: \(T(n) = T(n-1) + T(0) + \Theta(n) = T(n-1) + cn\).</li>
+                    <li>Expanding: \(T(n) = cn + c(n-1) + c(n-2) + \dots \approx c \frac{n^2}{2}\).</li>
+                    <li>This yields a worst-case time complexity of \(O(n^2)\).</li>
                 </ul>
             </div>
         </div>
 
         <div class="qa-card" id="q17-3">
-            <h4 class="qa-question">3. State master's theorem and find the time complexity for the following recurrence: T(n) = 2T(n^(1/2)) + log n</h4>
+            <h4 class="qa-question">3. State Master's Theorem and find complexity for T(n) = 8T(n/2) + n². <span class="mark-badge">[ 5 Marks ]</span></h4>
             <div class="answer">
-                <p><b>Master's Theorem Definition:</b> For recurrences of the form \(T(n) = a T(n/b) + f(n)\):</p>
+                <p><b>Master's Theorem:</b> Provides a fast method to solve recurrences of the form \(T(n) = aT(n/b) + f(n)\), where \(a \ge 1, b > 1\). It compares \(f(n)\) to the critical polynomial \(n^{\log_b a}\).</p>
                 <ol>
-                    <li>If \(f(n) = O(n^{\log_b a - \epsilon})\), then \(T(n) = \Theta(n^{\log_b a})\).</li>
-                    <li>If \(f(n) = \Theta(n^{\log_b a} \log^k n)\), then \(T(n) = \Theta(n^{\log_b a} \log^{k+1} n)\).</li>
-                    <li>If \(f(n) = \Omega(n^{\log_b a + \epsilon})\) and regularity condition holds, then \(T(n) = \Theta(f(n))\).</li>
+                    <li><b>Case 1:</b> If \(f(n) = O(n^{\log_b a - \epsilon})\), then \(T(n) = \Theta(n^{\log_b a})\).</li>
+                    <li><b>Case 2:</b> If \(f(n) = \Theta(n^{\log_b a})\), then \(T(n) = \Theta(n^{\log_b a} \log n)\).</li>
+                    <li><b>Case 3:</b> If \(f(n) = \Omega(n^{\log_b a + \epsilon})\) and \(a f(n/b) \le c f(n)\), then \(T(n) = \Theta(f(n))\).</li>
                 </ol>
-                <p><b>Solving \(T(n) = 2T(n^{1/2}) + \log n\):</b></p>
-                <p>We use a change of variables to convert this into Master Theorem form.
-                    <br>Let \(m = \log_2 n \implies n = 2^m\). This means \(n^{1/2} = (2^m)^{1/2} = 2^{m/2}\).
-                    <br>Substituting these:
-                    \[T(2^m) = 2T(2^{m/2}) + m\]
-                    Let \(S(m) = T(2^m)\). The recurrence becomes:
-                    \[S(m) = 2S(m/2) + m\]
-                    Now we apply Master's Theorem to \(S(m)\) with \(a=2, b=2, f(m)=m\):
-                    <br>- \(m^{\log_b a} = m^{\log_2 2} = m^1 = m\).
-                    <br>- Since \(f(m) = \Theta(m)\), this matches Case 2 (\(k=0\)).
-                    <br>- Therefore, \(S(m) = \Theta(m \log_2 m)\).
-                    <br>Substituting back \(m = \log_2 n\):
-                    \[T(n) = \Theta(\log n \cdot \log(\log n))\]
-                </p>
-                <div class="formula-box">Complexity: <b>\(\Theta(\log n \log(\log n))\)</b></div>
+                <p><b>Solving \(T(n) = 8T(n/2) + n^2\):</b></p>
+                <ul>
+                    <li>\(a = 8\), \(b = 2\), \(f(n) = n^2\).</li>
+                    <li>Critical exponent: \(n^{\log_2 8} = n^3\).</li>
+                    <li>Compare \(f(n) = n^2\) against \(n^3\). Since \(n^2 = O(n^{3 - \epsilon})\) (for \(\epsilon = 1\)), \(f(n)\) grows polynomially slower.</li>
+                    <li>This perfectly matches <b>Case 1</b>.</li>
+                </ul>
+                <div class="formula-box">Time Complexity: \(\Theta(n^3)\)</div>
             </div>
         </div>
 
         <div class="qa-card" id="q17-4">
-            <h4 class="qa-question">4. Given the weight vector (2, 3, 5, 7, 1, 4, 1) and the profit vector (10, 5, 15, 7, 6, 18, 3) and a Knapsack of capacity 15. Find at least three feasible solutions including optimal one for the knapsack problem of seven objects.</h4>
+            <h4 class="qa-question">4. Find 3 feasible solutions for the fractional knapsack problem: n=3, W=20, Values=(25,24,15), Weights=(18,15,10). Mention the optimal solution. <span class="mark-badge">[ 5 Marks ]</span></h4>
             <div class="answer">
-                <p>We solve the 0-1 Knapsack problem where capacity \(M = 15\) and items are represented by index, weight, and profit.</p>
-                <p><b>Feasible Solutions:</b> Any subset of items whose total weight does not exceed 15 is a feasible solution.</p>
-                <ol>
-                    <li><b>Feasible Solution 1 (Greedy by Ratio):</b>
-                        <br>Sort by \(P_i / W_i\) ratio: Item 5 (ratio 6.0) \(\to\) Item 1 (5.0) \(\to\) Item 6 (4.5) \(\to\) Item 3 (3.0) \(\to\) Item 7 (3.0) \(\to\) Item 2 (1.67) \(\to\) Item 4 (1.0).
-                        <br>Selecting in order of ratio: Item 5, Item 1, Item 6, Item 3, Item 7.
-                        <br>Total Weight = 1 + 2 + 4 + 5 + 1 = 13 kg (\(\le 15\)).
-                        <br>Total Profit = 6 + 10 + 18 + 15 + 3 = <b>52</b>.
-                    </li>
-                    <li><b>Feasible Solution 2 (Greedy by Profit):</b>
-                        <br>Sort by profit: Item 6 (18) \(\to\) Item 3 (15) \(\to\) Item 1 (10) \(\to\) Item 4 (7) \(\to\) Item 5 (6) \(\to\) Item 2 (5) \(\to\) Item 7 (3).
-                        <br>Selecting in order of profit: Item 6, Item 3, Item 1, Item 5, Item 2.
-                        <br>Total Weight = 4 + 5 + 2 + 1 + 3 = 15 kg (\(\le 15\)).
-                        <br>Total Profit = 18 + 15 + 10 + 6 + 5 = <b>54</b>.
-                    </li>
-                    <li><b>Feasible Solution 3 (Optimal Solution):</b>
-                        <br>By applying dynamic programming, the maximum achievable profit is obtained by selecting items 1, 2, 3, 5, and 6.
-                        <br>Total Weight = 2 + 3 + 5 + 1 + 4 = 15 kg (\(\le 15\)).
-                        <br>Total Profit = 10 + 5 + 15 + 6 + 18 = <b>54</b>.
-                    </li>
-                </ol>
-                <div class="formula-box">Optimal subset is <b>{Item 1, Item 2, Item 3, Item 5, Item 6}</b> with max profit <b>54</b>.</div>
+                <p>We are allowed to take fractions of items. \(W = 20\). 
+                    <br>Item 1 (V=25, w=18, ratio=1.38), Item 2 (V=24, w=15, ratio=1.60), Item 3 (V=15, w=10, ratio=1.50).
+                </p>
+                <p><b>Feasible Solution 1 (Greedy by Value):</b> 
+                    <br>Take Item 1 entirely (Weight=18, Value=25). Remaining capacity = 2.
+                    <br>Take fraction of Item 2 (Weight=2, Value = \(24 \times (2/15) = 3.2\)).
+                    <br><i>Total Profit = 28.2</i>
+                </p>
+                <p><b>Feasible Solution 2 (Greedy by Minimum Weight):</b> 
+                    <br>Take Item 3 entirely (Weight=10, Value=15). Remaining capacity = 10.
+                    <br>Take fraction of Item 2 (Weight=10, Value = \(24 \times (10/15) = 16\)).
+                    <br><i>Total Profit = 31.0</i>
+                </p>
+                <p><b>Optimal Solution (Greedy by Max Ratio):</b> 
+                    <br>Sort by ratio: Item 2 (1.6) > Item 3 (1.5) > Item 1 (1.38).
+                    <br>Take Item 2 entirely (Weight=15, Value=24). Remaining capacity = 5.
+                    <br>Take fraction of Item 3 (Weight=5, Value = \(15 \times (5/10) = 7.5\)).
+                    <br>Remaining capacity = 0.
+                </p>
+                <div class="formula-box">Optimal Total Profit = 24 + 7.5 = <b>31.5</b></div>
             </div>
         </div>
 
         <div class="qa-card" id="q17-5">
-            <h4 class="qa-question">5. Solve the following recurrence relation using generating function: a_n = 6a_(n-1) - 11a_(n-2) + 6a_(n-3) for n >= 3 with initial condition a_0 = 1, a_1 = -1 and a_2 = 1.</h4>
+            <h4 class="qa-question">5. Find the closed form solution for recurrence: \(a_n = 6a_{n-1} - 11a_{n-2} + 6a_{n-3}\) using generating functions. <span class="mark-badge">[ 5 Marks ]</span></h4>
             <div class="answer">
-                <p>The relation is \(a_n - 6a_{n-1} + 11a_{n-2} - 6a_{n-3} = 0\). The characteristic equation is:</p>
+                <p>The characteristic equation for the linear recurrence \(a_n - 6a_{n-1} + 11a_{n-2} - 6a_{n-3} = 0\) is:</p>
                 <p>\[r^3 - 6r^2 + 11r - 6 = 0\]</p>
-                <p>We solve the roots of the characteristic equation:</p>
-                <ul>
-                    <li>Try \(r = 1\): \(1^3 - 6(1^2) + 11(1) - 6 = 0\). Thus, \((r-1)\) is a root.</li>
-                    <li>Dividing: \((r-1)(r^2 - 5r + 6) = (r-1)(r-2)(r-3) = 0\).</li>
-                    <li>The roots are \(r_1=1, r_2=2, r_3=3\).</li>
-                </ul>
-                <p>The general solution is of the form: \(a_n = C_1 \cdot 1^n + C_2 \cdot 2^n + C_3 \cdot 3^n = C_1 + C_2 2^n + C_3 3^n\).</p>
-                <p>We solve the constants using initial conditions:</p>
-                <ol>
-                    <li>For \(n=0\): \(C_1 + C_2 + C_3 = 1 \quad \text{--- (Eq 1)}\)</li>
-                    <li>For \(n=1\): \(C_1 + 2C_2 + 3C_3 = -1 \quad \text{--- (Eq 2)}\)</li>
-                    <li>For \(n=2\): \(C_1 + 4C_2 + 9C_3 = 1 \quad \text{--- (Eq 3)}\)</li>
-                </ol>
-                <p>Subtracting Eq 1 from Eq 2: \(C_2 + 2C_3 = -2 \quad \text{--- (Eq 4)}\)</p>
-                <p>Subtracting Eq 2 from Eq 3: \(2C_2 + 6C_3 = 2 \implies C_2 + 3C_3 = 1 \quad \text{--- (Eq 5)}\)</p>
-                <p>Subtracting Eq 4 from Eq 5: \(C_3 = 3\).</p>
-                <p>Substituting \(C_3 = 3\) in Eq 4: \(C_2 + 6 = -2 \implies C_2 = -8\).</p>
-                <p>Substituting both in Eq 1: \(C_1 - 8 + 3 = 1 \implies C_1 = 6\).</p>
-                <div class="formula-box">Final Solution: <b>\(a_n = 6 - 8 \cdot 2^n + 3 \cdot 3^n\)</b></div>
+                <p>By factoring, we find the roots:
+                    <br>\(r^3 - r^2 - 5r^2 + 5r + 6r - 6 = 0 \implies r^2(r-1) - 5r(r-1) + 6(r-1) = 0\)
+                    <br>\((r-1)(r^2 - 5r + 6) = 0 \implies (r-1)(r-2)(r-3) = 0\)
+                    <br>The roots are distinct: \(r_1 = 1, r_2 = 2, r_3 = 3\).
+                </p>
+                <p>The general closed-form solution is a linear combination of these roots raised to the power of \(n\):</p>
+                <p>\[a_n = C_1(1)^n + C_2(2)^n + C_3(3)^n\]</p>
+                <p>Assuming standard initial conditions (e.g., \(a_0=1, a_1=2, a_2=6\)), one would solve the 3x3 system of equations to determine \(C_1, C_2, C_3\). Since initial conditions were absent in the question, the final abstract closed form is:</p>
+                <div class="formula-box">\(a_n = C_1 + C_2(2^n) + C_3(3^n)\)</div>
             </div>
         </div>
 
         <div class="qa-card" id="q17-6">
-            <h4 class="qa-question">6. Discuss Job Sequencing with Deadlines with an example.</h4>
+            <h4 class="qa-question">6. Write down the algorithm for Job Sequencing with deadlines. <span class="mark-badge">[ 5 Marks ]</span></h4>
             <div class="answer">
-                <p><b>Job Sequencing with Deadlines:</b> We are given a set of \(n\) jobs, where each job \(i\) has a deadline \(d_i \ge 1\) and a profit \(p_i > 0\). Each job takes 1 unit of time to execute on a single processor, and profit is earned only if the job is completed within its deadline. The goal is to find a schedule that maximizes the total profit.</p>
-                <p><b>Example:</b> Consider 4 jobs with profits and deadlines:</p>
-                <ul>
-                    <li>\(J_1\): Profit = 100, Deadline = 2</li>
-                    <li>\(J_2\): Profit = 10, Deadline = 1</li>
-                    <li>\(J_3\): Profit = 15, Deadline = 2</li>
-                    <li>\(J_4\): Profit = 27, Deadline = 1</li>
-                </ul>
-                <p><b>Step-by-step Greedy Selection:</b></p>
-                <ol>
-                    <li>Sort jobs by profit descending: \(J_1(100) \to J_4(27) \to J_3(15) \to J_2(10)\).</li>
-                    <li>Maximum deadline is 2. Create time slots: Slot 1 (0-1) and Slot 2 (1-2).</li>
-                    <li>Pick \(J_1\) (Deadline 2): Place in latest free slot before deadline \(\to\) Slot 2 (1-2).</li>
-                    <li>Pick \(J_4\) (Deadline 1): Place in latest free slot before deadline \(\to\) Slot 1 (0-1).</li>
-                    <li>Pick \(J_3\) (Deadline 2): Latest slot before 2 is Slot 2 (full). Slot 1 is also full. Reject.</li>
-                    <li>Pick \(J_2\) (Deadline 1): Slots full. Reject.</li>
-                </ol>
-                <div class="formula-box">
-                    Optimal Sequence: <b>J4 followed by J1</b> (or J1 and J4)<br>
-                    Max Profit: 27 + 100 = <b>127</b>
-                </div>
+                <pre><code>GreedyJobSequencing(Jobs[], n):
+    // 1. Sort jobs strictly by profit in descending order
+    Sort Jobs in descending order of profit P
+    
+    // 2. Find max deadline to configure time slots
+    max_d = 0
+    For i = 1 to n:
+        if Jobs[i].deadline > max_d: max_d = Jobs[i].deadline
+        
+    // 3. Initialize scheduling slots (1-indexed)
+    Array slot[1...max_d] = FALSE
+    
+    // 4. Place jobs greedily
+    For i = 1 to n:
+        // Start from job's deadline and check backwards
+        For j = Jobs[i].deadline down to 1:
+            If slot[j] == FALSE:
+                slot[j] = Jobs[i]
+                break // Job scheduled</code></pre>
+                <p><b>Time Complexity:</b> Sorting takes \(O(n \log n)\). The scheduling loop checks up to \(d\) slots for \(n\) jobs. Worst case time complexity is \(O(n^2)\).</p>
             </div>
         </div>
 
-        <h2 id="group-c" style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1.5rem; margin-top: 3rem;">Group C — Long Answer Type Questions</h2>
-        
+        <h2 id="group-c" style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1.5rem; margin-top: 3rem;">Group C — Long Answer Type Questions [ 3 x 15 = 45 Marks ]</h2>
+
         <div class="qa-card" id="q17-7">
-            <h4 class="qa-question">7. (a) Matrix Chain Multiplication Dynamic Programming algorithm and explanation.</h4>
+            <h4 class="qa-question">7. Dynamic Programming &amp; Complexity <span class="mark-badge">[ 15 Marks ]</span></h4>
             <div class="answer">
-                <p>The matrix chain multiplication algorithm computes the minimum number of multiplications to multiply a chain of \(n\) matrices.</p>
-                <pre><code>Matrix-Chain-Order(p):
-    n = length(p) - 1
-    m[1..n, 1..n] = table, s[1..n-1, 2..n] = table
-    For i = 1 to n:
-       m[i, i] = 0
-    For L = 2 to n: // L is chain length
-       For i = 1 to n - L + 1:
-          j = i + L - 1
-          m[i, j] = Infinity
-          For k = i to j - 1:
-             q = m[i, k] + m[k+1, j] + p[i-1]*p[k]*p[j]
-             If q < m[i, j]:
-                m[i, j] = q
-                s[i, j] = k
-    Return m and s</code></pre>
-                <p><b>Explanation:</b> The algorithm computes the values bottom-up by increasing chain lengths \(L\). The auxiliary table \(s[i, j]\) records the optimal split index \(k\) that achieves the minimum multiplication cost, allowing us to reconstruct the exact parenthesized matrix sequence.</p>
-                
+                <div class="part-header">(a) Find minimum number of operations for MCM: A(10x20) * B(20x50) * C(50x1) * D(1x100). <span class="mark-badge">[ 7 Marks ]</span></div>
+                <p>The dimension array is \(P = [10, 20, 50, 1, 100]\). 
+                We trace DP table \(m[i,j] = \min (m[i,k] + m[k+1,j] + P[i-1] \cdot P[k] \cdot P[j])\).</p>
+                <ul>
+                    <li>\(m[1,2] = 10 \times 20 \times 50 = 10,000\)</li>
+                    <li>\(m[2,3] = 20 \times 50 \times 1 = 1,000\)</li>
+                    <li>\(m[3,4] = 50 \times 1 \times 100 = 5,000\)</li>
+                    <li>\(m[1,3]\):
+                        <br>\(k=1: 0 + 1000 + 10 \times 20 \times 1 = 1200\) (Min)
+                        <br>\(k=2: 10000 + 0 + 10 \times 50 \times 1 = 10500\)
+                    </li>
+                    <li>\(m[2,4]\):
+                        <br>\(k=2: 0 + 5000 + 20 \times 50 \times 100 = 105000\)
+                        <br>\(k=3: 1000 + 0 + 20 \times 1 \times 100 = 3000\) (Min)
+                    </li>
+                    <li>\(m[1,4]\):
+                        <br>\(k=1: 0 + 3000 + 10 \times 20 \times 100 = 23000\)
+                        <br>\(k=2: 10000 + 5000 + 10 \times 50 \times 100 = 65000\)
+                        <br>\(k=3: 1200 + 0 + 10 \times 1 \times 100 = 2200\) (Min)
+                    </li>
+                </ul>
+                <div class="formula-box">Minimum Multiplications: <b>2200</b>. Parenthesization: <b>\(((A \times B) \times C) \times D\)</b>.</div>
+
                 <hr style="border-top:1px solid var(--border-color);margin:1.5rem 0;">
                 
-                <p><b>(b) Critically comment on "Greedy strategy does not work for the 0-1 knapsack problem for all time".</b></p>
-                <p>In a 0-1 Knapsack, fractional items are not permitted. If we pick items based on the highest profit-to-weight ratio, we may leave empty space in the knapsack that cannot be filled, leading to suboptimal solutions compared to a dynamic programming combination that fills the capacity more effectively. (See countermeasures and example in Q13 of the Important Questions bank).</p>
-                
+                <div class="part-header">(b) Explain why Greedy method fails for 0-1 Knapsack with an example. <span class="mark-badge">[ 5 Marks ]</span></div>
+                <p>The Greedy method makes irrevocable local optimal choices (sorting by value/weight ratio). In <b>0-1 Knapsack</b>, we cannot take fractions of items. If we pick an item with the highest ratio, it might consume so much capacity that we cannot fit other combinations of items that collectively yield a higher overall value, leaving empty unusable space.</p>
+                <p><b>Example:</b> Capacity \(W = 50\).
+                    <br>Item 1: \(v=60, w=10\) (Ratio = 6)
+                    <br>Item 2: \(v=100, w=20\) (Ratio = 5)
+                    <br>Item 3: \(v=120, w=30\) (Ratio = 4)
+                    <br><i>Greedy selection:</i> Takes Item 1, then Item 2. Total Weight = 30. Remaining = 20. Cannot fit Item 3. Total Value = <b>160</b>.
+                    <br><i>Optimal selection:</i> Take Item 2 and Item 3. Total Weight = 50. Total Value = <b>220</b>.
+                    <br>Greedy fails to find the maximum possible value.
+                </p>
+
                 <hr style="border-top:1px solid var(--border-color);margin:1.5rem 0;">
                 
-                <p><b>(c) What do you mean by non-deterministic algorithms?</b></p>
-                <p>A non-deterministic algorithm is an algorithm that can exhibit different behaviors on different runs for the same input. It contains operations with multiple possible outcomes (non-deterministic choices). In complexity theory, a non-deterministic machine can run all paths in parallel, solving problems in polynomial time if any path reaches a valid solution (defining the class NP).</p>
+                <div class="part-header">(c) What is a Non-deterministic algorithm? <span class="mark-badge">[ 3 Marks ]</span></div>
+                <p>A <b>Non-deterministic algorithm</b> possesses the theoretical ability to magically "guess" the correct option among multiple choices in \(O(1)\) time. It operates conceptually in two phases:</p>
+                <ol>
+                    <li><b>Non-deterministic Guessing Phase:</b> It generates a candidate solution (certificate) out of thin air.</li>
+                    <li><b>Deterministic Verification Phase:</b> It takes the generated solution and verifies if it is correct in polynomial time.</li>
+                </ol>
             </div>
         </div>
 
         <div class="qa-card" id="q17-8">
-            <h4 class="qa-question">8. (a) State the general Knapsack problem. Write a greedy algorithm for this problem and derive its time complexity.</h4>
+            <h4 class="qa-question">8. Knapsack Algorithm &amp; Minimum Spanning Tree <span class="mark-badge">[ 15 Marks ]</span></h4>
             <div class="answer">
-                <p><b>General Knapsack Problem:</b> Given a set of \(n\) items, each with weight \(w_i\) and profit \(p_i\), and a knapsack capacity \(W\), we want to choose a subset of items to maximize the total profit such that the total weight is \(\le W\). If items can be divided, it is the <b>Fractional Knapsack</b>; if not, it is the <b>0-1 Knapsack</b>.</p>
-                <p><b>Greedy Algorithm for Fractional Knapsack:</b></p>
-                <pre><code>Greedy-Fractional-Knapsack(W, p[], w[], n):
-    1. Calculate ratios r[i] = p[i]/w[i] for all items.
-    2. Sort items by r[i] in descending order.
-    3. Initialize current_weight = 0, total_profit = 0.
-    4. For i = 1 to n:
-          If current_weight + w[i] <= W:
-             current_weight += w[i]
-             total_profit += p[i]
-          Else:
-             remain = W - current_weight
-             total_profit += p[i] * (remain / w[i])
-             Break
-    5. Return total_profit</code></pre>
-                <p><b>Complexity derivation:</b> Calculating ratios takes \(O(n)\) time. Sorting the items takes \(O(n \log n)\) time. The selection loop takes \(O(n)\) time. Overall time complexity is <b>\(O(n \log n)\)</b>.</p>
-                
+                <div class="part-header">(a) State general Knapsack problem. Write an algorithm to solve fractional knapsack and derive complexity. <span class="mark-badge">[ 8 Marks ]</span></div>
+                <p><b>General Problem:</b> Given a set of \(n\) items, each with a weight \(w_i\) and value \(v_i\), determine the combination of items to include in a knapsack of capacity \(M\) such that total weight \(\le M\) and total value is maximized.</p>
+                <pre><code>FractionalKnapsack(Items, M):
+    // 1. Calculate ratios and sort
+    For each item: ratio = value / weight
+    Sort items descending by ratio
+    
+    total_value = 0
+    // 2. Greedily fill capacity
+    For i = 1 to n:
+        if Items[i].weight <= M:
+            total_value += Items[i].value
+            M -= Items[i].weight
+        else:
+            // Take fraction of remaining capacity
+            fraction = M / Items[i].weight
+            total_value += fraction * Items[i].value
+            M = 0
+            break
+            
+    Return total_value</code></pre>
+                <p><b>Complexity Analysis:</b> Calculating ratios takes \(O(n)\). Sorting the items by ratio takes \(O(n \log n)\). The loop runs in \(O(n)\) time. Total time complexity is strictly bounded by the sort: <b>\(O(n \log n)\)</b>.</p>
+
                 <hr style="border-top:1px solid var(--border-color);margin:1.5rem 0;">
                 
-                <p><b>(b) Write an algorithm to find out minimum spanning tree of a graph. Discuss its time complexity.</b></p>
-                <p>Refer to Kruskal's or Prim's algorithm details. Prim's algorithm runs in \(O(E \log V)\) using binary heaps, while Kruskal's runs in \(O(E \log E)\) due to sorting edge weights. (See details in Q8 of the 2024 solved paper).</p>
+                <div class="part-header">(b) Write an algorithm to find MST using Kruskal's method. State its complexity. <span class="mark-badge">[ 7 Marks ]</span></div>
+                <pre><code>Kruskal-MST(G, w):
+    A = { } // Empty set for MST edges
+    
+    // Create disjoint set for each vertex
+    For each v in G.V: Make-Set(v)
+    
+    // Sort all edges in non-decreasing order of weight
+    Sort G.E by weight w
+    
+    // Check edges
+    For each edge (u, v) in G.E:
+        if Find-Set(u) != Find-Set(v): // No cycle formed
+            Add (u, v) to A
+            Union(u, v) // Merge sets
+            
+    Return A</code></pre>
+                <p><b>Time Complexity:</b> Sorting edges takes \(O(E \log E)\). Disjoint-set operations take \(O(E \alpha(V))\), which is nearly constant. The total complexity is <b>\(O(E \log E)\)</b> or <b>\(O(E \log V)\)</b>.</p>
             </div>
         </div>
 
         <div class="qa-card" id="q17-9">
-            <h4 class="qa-question">9. (a) Describe the Depth first search algorithm for a given graph and explain its time complexity.</h4>
+            <h4 class="qa-question">9. Depth First Search &amp; Backtracking <span class="mark-badge">[ 15 Marks ]</span></h4>
             <div class="answer">
-                <p><b>DFS Algorithm:</b> Traverses a graph by visiting a vertex, and recursively exploring all its unvisited adjacent vertices before backtracking.</p>
-                <pre><code>DFS(G):
+                <div class="part-header">(a) Write the algorithm of Depth First Search (DFS). <span class="mark-badge">[ 5 Marks ]</span></div>
+                <pre><code>DFS(Graph G):
+    // Initialize all vertices to unvisited (White)
     For each vertex u in G.V:
-       u.color = White
-    time = 0
+        color[u] = WHITE
+        parent[u] = NIL
+        
+    // Traverse all components
     For each vertex u in G.V:
-       If u.color == White:
-          DFS-Visit(G, u)
+        If color[u] == WHITE:
+            DFS-Visit(G, u)
 
 DFS-Visit(G, u):
-    time = time + 1
-    u.d = time
-    u.color = Gray
-    For each v in G.adj[u]:
-       If v.color == White:
-          DFS-Visit(G, v)
-    u.color = Black
-    time = time + 1
-    u.f = time</code></pre>
-                <p><b>Time Complexity:</b> Every vertex is visited exactly once, taking \(O(V)\) total time. The adjacency lists of all vertices are scanned exactly once, taking \(O(E)\) time. Thus, the total complexity is <b>\(\Theta(V + E)\)</b>.</p>
-                
+    color[u] = GRAY // Mark as discovered
+    
+    // Explore neighbors
+    For each neighbor v of u:
+        If color[v] == WHITE:
+            parent[v] = u
+            DFS-Visit(G, v) // Recursive deeper dive
+            
+    color[u] = BLACK // Fully explored</code></pre>
+
                 <hr style="border-top:1px solid var(--border-color);margin:1.5rem 0;">
                 
-                <p><b>(b) Write the algorithm for graph colouring problem. (c) Apply backtracking to solve 3-colouring.</b></p>
-                <p><b>(b) Backtracking Graph Coloring Algorithm:</b></p>
-                <pre><code>GraphColoring(vertex, color_assignment, m, G):
-    If vertex == G.V:
-       Return True // Success
+                <div class="part-header">(b) Describe Graph coloring problem. <span class="mark-badge">[ 5 Marks ]</span></div>
+                <p>The <b>m-Coloring Problem</b> is an optimization and decision problem where the objective is to assign up to \(m\) different colors to the vertices of a graph \(G\) such that no two adjacent vertices (vertices connected by a direct edge) share the same color. The smallest number of colors needed to color a graph is called its <b>Chromatic Number</b> \(\chi(G)\). The decision version ("can it be colored with exactly \(m\) colors?") is NP-Complete.</p>
+
+                <hr style="border-top:1px solid var(--border-color);margin:1.5rem 0;">
+                
+                <div class="part-header">(c) Write an algorithm to solve 3-coloring problem using Backtracking. <span class="mark-badge">[ 5 Marks ]</span></div>
+                <pre><code>GraphColoring(vertex v, graph G, colors[], m=3):
+    // Base Case: all vertices colored
+    If v == G.num_vertices:
+        Print colors[]
+        Return True
+        
+    // Try all m colors for current vertex v
     For c = 1 to m:
-       If IsSafe(vertex, c, color_assignment, G):
-          color_assignment[vertex] = c
-          If GraphColoring(vertex + 1, color_assignment, m, G):
-             Return True
-          color_assignment[vertex] = 0 // Backtrack
-    Return False</code></pre>
-                <p><b>(c) Applying 3-Coloring on the Graph:</b>
-                    <br>Let the graph vertices be labeled as \(V = \{1, 2, 3, 4, 5\}\). Colors are \(\{C_1, C_2, C_3\}\).
-                    <br>1. Assign vertex 1 color \(C_1\).
-                    <br>2. Vertex 2 is adjacent to 1. Assign it color \(C_2\).
-                    <br>3. Vertex 3 is adjacent to 1 and 2. Assign it color \(C_3\).
-                    <br>4. Vertex 4 is adjacent to 2 and 3. Assign it color \(C_1\).
-                    <br>5. Vertex 5 is adjacent to 4 and 1. Assign it color \(C_2\) (safe since it is not adjacent to 2).
-                    <br>This demonstrates a valid 3-coloring path with no conflicts.
-                </p>
+        If IsSafe(v, G, colors, c):
+            colors[v] = c // Assign color c
+            
+            // Recur for next vertex
+            If GraphColoring(v + 1, G, colors, m) == True:
+                Return True
+                
+            // Backtrack if assignment fails downstream
+            colors[v] = 0 // Remove color
+            
+    Return False // No color possible, trigger backtracking
+
+IsSafe(v, G, colors, c):
+    For i = 0 to G.num_vertices - 1:
+        // If adjacent and has same color
+        If G.adjMatrix[v][i] == 1 and colors[i] == c:
+            Return False
+    Return True</code></pre>
             </div>
         </div>
 
         <div class="qa-card" id="q17-10">
-            <h4 class="qa-question">10. Define the classes P and NP, polynomial reductions, complexity diagram, and Clique Decision Problem.</h4>
+            <h4 class="qa-question">10. Complexity Classes &amp; Flow Networks <span class="mark-badge">[ 15 Marks ]</span></h4>
             <div class="answer">
-                <p>Refer to Q22, Q23, and Q24 of the main subjective bank.
-                    <br>- **P vs NP**: P is solvable in polynomial time, NP is verifiable in polynomial time.
-                    <br>- **Polynomial Reductions**: Mapping instances of problem \(A\) to \(B\) in polynomial time.
-                    <br>- **Complexity Diagram**: Visualizes \(P \subseteq NP\) with NP-Complete at the intersection of NP and NP-Hard.
-                    <br>- **Clique Decision Problem**: Determines if a graph contains a clique of size \(\ge k\). It is proven to be NP-complete.
-                </p>
-            </div>
-        </div>
+                <div class="part-header">(a) What is class P and class NP? <span class="mark-badge">[ 2 Marks ]</span></div>
+                <p><b>Class P</b> contains all decision problems that can be fundamentally solved in polynomial time by a deterministic Turing machine. <b>Class NP</b> contains all decision problems where a proposed solution (certificate) can be <i>verified</i> as correct in polynomial time by a deterministic Turing machine.</p>
 
-        <div class="qa-card" id="q17-11">
-            <h4 class="qa-question">11. Write short notes on any three of the following: a) Vertex Cover, b) Recursion Tree, c) Heap Creation, d) Approximation schemes, e) Asymptotic notation.</h4>
-            <div class="answer">
-                <p><b>a) Vertex Cover:</b> A subset of vertices \(V' \subseteq V\) in an undirected graph such that every edge in the graph has at least one endpoint in \(V'\). The decision version is NP-Complete; the optimization version seeks the minimum vertex cover.</p>
-                <p><b>b) Recursion Tree:</b> A visual representation of a recurrence relation. Nodes represent the cost of solving subproblems at different levels of recursion. Summing the costs across all levels yields the total time complexity.</p>
-                <p><b>c) Heap Creation (Build-Max-Heap):</b> Converts an unordered array into a Max-Heap. It starts at the last non-leaf node (\(\lfloor n/2 \rfloor\)) and runs <code>Max-Heapify</code> bottom-up. The time complexity is bounded by \(O(n)\) (not \(O(n \log n)\)) because the cost of heapifying decreases exponentially with height.</p>
+                <hr style="border-top:1px solid var(--border-color);margin:1.5rem 0;">
+                
+                <div class="part-header">(b) Define Polynomial reductions. <span class="mark-badge">[ 2 Marks ]</span></div>
+                <p><b>Polynomial Reducibility</b> (\(A \le_p B\)) means there exists an algorithm operating in polynomial time that maps every input instance of problem \(A\) into an equivalent instance of problem \(B\). Thus, solving \(B\) guarantees solving \(A\) with polynomial overhead.</p>
+
+                <hr style="border-top:1px solid var(--border-color);margin:1.5rem 0;">
+                
+                <div class="part-header">(c) State the relations among P, NP, NP-Hard and NP-Complete. <span class="mark-badge">[ 2 Marks ]</span></div>
+                <p>\(P\) is a subset of \(NP\) (\(P \subseteq NP\)). <b>NP-Complete</b> is exactly the intersection of \(NP\) and \(NP-Hard\). If any \(NP-Complete\) problem is ever proven to be in \(P\), it would immediately prove that \(P = NP = NP-Complete\).</p>
+
+                <hr style="border-top:1px solid var(--border-color);margin:1.5rem 0;">
+                
+                <div class="part-header">(d) Define Clique Decision Problem (CDP). <span class="mark-badge">[ 2 Marks ]</span></div>
+                <p>The <b>Clique Decision Problem</b> asks: "Given a graph \(G=(V, E)\) and an integer \(k\), does \(G\) contain a clique (a fully connected complete subgraph) of size at least \(k\)?" This problem is proven to be NP-Complete.</p>
+
+                <hr style="border-top:1px solid var(--border-color);margin:1.5rem 0;">
+                
+                <div class="part-header">(e) State Max-flow Min-cut theorem. <span class="mark-badge">[ 7 Marks ]</span></div>
+                <p>The <b>Max-Flow Min-Cut Theorem</b> is a fundamental theorem in flow networks which states that the maximum possible amount of flow passing from the source node to the sink node is absolutely equal to the total capacity of the minimum cut separating the source and sink.</p>
+                <p>A <b>Cut (S, T)</b> partitions the vertices into two disjoint sets where the source \(S \in S\) and sink \(t \in T\). The capacity of the cut is the sum of capacities of edges pointing from set \(S\) to set \(T\). The theorem elegantly proves that the bottleneck of the network strictly limits the maximum flow.</p>
             </div>
         </div>
 

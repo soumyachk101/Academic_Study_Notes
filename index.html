@@ -293,9 +293,18 @@
 
         .toc-item {
             display: flex;
-            align-items: baseline;
-            font-size: 0.78rem;
-            color: #475569;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            padding: 0.35rem 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .toc-item:hover {
+            background-color: rgba(44, 62, 80, 0.05);
+            transform: translateX(2px);
         }
 
         .toc-lbl {
@@ -630,22 +639,22 @@
                 </div>
                 
                 <div class="mini-toc">
-                    <div class="toc-item">
+                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='daa/daa_important_questions.html';">
                         <span class="toc-lbl">Important Q&amp;A Bank</span>
                         <span class="toc-dots"></span>
                         <span class="toc-idx">69 Qs</span>
                     </div>
-                    <div class="toc-item">
+                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='daa/daa_pyq_2024.html';">
                         <span class="toc-lbl">2023-24 Solved Paper</span>
                         <span class="toc-dots"></span>
                         <span class="toc-idx">100%</span>
                     </div>
-                    <div class="toc-item">
+                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='daa/daa_pyq_2023.html';">
                         <span class="toc-lbl">2022-23 Solved Paper</span>
                         <span class="toc-dots"></span>
                         <span class="toc-idx">100%</span>
                     </div>
-                    <div class="toc-item">
+                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='daa/daa_pyq_2017.html';">
                         <span class="toc-lbl">2016-17 Solved Paper</span>
                         <span class="toc-dots"></span>
                         <span class="toc-idx">100%</span>
