@@ -3,31 +3,377 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Exam Prep Q&A - Environmental Sciences</title>
+    <title>Environmental Sciences Notes</title>
+    <meta name="description" content="Simple answers, key points, and solved previous year questions for Environmental Sciences.">
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- MathJax for rendering math equations -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <link rel="stylesheet" href="../notes.css">
+    
+    <style>
+
+        /* CSS Reset & Variables */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        :root {
+            --primary-color: #2563eb; 
+            --primary-light: rgba(37, 99, 235, 0.05);
+            --border-color: rgba(37, 99, 235, 0.15);
+            
+            --bg-desk: #eae6db; /* Desk/Surface ambient tone */
+            --bg-paper: #fefdfb; /* Fine book paper background */
+            --text-main: #1e293b; /* Charcoal ink */
+            --text-muted: #57687e; /* Muted ink */
+            --border-light: rgba(44, 62, 80, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background-color: var(--bg-desk);
+            /* Soft paper/desk texture overlay */
+            background-image: 
+                radial-gradient(rgba(30, 41, 59, 0.03) 1px, transparent 1px), 
+                radial-gradient(rgba(30, 41, 59, 0.03) 1px, var(--bg-desk) 1px);
+            background-size: 24px 24px;
+            background-position: 0 0, 12px 12px;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-bottom: 2rem;
+        }
+
+        /* FOLIO PAGE WRAPPER (Visual book simulator page) */
+        .folio-page {
+            max-width: 1100px;
+            width: 100%;
+            background-color: var(--bg-paper);
+            border: 1px solid rgba(44, 62, 80, 0.15);
+            border-radius: 4px;
+            padding: 4.5rem 3.5rem;
+            position: relative;
+            box-shadow: 
+                0 1px 2px rgba(0, 0, 0, 0.05),
+                0 8px 32px -4px rgba(0, 0, 0, 0.08),
+                0 24px 64px -12px rgba(0, 0, 0, 0.12),
+                inset 0 0 100px rgba(253, 252, 251, 0.8);
+        }
+
+        /* Inset Folio Border Line */
+        .folio-page::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 1px dashed rgba(44, 62, 80, 0.08);
+            pointer-events: none;
+            border-radius: 2px;
+        }
+
+        /* TITLE PAGE HEADER */
+        .title-page {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            max-width: 760px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .book-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+        }
+
+        .book-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--text-main);
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+        }
+
+        .book-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .book-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .book-divider .line {
+            height: 1px;
+            width: 120px;
+            background: linear-gradient(to right, transparent, rgba(30,41,59,0.15), transparent);
+        }
+
+        .book-divider .ornament {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            opacity: 0.8;
+        }
+
+        /* NAVIGATION BAR */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-light);
+            padding: 1.2rem 0;
+            margin-bottom: 3.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-link {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .back-link:hover {
+            transform: translateX(-4px);
+        }
+
+        .imprint {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        /* CHAPTERS GRID */
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .chapter-card {
+            background-color: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 2.2rem 2rem;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 380px;
+            box-shadow: 
+                0 4px 6px -1px rgba(30, 41, 59, 0.02),
+                0 2px 4px -1px rgba(30, 41, 59, 0.01);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        /* Decorative left accent edge */
+        .chapter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: var(--chapter-color);
+            border-radius: 8px 0 0 8px;
+            transition: width 0.3s ease;
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 12px 24px -4px rgba(30, 41, 59, 0.08),
+                0 4px 12px -2px rgba(30, 41, 59, 0.03);
+            border-color: rgba(30, 41, 59, 0.15);
+        }
+
+        .chapter-card:hover::before {
+            width: 8px;
+        }
+
+        .chapter-header {
+            margin-bottom: 2rem;
+        }
+
+        .chapter-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--chapter-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.85rem;
+            font-weight: 600;
+            line-height: 1.15;
+            color: #0f172a;
+            margin-bottom: 0.75rem;
+        }
+
+        .chapter-desc {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+        }
+
+        /* MINI TABLE OF CONTENTS (Visual index items inside the card) */
+        .mini-toc {
+            border-top: 1px solid rgba(30, 41, 59, 0.05);
+            padding-top: 1.25rem;
+            margin-bottom: auto;
+        }
+
+        .toc-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 0.825rem;
+            margin-bottom: 0.6rem;
+            color: var(--text-main);
+        }
+
+        .toc-lbl {
+            font-weight: 500;
+        }
+
+        .toc-dots {
+            flex-grow: 1;
+            border-bottom: 1px dotted rgba(30, 41, 59, 0.15);
+            margin: 0 0.5rem;
+            position: relative;
+            top: -3px;
+        }
+
+        .toc-idx {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        /* CARD FOOTER */
+        .card-footer {
+            border-top: 1px solid rgba(30, 41, 59, 0.05);
+            padding-top: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        .badge-count {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .read-action {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-main);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: gap 0.2s ease;
+        }
+
+        .read-action .arrow {
+            transition: transform 0.2s ease;
+        }
+
+        .chapter-card:hover .read-action {
+            color: var(--primary-color);
+        }
+
+        .chapter-card:hover .read-action .arrow {
+            transform: translateX(4px);
+        }
+        
+        /* FOOTER / COLOPHON */
+        footer {
+            text-align: center;
+            margin-top: 4.5rem;
+            border-top: 1px solid rgba(44, 62, 80, 0.06);
+            padding-top: 1.75rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .colophon-ornament {
+            font-size: 0.8rem;
+            color: rgba(44, 62, 80, 0.25);
+            margin-bottom: 0.75rem;
+        }
+
+        .colophon-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .colophon-text a {
+            color: var(--text-main);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(30, 41, 59, 0.2);
+            transition: border-color 0.2s ease;
+        }
+
+        .colophon-text a:hover {
+            border-bottom-color: var(--text-main);
+        }
+
+    </style>
 </head>
 <body>
 
-<nav class="top-nav">
-    <a href="env_index.html">← Back to Environmental Sciences</a>
-    <span class="nav-title">Env. Science Complete Q&A</span>
-    <div style="display:flex;gap:0.5rem;">
-        <a href="#group-a" style="padding: 0.4rem 0.9rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; background: #10b981; color: white; border-radius: 4px; text-decoration: none;">Group A</a>
-        <a href="#group-b" style="padding: 0.4rem 0.9rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; background: #10b981; color: white; border-radius: 4px; text-decoration: none;">Group B</a>
-        <a href="#group-c" style="padding: 0.4rem 0.9rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; background: #10b981; color: white; border-radius: 4px; text-decoration: none;">Group C</a>
-    </div>
-</nav>
-
-<div class="container">
-    <header>
-        <h1>Environmental Sciences - Complete Exam Prep Q&A</h1>
-        <p class="subtitle">Consolidated PYQs & Most Probable Important Questions</p>
+<div class="folio-page" style="margin-top: 2rem;">
+    <!-- HEADER -->
+    <header class="title-page">
+        <div class="book-badge">Academic Curriculum</div>
+        <h1 class="book-title">Environmental Sciences</h1>
+        <p class="book-subtitle">Complete Q&amp;A Bank &amp; Exam Solutions</p>
         <div class="book-divider">
             <span class="line"></span>
             <span class="ornament">❖</span>
@@ -35,866 +381,158 @@
         </div>
     </header>
     
-    <div class="section">
-<h2 id="group-a" style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1.5rem; margin-top: 3rem;">Group A — 1 Mark Questions</h2>
-<div class="qa-card">
-<div class="answer">
-<p><b>1. What is meant by ecosystem?</b></p>
-<p>An <b>ecosystem</b> is a self-regulating biological community of interacting organisms (biotic components) and their physical environment (abiotic components) functioning together as a system.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>2. Define population growth.</b></p>
-<p><b>Population growth</b> is the change (usually an increase) in the number of individuals of a specific species in a given population over a specific period of time.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>3. What is biodiversity?</b></p>
-<p><b>Biodiversity</b> refers to the variety and variability of life on Earth. It encompasses diversity at the genetic level, species level, and ecosystem level.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>4. Name any two renewable energy resources.</b></p>
-<p>1. <b>Solar Energy</b><br>2. <b>Wind Energy</b></p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>5. What is carrying capacity in logistic population growth?</b></p>
-<p>The <b>carrying capacity (K)</b> is the maximum population size of a biological species that a specific environment can sustain indefinitely, given the available resources like food, habitat, and water.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>6. Define food chain.</b></p>
-<p>A <b>food chain</b> is a linear sequence of organisms through which nutrients and energy pass in an ecosystem as one organism eats another (e.g., Grass &rarr; Grasshopper &rarr; Frog &rarr; Snake).</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>7. What is COD?</b></p>
-<p><b>COD (Chemical Oxygen Demand)</b> is a measure of the total amount of oxygen required to chemically oxidize all organic and inorganic matter present in a water sample using a strong chemical oxidant.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>8. Define BOD.</b></p>
-<p><b>BOD (Biochemical Oxygen Demand)</b> is the amount of dissolved oxygen needed by aerobic biological organisms to break down the organic material present in a given water sample at a certain temperature over a specific time period.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>9. Mention any one source of air pollution.</b></p>
-<p><b>Vehicular emissions</b> (exhaust from cars and trucks containing CO, NOx, and particulate matter).</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>10. What is global warming?</b></p>
-<p><b>Global warming</b> is the long-term heating of Earth's climate system observed primarily due to human activities (like burning fossil fuels), which increases heat-trapping greenhouse gas levels in Earth's atmosphere.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>11. What is noise pollution?</b></p>
-<p><b>Noise pollution</b> is unwanted or excessive sound that can have deleterious effects on human health, wildlife, and environmental quality.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>12. What is meant by biotic component of ecosystem?</b></p>
-<p>The <b>biotic components</b> are all the living parts of an ecosystem that shape its environment, including producers (plants), consumers (animals), and decomposers (bacteria/fungi).</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>13. Name the pollutant responsible for ozone depletion.</b></p>
-<p><b>Chlorofluorocarbons (CFCs)</b>.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>14. What is equivalent noise level?</b></p>
-<p><b>Equivalent continuous noise level (L<sub>eq</sub>)</b> is the constant noise level that would result in the same total sound energy being produced as the actual fluctuating noise level over a given period of time.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>15. What is eutrophication?</b></p>
-<p><b>Eutrophication</b> is the process by which a water body becomes progressively enriched with minerals and nutrients (particularly nitrogen and phosphorus), leading to excessive growth of algae (algal blooms) and subsequent depletion of oxygen.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>16. What is meant by solid waste?</b></p>
-<p><b>Solid waste</b> refers to any discarded, rejected, abandoned, or otherwise unwanted solid materials resulting from industrial, commercial, mining, agricultural operations, and from community activities.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>17. What is meant by environmental impact assessment (EIA)?</b></p>
-<p>An <b>EIA</b> is a formal, scientific process used to predict and evaluate the environmental consequences (both positive and negative) of a proposed plan, policy, or project prior to the decision to move forward with it.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>18. What is doubling time in exponential population growth?</b></p>
-<p><b>Doubling time</b> is the period of time required for a population growing at a constant exponential rate to double in size or value. It is calculated as approximately <b>70 / r</b> (where r is the annual growth rate percentage).</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>19. Why was the Environmental Protection Act established?</b></p>
-<p>The Environmental Protection Act (EPA, 1986 in India) was established to provide a comprehensive framework for the protection and improvement of the environment, largely enacted in response to the devastating Bhopal gas tragedy.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>20. What is meant by renewable resource?</b></p>
-<p>A <b>renewable resource</b> is a natural resource that will replenish itself to replace the portion depleted by usage and consumption, either through natural reproduction or other recurring processes in a finite amount of time.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>21. Define logistic population growth.</b></p>
-<p><b>Logistic population growth</b> is a model of population growth where the initial rapid growth rate slows down and eventually levels off as the population reaches the carrying capacity of the environment, resulting in an S-shaped (sigmoidal) curve.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (I) What do you mean by Abiotic component of ecosystem?</b></p>
-<p><b>Abiotic components</b> are the non-living chemical and physical parts of the environment that affect living organisms and the functioning of ecosystems. These include factors like sunlight, temperature, wind, water, soil, atmospheric gases, and minerals.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (II) Define the term Lithosphere.</b></p>
-<p>The <b>Lithosphere</b> is the solid, outer part of the Earth. It includes the brittle upper portion of the mantle and the crust, serving as the foundation for terrestrial ecosystems and providing essential minerals to living organisms.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (III) Define the term hydrosphere.</b></p>
-<p>The <b>Hydrosphere</b> is the combined mass of water found on, under, and above the surface of a planet. It encompasses all oceans, lakes, rivers, groundwater, atmospheric water vapor, and glaciers.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (IV) What do you mean by soil pollution?</b></p>
-<p><b>Soil pollution</b> (or soil contamination) refers to the presence of toxic chemicals, pollutants, or contaminants in the soil in high enough concentrations to pose a risk to human health and the ecosystem, often resulting from industrial activity, agricultural chemicals, or improper waste disposal.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (V) What is the unit of measurement of sound?</b></p>
-<p>The primary unit of measurement for sound level or intensity is the <b>Decibel (dB)</b>.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (VI) The Environment (Protection) Act was enacted in which year?</b></p>
-<p>The Environment (Protection) Act was enacted in India in the year <b>1986</b>.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (VII) What do you mean by anthropogenic waste?</b></p>
-<p><b>Anthropogenic waste</b> refers to waste and pollutants generated specifically by human activities, such as industrial emissions, household garbage, agricultural runoff, and plastic waste, as opposed to naturally occurring waste.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (VIII) What are the major types of ecosystem?</b></p>
-<p>The major types of ecosystems are broadly categorized into <b>Terrestrial Ecosystems</b> (forest, grassland, desert, tundra) and <b>Aquatic Ecosystems</b> (freshwater like lakes/rivers, and marine like oceans/coral reefs).</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (IX) What is greenhouse effect?</b></p>
-<p>The <b>greenhouse effect</b> is the natural process by which certain gases in the Earth's atmosphere (like CO₂, methane, and water vapor) trap heat from the sun, preventing it from escaping back into space and thereby warming the planet to sustain life.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (X) Define the term COD.</b></p>
-<p><b>COD (Chemical Oxygen Demand)</b> is a measure of the total amount of oxygen required to chemically oxidize all organic and inorganic reactive substances in a water sample. It is a vital metric for determining the amount of pollution in water.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (XI) What is acid rain?</b></p>
-<p><b>Acid rain</b> is any form of precipitation (rain, snow, fog) that is unusually acidic (has an elevated level of hydrogen ions, low pH). It is primarily caused by emissions of sulfur dioxide (SO₂) and nitrogen oxides (NOx) reacting with water molecules in the atmosphere.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (XII) Who developed the concept of ecological pyramid?</b></p>
-<p>The concept of the ecological pyramid was first developed by the British ecologist <b>Charles Elton</b> in 1927, which is why it is also often referred to as an Eltonian pyramid.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (I) What are causes of acid rain and what is its effects on natural environment?</b></p>
-<p><b>Causes:</b> Emissions of sulfur dioxide (SO₂) and nitrogen oxides (NOx) from burning fossil fuels (vehicles, power plants) which react with water vapor in the atmosphere to form sulfuric and nitric acids. <br><b>Effects:</b> It lowers the pH of soil and water bodies, harming aquatic life, damaging forests and vegetation, and accelerating the decay of building materials and historical monuments.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (II) What do you understand by GCM?</b></p>
-<p><b>GCM (General Circulation Model or Global Climate Model)</b> is a complex mathematical representation of the major climate system components (atmosphere, land surface, ocean, and sea ice) and their interactions. It is used to simulate global weather and predict future climate changes.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (III) What are In-situ and Ex-situ conservation method of biodiversity?</b></p>
-<p><b>In-situ (on-site) conservation:</b> Protecting an endangered plant or animal species in its natural habitat (e.g., National Parks, Wildlife Sanctuaries).<br><b>Ex-situ (off-site) conservation:</b> Protecting species outside their natural habitats in controlled environments (e.g., Zoos, Botanical Gardens, Seed Banks).</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (IV) Graphically explain the relationship between BOD and DO.</b></p>
-<p>When organic pollution enters a river, Biochemical Oxygen Demand (BOD) spikes as bacteria multiply to consume the waste. As they consume the waste, they deplete the oxygen, causing Dissolved Oxygen (DO) to drop sharply, creating an "oxygen sag curve." As the waste is broken down over time and distance, BOD slowly decreases, allowing DO to recover back to normal levels.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (V) What are the various sources of water pollution?</b></p>
-<p>Major sources include: Industrial effluents (heavy metals, chemicals), agricultural runoff (fertilizers, pesticides causing eutrophication), domestic sewage (untreated wastewater), and oil spills.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (VI) Mention name of few gases generated from Incineration plant.</b></p>
-<p>Gases typically generated include Carbon Dioxide (CO₂), Water Vapor (H₂O), Carbon Monoxide (CO), Sulfur Dioxide (SO₂), Nitrogen Oxides (NOx), Hydrogen Chloride (HCl), and highly toxic Dioxins and Furans.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (VII) Mention various types of noise pollution and its effects on human being.</b></p>
-<p><b>Types:</b> Transport noise (traffic, aircraft), Industrial noise, Neighborhood noise (loudspeakers, construction).<br><b>Effects:</b> Hearing impairment/loss, sleep disturbance, cardiovascular issues (hypertension), stress, and decreased cognitive performance.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (VIII) What authorizes the Central Government of India in Environmental Protection Act, 1986?</b></p>
-<p>The Act authorizes the Central Government to take all necessary measures to protect and improve the quality of the environment, establish environmental standards, regulate industrial locations, and lay down procedures/safeguards for handling hazardous substances.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (IX) What are the various types of earthquake waves generated in the earth surface?</b></p>
-<p>There are two main types: <b>Body Waves</b> (P-waves or Primary waves which are fast compressional waves, and S-waves or Secondary waves which are slower shear waves) and <b>Surface Waves</b> (Love waves and Rayleigh waves) which travel along the Earth's surface and cause the most damage.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (X) Mention the types and function of various components of ecosystem.</b></p>
-<p><b>Abiotic Components:</b> Physical factors (sunlight, soil, water) that provide the foundation and nutrients. <br><b>Biotic Components:</b> Producers (make food), Consumers (eat others for energy), and Decomposers (break down dead matter, recycling nutrients back into the ecosystem).</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (XI) Mention the various elements of air pollution as per NAAQS.</b></p>
-<p>The National Ambient Air Quality Standards (NAAQS) primarily monitor: Particulate Matter (PM10 and PM2.5), Sulfur Dioxide (SO₂), Nitrogen Dioxide (NO₂), Carbon Monoxide (CO), Ozone (O₃), Lead (Pb), Ammonia (NH₃), and Benzene.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (XII) What is meant by 5-day BOD and Ultimate BOD?</b></p>
-<p><b>5-day BOD (BOD₅):</b> The amount of dissolved oxygen consumed by microorganisms to decompose organic matter over a standard 5-day period at 20°C. <br><b>Ultimate BOD (BODᵤ):</b> The total amount of oxygen required for the complete microbial breakdown of organic matter in a water sample over an infinite period.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (I) Define the term Environment.</b></p>
-<p><b>Environment</b> refers to the sum total of all physical, chemical, biological, and social factors that surround an organism or a population and influence its survival, growth, and development.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (II) What is noise pollution?</b></p>
-<p><b>Noise pollution</b> is the presence of excessive, unwanted, or disturbing sound in the environment that disrupts the normal activities, health, or quality of life of humans and animals.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (III) Give two example of renewable resource.</b></p>
-<p>Two examples of renewable resources are <b>Solar energy</b> and <b>Wind energy</b> (other examples include timber, geothermal energy, and biomass).</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (IV) Name the pollutant which is responsible for ozone depletion.</b></p>
-<p>The primary pollutants responsible for ozone depletion are <b>Chlorofluorocarbons (CFCs)</b>.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (V) What do you mean by Biotic component of ecosystem?</b></p>
-<p><b>Biotic components</b> are the living parts of an ecosystem, which include all plants (producers), animals (consumers), and microorganisms (decomposers) that interact with each other and their environment.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (VI) What is the percentage of oxygen present in the troposphere?</b></p>
-<p>Oxygen makes up approximately <b>20.9%</b> (or 21%) of the Earth's troposphere.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (VII) Define the term BOD.</b></p>
-<p><b>BOD (Biochemical Oxygen Demand)</b> is the amount of dissolved oxygen consumed by aerobic microorganisms to break down the organic matter present in a given water sample at a specific temperature over a specific time period (usually 5 days).</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (VIII) What is the major element found in earth crust?</b></p>
-<p>The most abundant element in the Earth's crust is <b>Oxygen</b> (making up about 46.6% by weight).</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (IX) What is equivalent noise level?</b></p>
-<p><b>Equivalent continuous noise level (Leq)</b> is the constant noise level that would result in the same total sound energy being produced over a given period as a fluctuating noise level over that same period.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (X) Why environmental protection act was established?</b></p>
-<p>The Environmental Protection Act (1986 in India) was established in the wake of the Bhopal Gas Tragedy to provide a unified framework for the protection and improvement of the environment, and to regulate hazardous substances and industrial pollution.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (XI) What do you mean by doubling time in exponential population growth?</b></p>
-<p><b>Doubling time</b> is the amount of time it takes for a given population to double in size, assuming its growth rate remains constant (calculated using the Rule of 70: Doubling Time = 70 / Growth Rate % ).</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>1. (XII) The term 'ecology' evolved from which Greek words?</b></p>
-<p>The term ecology comes from the Greek words <b>"oikos"</b> (meaning house or dwelling) and <b>"logos"</b> (meaning study of), literally translating to the "study of the household (nature)."</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-</div>
-</div>
-<h2 id="group-b" style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1.5rem; margin-top: 3rem;">Group B — 5 Mark Questions</h2>
-<div class="qa-card">
-<div class="answer">
-<p><b>1. Derive the mathematical equation for exponential population growth.</b></p>
-<p>The exponential growth model assumes that resources are unlimited. The rate of change of the population (dN/dt) is proportional to the current population size (N).</p>
-    <p><b>1. Differential Equation:</b></p>
-    <p>$$\frac{dN}{dt} = rN$$</p>
-    <p>Where:<br>
-    <i>N</i> = Population size<br>
-    <i>t</i> = Time<br>
-    <i>r</i> = Intrinsic rate of natural increase (birth rate - death rate)</p>
-    <p><b>2. Separation of Variables:</b></p>
-    <p>$$\frac{dN}{N} = r dt$$</p>
-    <p><b>3. Integration:</b></p>
-    <p>Integrate both sides from time $t = 0$ (initial population $N_0$) to time $t$ (population $N_t$):</p>
-    <p>$$\int \frac{1}{N} dN = \int r dt$$</p>
-    <p>$$\ln(N_t) - \ln(N_0) = rt$$</p>
-    <p>$$\ln\left(\frac{N_t}{N_0}\right) = rt$$</p>
-    <p><b>4. Final Exponential Form:</b></p>
-    <p>Take the exponential (e) of both sides:</p>
-    <p>$$N_t = N_0 e^{rt}$$</p>
-    <p>This is the classic exponential growth equation showing a J-shaped curve.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>2. Explain logistic population growth with carrying capacity.</b></p>
-<p>Unlike exponential growth, logistic growth accounts for environmental resistance. Resources are limited, so a population cannot grow indefinitely.</p>
-    <p><b>Carrying Capacity (K):</b> This is the maximum number of individuals of a species that an environment can support over a long period without degrading the environment.</p>
-    <p><b>The Logistic Equation:</b></p>
-    <p>$$\frac{dN}{dt} = rN \left( \frac{K - N}{K} \right)$$</p>
-    <p><b>How it works (The S-Shaped Curve):</b></p>
-    <ul>
-    <li><b>Lag Phase:</b> The population is small, and growth is initially slow as organisms adapt.</li>
-    <li><b>Exponential / Log Phase:</b> When $N$ is very small compared to $K$, the term $\frac{K-N}{K}$ is close to 1. The population grows rapidly, resembling exponential growth.</li>
-    <li><b>Deceleration Phase:</b> As $N$ approaches $K$, resources become scarce. The term $\frac{K-N}{K}$ becomes a small fraction, slowing down the growth rate ($dN/dt$).</li>
-    <li><b>Stationary Phase:</b> When $N = K$, $\frac{K-N}{K} = 0$. The growth rate becomes zero, and the population size stabilizes, forming an S-shaped (sigmoidal) curve.</li>
-    </ul>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>3. Describe the causes and effects of water pollution.</b></p>
-<p><b>Causes of Water Pollution:</b></p>
-    <ul>
-    <li><b>Industrial Discharge:</b> Toxic chemicals, heavy metals (like lead and mercury), and thermal pollution dumped directly into water bodies.</li>
-    <li><b>Agricultural Runoff:</b> Rain washes fertilizers (nitrogen/phosphorus) and chemical pesticides from farms into rivers, causing eutrophication.</li>
-    <li><b>Domestic Sewage:</b> Untreated wastewater and human feces carrying pathogens into drinking water sources.</li>
-    <li><b>Oil Spills:</b> Accidental release of petroleum into oceans, devastating marine life.</li>
-    </ul>
-    <p><b>Effects of Water Pollution:</b></p>
-    <ul>
-    <li><b>Human Health:</b> Causes deadly waterborne diseases like cholera, typhoid, and dysentery.</li>
-    <li><b>Ecosystem Destruction:</b> Toxic chemicals poison aquatic life. Eutrophication leads to algal blooms and dead zones (oxygen depletion) resulting in massive fish kills.</li>
-    <li><b>Biomagnification:</b> Heavy metals accumulate in the tissues of small fish and magnify in concentration up the food chain, eventually poisoning humans who eat top predators.</li>
-    </ul>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>4. What are the advantages and disadvantages of landfilling of solid waste?</b></p>
-<p>A sanitary landfill is an engineered pit where solid waste is dumped, compacted, and covered with soil daily.</p>
-    <p><b>Advantages:</b></p>
-    <ul>
-    <li><b>Cost-Effective:</b> It is generally the cheapest and most common method of waste disposal for large volumes.</li>
-    <li><b>Energy Recovery:</b> Modern landfills can capture the methane gas produced by decomposing waste and burn it to generate electricity.</li>
-    <li><b>Land Reclamation:</b> Once completely filled and capped, the land can be repurposed for parks, golf courses, or solar farms.</li>
-    </ul>
-    <p><b>Disadvantages:</b></p>
-    <ul>
-    <li><b>Leachate Contamination:</b> Rainwater percolating through the waste creates highly toxic "leachate" that can leak and poison underlying groundwater.</li>
-    <li><b>Greenhouse Gases:</b> Decomposing organic matter releases methane (CH₄), a greenhouse gas 25 times more potent than CO₂.</li>
-    <li><b>Space Constraints:</b> Finding new sites is difficult due to the "NIMBY" (Not In My Back Yard) syndrome, as landfills cause odor, noise, and attract pests.</li>
-    </ul>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>5. Describe different methods of solid waste management.</b></p>
-<p>Effective solid waste management uses a hierarchy of methods to minimize environmental impact:</p>
-    <ol>
-    <li><b>Source Reduction (Reduce & Reuse):</b> The most preferred method. Involves using fewer materials in manufacturing and reusing items (like cloth bags instead of plastic) to prevent waste generation from the start.</li>
-    <li><b>Recycling:</b> Collecting and processing materials (paper, glass, metals, plastics) that would otherwise be thrown away and turning them into new products.</li>
-    <li><b>Composting:</b> A biological process where microorganisms break down organic waste (food scraps, yard waste) under aerobic conditions into nutrient-rich humus (compost) used as a natural fertilizer.</li>
-    <li><b>Incineration (Waste-to-Energy):</b> Burning solid waste at extremely high temperatures. It reduces waste volume by 90% and can generate electricity, but requires expensive filters to prevent toxic air pollution (dioxins).</li>
-    <li><b>Sanitary Landfills:</b> The least preferred but most common method. Waste is buried in engineered pits lined with clay/plastic to prevent leachate from reaching groundwater.</li>
-    </ol>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>6. Explain the concept and objectives of Environmental Impact Assessment (EIA).</b></p>
-<p><b>Concept:</b><br>
-    Environmental Impact Assessment (EIA) is a formal, proactive regulatory process used to evaluate the potential environmental, social, and economic impacts of a proposed project (e.g., building a dam, highway, or factory) <i>before</i> the project is granted approval to proceed.</p>
-    <p><b>Objectives of EIA:</b></p>
-    <ul>
-    <li><b>Predict Impacts:</b> To scientifically identify and predict the potential adverse environmental impacts of a project early in the planning stage.</li>
-    <li><b>Mitigation:</b> To propose alternative sites, technologies, or mitigation strategies to reduce, offset, or eliminate the predicted negative impacts.</li>
-    <li><b>Inform Decision-Makers:</b> To provide government authorities with a comprehensive report (the Environmental Impact Statement) so they can make informed decisions on whether to approve, modify, or reject the project.</li>
-    <li><b>Public Participation:</b> To ensure that the local communities and stakeholders affected by the project have a voice in the decision-making process through public hearings.</li>
-    <li><b>Sustainable Development:</b> To strike a balance between necessary economic development and environmental conservation.</li>
-    </ul>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>7. Differentiate between BOD, COD, and DO.</b></p>
-<table style="width:100%; border-collapse: collapse; margin-top: 1rem;">
-    <tr>
-        <th style="border: 1px solid var(--border-color); padding: 0.5rem; text-align: left;">Feature</th>
-        <th style="border: 1px solid var(--border-color); padding: 0.5rem; text-align: left;">BOD (Biochemical Oxygen Demand)</th>
-        <th style="border: 1px solid var(--border-color); padding: 0.5rem; text-align: left;">COD (Chemical Oxygen Demand)</th>
-        <th style="border: 1px solid var(--border-color); padding: 0.5rem; text-align: left;">DO (Dissolved Oxygen)</th>
-    </tr>
-    <tr>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;"><b>Definition</b></td>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;">Amount of oxygen consumed by <i>bacteria</i> to decompose <i>organic</i> matter biologically.</td>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;">Amount of oxygen required to <i>chemically</i> oxidize all <i>organic and inorganic</i> matter.</td>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;">The actual amount of free, non-compound oxygen molecules (O₂) present in the water.</td>
-    </tr>
-    <tr>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;"><b>Time Required</b></td>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;">Takes 5 days to measure (BOD₅).</td>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;">Takes only 2-3 hours to measure.</td>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;">Measured instantly using a probe or titration.</td>
-    </tr>
-    <tr>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;"><b>Value Relationship</b></td>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;">Always lower than COD. High BOD means high pollution.</td>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;">Always higher than BOD. High COD means high pollution.</td>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;">Inversely related to BOD/COD. High DO means clean, healthy water.</td>
-    </tr>
-    </table>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>8. Discuss the principle of BOD test.</b></p>
-<p><b>Principle of the BOD (Biochemical Oxygen Demand) Test:</b></p>
-    <p>The BOD test measures the rate at which microorganisms consume oxygen while breaking down organic matter in a water sample. It is a standard bioassay used to determine the level of organic pollution in water.</p>
-    <p><b>Procedure:</b></p>
-    <ol>
-    <li><b>Initial Measurement:</b> A water sample is collected, diluted (if heavily polluted) with oxygen-saturated water, and its initial Dissolved Oxygen (DO) concentration is measured immediately ($D_1$).</li>
-    <li><b>Incubation:</b> The sample is sealed in an airtight BOD bottle to prevent outside oxygen from entering. It is then incubated in the dark (to prevent algae from producing oxygen via photosynthesis) at a standard temperature of <b>20°C</b> for exactly <b>5 days</b>.</li>
-    <li><b>Final Measurement:</b> After 5 days, the final Dissolved Oxygen concentration is measured ($D_5$).</li>
-    <li><b>Calculation:</b> The BOD is calculated by finding the difference between the initial and final DO levels, multiplied by the dilution factor (P).</li>
-    </ol>
-    <p><b>Formula:</b> $$BOD_5 (mg/L) = \frac{D_1 - D_5}{P}$$</p>
-    <p>Where $P$ is the decimal fraction of the sample in the bottle. A high BOD value indicates high organic pollution.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>9. Write a brief note on eutrophication.</b></p>
-<p><b>Eutrophication</b> is an ecological process resulting from the over-enrichment of a water body (like a lake or river) with minerals and nutrients, primarily nitrogen and phosphorus.</p>
-    <p><b>Process:</b></p>
-    <ol>
-    <li><b>Nutrient Influx:</b> Agricultural runoff containing fertilizers, or untreated sewage, washes into a lake.</li>
-    <li><b>Algal Bloom:</b> The excess nutrients act as fertilizer for aquatic plants and algae, causing a massive population explosion on the water surface (an algal bloom).</li>
-    <li><b>Sunlight Blockage:</b> The thick mat of algae blocks sunlight from reaching submerged aquatic plants, causing them to die.</li>
-    <li><b>Oxygen Depletion (Hypoxia):</b> The algae eventually die and sink. Aerobic bacteria decompose this massive amount of dead organic matter, consuming vast quantities of Dissolved Oxygen (DO) in the process.</li>
-    <li><b>Dead Zone:</b> The water becomes severely oxygen-depleted. Fish and other aquatic organisms suffocate and die, turning the once-healthy ecosystem into a stagnant "dead zone."</li>
-    </ol>
-    <p>Eutrophication can be natural (occurring slowly over centuries) or cultural (accelerated rapidly by human pollution).</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>10. Describe different kinds of solid waste.</b></p>
-<p>Solid waste is categorized based on its source and characteristics:</p>
-    <ul>
-    <li><b>Municipal Solid Waste (MSW):</b> Everyday items discarded by the public from homes, schools, and offices. Includes food scraps, paper, plastics, glass, and yard trimmings.</li>
-    <li><b>Industrial Waste:</b> Waste generated by manufacturing processes and factories. Can be hazardous (chemicals) or non-hazardous (scrap metal, wood, slag).</li>
-    <li><b>Biomedical (Hospital) Waste:</b> Waste generated during the diagnosis, treatment, or immunization of humans or animals. Highly infectious. Includes syringes, anatomical waste, blood-soaked bandages, and expired medicines.</li>
-    <li><b>Hazardous Waste:</b> Any waste that poses a substantial threat to public health or the environment because it is toxic, corrosive, flammable, or reactive (e.g., batteries, strong acids, pesticides).</li>
-    <li><b>E-Waste (Electronic Waste):</b> Discarded electrical or electronic devices like old computers, smartphones, and televisions. They contain hazardous heavy metals like lead and cadmium, but also valuable recoverable metals like gold.</li>
-    </ul>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>11. If the present population of the world is 8 billion, calculate the population after 25 years at a growth rate of 1% per year.</b></p>
-<p>We use the exponential growth formula: <b>$N_t = N_0(1 + r)^t$</b> or the continuous compound formula <b>$N_t = N_0 e^{rt}$</b>.</p>
-    <p>Given:<br>
-    Initial population ($N_0$) = 8 billion<br>
-    Growth rate ($r$) = 1% = 0.01<br>
-    Time ($t$) = 25 years</p>
-    <p><b>Using the continuous exponential model:</b></p>
-    <p>$$N_t = 8 \times e^{(0.01 \times 25)}$$</p>
-    <p>$$N_t = 8 \times e^{0.25}$$</p>
-    <p>Using the value of $e^{0.25} \approx 1.2840$</p>
-    <p>$$N_t = 8 \times 1.2840 = 10.272 \text{ billion}$$</p>
-    <p><i>(Using the discrete annual compounding formula $N_t = 8(1.01)^{25}$, the result is $8 \times 1.2824 = 10.259$ billion).</i></p>
-    <p><b>Answer:</b> The population will be approximately <b>10.27 billion</b>.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>12. Explain the role of decomposers in ecosystem functioning.</b></p>
-<p>Decomposers (primarily bacteria and fungi) act as the ecosystem's recycling crew. Their role is absolutely critical for the continuation of life:</p>
-    <ul>
-    <li><b>Nutrient Recycling (Mineralization):</b> They secrete enzymes to break down complex organic matter (dead plants, animal carcasses, and feces) into simple inorganic nutrients (like nitrogen, phosphorus, and carbon). These nutrients are released back into the soil and water, making them available again for primary producers (plants) to absorb.</li>
-    <li><b>Energy Flow Completion:</b> They form the base of the detrital food web, ensuring that the last bits of energy locked in dead matter are utilized.</li>
-    <li><b>Environmental Cleaning:</b> Without decomposers, the earth would quickly become buried in a deep layer of dead organic matter, and life would cease as all essential nutrients would remain locked away in dead bodies.</li>
-    </ul>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>13. Discuss the structure and functions of an ecosystem.</b></p>
-<p><b>Structure of an Ecosystem:</b></p>
-    <p>The structure is composed of two main interactive components:</p>
-    <ul>
-    <li><b>1. Abiotic (Non-living) Components:</b> Physical and chemical factors like sunlight, temperature, rainfall, soil type, water, and atmospheric gases.</li>
-    <li><b>2. Biotic (Living) Components:</b> 
-        <ul>
-        <li><i>Producers (Autotrophs):</i> Plants and algae that make their own food via photosynthesis.</li>
-        <li><i>Consumers (Heterotrophs):</i> Animals that eat plants (herbivores) or other animals (carnivores).</li>
-        <li><i>Decomposers (Saprotrophs):</i> Bacteria and fungi that break down dead matter.</li>
-        </ul>
-    </li>
-    </ul>
-    
-    <p><b>Functions of an Ecosystem:</b></p>
-    <p>The functions describe the dynamic processes and interactions within the structure:</p>
-    <ul>
-    <li><b>Energy Flow:</b> Energy from the sun enters via producers and flows unidirectionally through the food chain (10% law). It is eventually lost as heat.</li>
-    <li><b>Nutrient Cycling (Biogeochemical Cycles):</b> Elements like Carbon, Nitrogen, and Water circulate cyclically between the biotic and abiotic components, ensuring they are never depleted.</li>
-    <li><b>Ecological Succession:</b> The predictable, directional change in the species structure of an ecosystem over time following a disturbance.</li>
-    <li><b>Homeostasis:</b> The ecosystem's ability to maintain a stable equilibrium and self-regulate its population sizes (e.g., predator-prey dynamics).</li>
-    </ul>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>2. Discuss about the phosphate cycle with diagram.</b></p>
-<p>The <b>Phosphorus Cycle (Phosphate Cycle)</b> is the biogeochemical process by which phosphorus moves through the lithosphere, hydrosphere, and biosphere. Unlike the carbon or nitrogen cycles, it does not involve the atmosphere significantly, as phosphorus is primarily found in solid rocks and soil minerals.</p>
-    <ul>
-    <li><b>Weathering:</b> Phosphorus is found in rocks. Over time, rain and weathering cause rocks to release phosphate ions and other minerals into soils and water.</li>
-    <li><b>Absorption by Plants:</b> Plants take up inorganic phosphate from the soil.</li>
-    <li><b>Consumption by Animals:</b> Animals obtain phosphorus by eating plants or plant-eating animals.</li>
-    <li><b>Decomposition:</b> When plants and animals die, bacteria decompose their bodies, returning phosphorus to the soil.</li>
-    <li><b>Sedimentation:</b> Phosphorus in soil can wash into waterways, eventually settling at the bottom as sediment, turning back into rock over millions of years.</li>
-    </ul>
-    <p><b>Flowchart Representation:</b></p>
-    <img src="assets/phosphate_cycle.png" alt="Phosphate Cycle Diagram" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); margin: 1.5rem 0;">
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>3. Write a short note about green house effect.</b></p>
-<p>The <b>Greenhouse Effect</b> is a natural phenomenon crucial for keeping the Earth warm enough to sustain life. </p>
-    <p><b>Mechanism:</b> Solar radiation passes through the atmosphere and warms the Earth's surface. The Earth then radiates heat back outward as infrared radiation. Certain gases in the atmosphere, known as greenhouse gases (GHGs), absorb a portion of this outgoing infrared radiation, trapping heat and radiating it back to the surface.</p>
-    <p><b>Major Greenhouse Gases:</b></p>
-    <ul>
-    <li><b>Carbon Dioxide (CO₂):</b> From fossil fuels and deforestation.</li>
-    <li><b>Methane (CH₄):</b> From agriculture and livestock.</li>
-    <li><b>Nitrous Oxide (N₂O):</b> From fertilizers.</li>
-    <li><b>Water Vapor (H₂O) & CFCs.</b></li>
-    </ul>
-    <p><b>Impact:</b> While the natural greenhouse effect is beneficial, human activities have artificially amplified it by increasing GHG concentrations. This <i>enhanced greenhouse effect</i> is the primary driver of global warming and rapid climate change.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>4. Write a short note about different types of human environment interaction.</b></p>
-<p><b>Human-Environment Interaction</b> studies how humans adapt to, depend on, and modify their natural surroundings. The three primary types of interaction are:</p>
-    <ol>
-    <li><b>Adaptation to the Environment:</b> Humans change their behavior or lifestyle to survive in specific environmental conditions. Example: Wearing heavy woolen clothes in cold climates, or building stilt houses in flood-prone areas.</li>
-    <li><b>Dependence on the Environment:</b> Humans rely entirely on the environment for basic survival needs. Example: Utilizing rivers for drinking water and irrigation, or relying on fertile soil for agriculture.</li>
-    <li><b>Modification of the Environment:</b> Humans actively change the physical environment to suit their needs, often permanently. Example: Deforestation for urban expansion, building dams for hydroelectricity, and mining for minerals. <i>(This type often leads to negative consequences like pollution and habitat loss if not managed sustainably).</i></li>
-    </ol>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>5. Write a brief note about ecological pyramid.</b></p>
-<p>An <b>Ecological Pyramid</b> is a graphical representation designed to show the biomass, bioproductivity, or energy flow at each trophic level in a given ecosystem.</p>
-    <p><b>Types of Ecological Pyramids:</b></p>
-    <ol>
-    <li><b>Pyramid of Numbers:</b> Represents the number of individual organisms at each trophic level. It can be upright (grassland) or inverted (a single large tree supporting many parasites).</li>
-    <li><b>Pyramid of Biomass:</b> Represents the total amount of living tissue (dry weight) within a given trophic level. It is usually upright in terrestrial ecosystems but can be inverted in aquatic ecosystems (where phytoplankton have lower biomass but rapid turnover compared to zooplankton).</li>
-    <li><b>Pyramid of Energy:</b> Represents the amount of energy flow from one trophic level to the next. According to the 10% rule, only about 10% of energy is transferred to the next level. <b>This pyramid is ALWAYS upright</b> because energy is inevitably lost as heat during transfer.</li>
-    </ol>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>6. Write a brief note about standard control and measures for the control of air pollution.</b></p>
-<p>Controlling air pollution requires a combination of technological, regulatory, and personal measures:</p>
-    <p><b>1. Technological Measures (At the Source):</b></p>
-    <ul>
-    <li><b>Electrostatic Precipitators (ESPs) & Baghouses:</b> Used in factories and power plants to filter out particulate matter (PM) from exhaust gases.</li>
-    <li><b>Scrubbers:</b> Used to neutralize and remove acidic gases like Sulfur Dioxide (SO₂) from industrial smokestacks.</li>
-    <li><b>Catalytic Converters:</b> Installed in vehicle exhausts to convert harmful CO, NOx, and hydrocarbons into harmless CO₂, water, and nitrogen.</li>
-    </ul>
-    <p><b>2. Regulatory Measures:</b></p>
-    <ul>
-    <li>Enforcing strict National Ambient Air Quality Standards (NAAQS).</li>
-    <li>Transitioning to cleaner fuels (e.g., CNG, low-sulfur diesel) and promoting renewable energy (solar, wind).</li>
-    <li>Implementing the "Polluter Pays" principle and carbon taxes.</li>
-    </ul>
-    <p><b>3. Biological & Personal Measures:</b></p>
-    <ul>
-    <li><b>Afforestation:</b> Planting trees creating "green belts" to naturally absorb CO₂ and filter dust.</li>
-    <li>Using public transportation, carpooling, and adopting electric vehicles (EVs).</li>
-    </ul>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>2. (i) Explain with neat diagram the internal structure of the Earth. (ii) What do you mean by rock cycle?</b></p>
-<p><b>(i) Internal Structure of the Earth:</b></p>
-    <p>The Earth is composed of three main concentric layers:</p>
-    <ul>
-    <li><b>Crust:</b> The outermost solid shell. It is very thin (5-70 km) and is divided into continental crust (thicker, granitic) and oceanic crust (thinner, basaltic).</li>
-    <li><b>Mantle:</b> The thickest layer (about 2,900 km). It is made of hot, semi-solid rock. Convection currents in the mantle drive tectonic plate movement.</li>
-    <li><b>Core:</b> The center of the Earth, mainly composed of iron and nickel. It has two parts: the liquid <b>Outer Core</b> (creates Earth's magnetic field) and the solid <b>Inner Core</b> (extremely hot but solid due to immense pressure).</li>
-    </ul>
-    
-    <p><b>Diagrammatic Representation:</b></p>
-    <img src="assets/earth_structure.png" alt="Earth Internal Structure Diagram" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); margin: 1.5rem 0;">
-    
-    <p><b>(ii) Rock Cycle:</b></p>
-    <p>The Rock Cycle is a continuous, geological process by which rocks are created, changed from one form to another, and destroyed over millions of years. The three main rock types are Igneous, Sedimentary, and Metamorphic.</p>
-    <ul>
-    <li>Magma cools to form <i>Igneous rock</i>.</li>
-    <li>Weathering breaks rocks into sediments, which compact to form <i>Sedimentary rock</i>.</li>
-    <li>Heat and pressure transform igneous or sedimentary rocks into <i>Metamorphic rock</i>.</li>
-    <li>Metamorphic rocks can melt back into magma, restarting the cycle.</li>
-    </ul>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>3. (i) What do you mean by maximum mixing depth? (ii) Differentiate between Ambient lapse rate and Adiabatic lapse rate.</b></p>
-<p><b>(i) Maximum Mixing Depth (MMD):</b></p>
-    <p>Maximum Mixing Depth refers to the maximum vertical height or thickness of the atmospheric layer near the ground within which air pollutants and heat can be vigorously mixed and dispersed by convection and turbulence. A higher mixing depth means better dispersion of pollutants, leading to better air quality.</p>
-    
-    <p><b>(ii) Difference between Ambient Lapse Rate and Adiabatic Lapse Rate:</b></p>
-    <table style="width:100%; border-collapse: collapse; margin-top: 1rem;">
-    <tr>
-        <th style="border: 1px solid var(--border-color); padding: 0.5rem; text-align: left;">Feature</th>
-        <th style="border: 1px solid var(--border-color); padding: 0.5rem; text-align: left;">Ambient (Environmental) Lapse Rate (ALR)</th>
-        <th style="border: 1px solid var(--border-color); padding: 0.5rem; text-align: left;">Adiabatic Lapse Rate</th>
-    </tr>
-    <tr>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;"><b>Definition</b></td>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;">The actual, measured rate at which the air temperature changes with altitude at a specific time and place.</td>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;">The theoretical rate at which a parcel of air cools or warms as it moves vertically, without exchanging heat with its surroundings.</td>
-    </tr>
-    <tr>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;"><b>Value</b></td>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;">Highly variable depending on weather, time of day, and location. Average is ~6.5°C per km.</td>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;">Constant for a given state: Dry Adiabatic Lapse Rate (DALR) is ~9.8°C/km. Wet/Saturated (SALR) is ~5-6°C/km.</td>
-    </tr>
-    <tr>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;"><b>Purpose</b></td>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;">Describes the state of the surrounding atmosphere.</td>
-        <td style="border: 1px solid var(--border-color); padding: 0.5rem;">Describes what happens to a specific moving parcel of air. (Comparing ALR to Adiabatic determines atmospheric stability).</td>
-    </tr>
-    </table>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>4. (i) Define flood and how can it be mitigated and controlled? (ii) What do you understand by anthropogenic environmental degradation?</b></p>
-<p><b>(i) Flood and Mitigation:</b></p>
-    <p>A flood is an overflow of water onto land that is normally dry. It often happens during heavy rainfall, rapid snowmelt, or when a river bursts its banks or a dam fails.</p>
-    <p><b>Control and Mitigation:</b></p>
-    <ul>
-    <li><b>Structural Measures:</b> Building dams, reservoirs, levees, and embankments to contain excess water. Improving drainage systems and desilting riverbeds to increase carrying capacity.</li>
-    <li><b>Non-Structural Measures:</b> Reforestation in catchment areas (roots absorb water and reduce runoff), flood plain zoning (restricting construction in vulnerable areas), and establishing early warning systems for evacuation.</li>
-    </ul>
-    
-    <p><b>(ii) Anthropogenic Environmental Degradation:</b></p>
-    <p>This refers to the deterioration of the environment (air, water, soil, ecosystems) caused specifically by human activities. Unlike natural degradation (like volcanic eruptions), anthropogenic degradation includes deforestation, industrial pollution, over-mining, carbon emissions causing global warming, and plastic waste accumulation. It disrupts ecological balance and threatens biodiversity.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>5. (i) Write the equation for population growth and explain the notations. (ii) How to calculate "Natural Increase Rate"?</b></p>
-<p><b>(i) Population Growth Equation:</b></p>
-    <p>The standard equation for population growth over a given time period is:</p>
-    <p style="text-align:center; font-size: 1.2rem; font-weight: bold;">P(t) = P(0) + (B - D) + (I - E)</p>
-    <p><b>Notations:</b></p>
-    <ul>
-    <li><b>P(t):</b> Population at time <i>t</i> (future/current population).</li>
-    <li><b>P(0):</b> Initial population at the starting time.</li>
-    <li><b>B:</b> Number of Births during the period.</li>
-    <li><b>D:</b> Number of Deaths during the period.</li>
-    <li><b>I:</b> Immigration (number of people moving <i>into</i> the area).</li>
-    <li><b>E:</b> Emigration (number of people moving <i>out</i> of the area).</li>
-    </ul>
-    
-    <p><b>(ii) Natural Increase Rate (NIR):</b></p>
-    <p>The Natural Increase Rate measures the growth of a population excluding migration. It is calculated by subtracting the crude death rate from the crude birth rate.</p>
-    <p><b>Formula:</b> NIR = (Crude Birth Rate - Crude Death Rate) / 10</p>
-    <p><i>Note: The rate is typically expressed as a percentage. Crude rates are usually given per 1,000 people, hence the division by 10 to get a percentage.</i></p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>6. (i) How arsenic get dissolved in groundwater in the aquifer system? (iii) How many districts in West Bengal are exposed to groundwater arsenic contamination?</b></p>
-<p><b>(i) Dissolution of Arsenic in Groundwater:</b></p>
-    <p>Arsenic contamination in groundwater is primarily a natural, geological phenomenon. The arsenic is naturally present in the aquifer sediments, often bound to iron oxide or hydroxide minerals.</p>
-    <p>Under specific geochemical conditions—such as <b>highly reducing (anaerobic) conditions</b> often caused by the decomposition of buried organic matter—the iron oxides dissolve. When the iron minerals break down, the arsenic bound to them is released and mobilized, dissolving into the groundwater.</p>
-    
-    <p><b>(iii) Affected Districts in West Bengal:</b></p>
-    <p>West Bengal is one of the most severely affected regions globally. Out of 23 districts in West Bengal, currently <b>9 to 12 districts</b> (depending on recent surveys) are highly exposed to severe groundwater arsenic contamination (levels above the WHO guideline of 10 ppb). Severely affected districts include Malda, Murshidabad, Nadia, North 24 Parganas, and South 24 Parganas.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>2. Write a brief note about noise pollution.</b></p>
-<p><b>Noise Pollution:</b></p>
-    <p>Noise pollution is defined as unwanted or excessive sound that can have deleterious effects on human health, wildlife, and environmental quality. </p>
-    <ul>
-    <li><b>Sources:</b> It stems from transportation systems (road traffic, aircraft, trains), industrial machinery, construction activities, and social events (loudspeakers).</li>
-    <li><b>Effects:</b> Chronic exposure can lead to noise-induced hearing loss (NIHL), high blood pressure, heart disease, sleep disturbances, stress, and impaired cognitive development in children.</li>
-    <li><b>Measurement:</b> It is measured in decibels (dB), with prolonged exposure to levels above 85 dB considered harmful.</li>
-    </ul>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>3. Write a short note about water pollution.</b></p>
-<p><b>Water Pollution:</b></p>
-    <p>Water pollution is the contamination of water bodies (lakes, rivers, oceans, aquifers) due to human activities, making the water toxic to humans or the environment.</p>
-    <ul>
-    <li><b>Causes:</b> The primary causes include the discharge of untreated industrial effluents containing heavy metals, domestic sewage, agricultural runoff carrying chemical fertilizers and pesticides, and accidental oil spills.</li>
-    <li><b>Consequences:</b> It destroys aquatic ecosystems, causes waterborne diseases (like cholera and typhoid) in humans, and triggers eutrophication (algal blooms that deplete dissolved oxygen).</li>
-    <li><b>Control:</b> Involves treating wastewater before discharge, minimizing chemical use in agriculture, and strictly enforcing effluent standards.</li>
-    </ul>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>4. Write brief note about solid waste management and control.</b></p>
-<p><b>Solid Waste Management:</b></p>
-    <p>This is the systematic process of collecting, treating, and disposing of solid material that is discarded because it has served its purpose or is no longer useful.</p>
-    <p><b>Key Steps & Control Measures:</b></p>
-    <ul>
-    <li><b>Waste Hierarchy (The 3 Rs):</b> The most effective control is to <i>Reduce</i> waste at the source, <i>Reuse</i> items when possible, and <i>Recycle</i> materials like paper, glass, and plastic.</li>
-    <li><b>Collection and Segregation:</b> Separating waste at the source into biodegradable, recyclable, and hazardous categories.</li>
-    <li><b>Treatment:</b> Organic waste can be managed through composting or biomethanation.</li>
-    <li><b>Disposal:</b> Remaining waste should be disposed of in engineered sanitary landfills or incinerators equipped with emission controls.</li>
-    </ul>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>5. Write a brief note about noise pollution control measurement.</b></p>
-<p><b>Noise Pollution Control Measures:</b></p>
-    <p>Controlling noise pollution can be tackled at three levels:</p>
-    <ol>
-    <li><b>At the Source:</b> Designing quieter machinery, regular maintenance and lubrication of moving parts, using silencers/mufflers in vehicles, and enclosing noisy industrial equipment in soundproof chambers.</li>
-    <li><b>In the Transmission Path:</b> Creating buffer zones (like green belts of dense trees that absorb sound), constructing acoustic barriers or sound walls along highways, and increasing the distance between the noise source and residential areas.</li>
-    <li><b>At the Receiver:</b> Providing personal protective equipment (PPE) like earplugs and earmuffs to industrial workers, and soundproofing residential buildings with double-glazed windows.</li>
-    </ol>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>6. Write a brief note about different kinds of solid waste.</b></p>
-<p>Solid wastes can be broadly classified based on their origin and characteristics:</p>
-    <ol>
-    <li><b>Municipal Solid Waste (MSW):</b> Trash or garbage generated by households, offices, and commercial establishments (food scraps, paper, packaging).</li>
-    <li><b>Industrial Waste:</b> Arises from manufacturing processes; can be non-hazardous (scrap metal, ash) or hazardous (toxic chemicals).</li>
-    <li><b>Biomedical Waste:</b> Generated by hospitals and clinics; includes infectious materials like syringes, bandages, and human tissues.</li>
-    <li><b>Electronic Waste (E-Waste):</b> Discarded electronic appliances, computers, and batteries containing toxic heavy metals like lead and mercury.</li>
-    <li><b>Agricultural Waste:</b> Crop residues, animal manure, and pesticide containers.</li>
-    </ol>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-</div>
-</div>
-<h2 id="group-c" style="font-family: 'Cormorant Garamond', serif; font-size: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1.5rem; margin-top: 3rem;">Group C — 15 Mark Questions</h2>
-<div class="qa-card">
-<div class="answer">
-<p><b>7. (a) What do you mean by Ecosystem? (b) What are the component of Ecosystem? (c) Write down the oxygen cycle with diagram.</b></p>
-<p><b>(a) Ecosystem:</b> An ecosystem is a geographic area where plants, animals, and other organisms, as well as weather and landscape, work together to form a bubble of life. It is the basic functional unit of ecology, emphasizing the interaction between living organisms (biotic) and their physical environment (abiotic).</p>
-    
-    <p><b>(b) Components of Ecosystem:</b></p>
-    <ul>
-    <li><b>Abiotic Components (Non-living):</b> Climatic factors (sunlight, temperature, rain), Edaphic factors (soil structure, minerals), and inorganic substances (water, carbon, nitrogen).</li>
-    <li><b>Biotic Components (Living):</b>
-        <ul>
-            <li><i>Producers (Autotrophs):</i> Plants and algae that make their own food via photosynthesis.</li>
-            <li><i>Consumers (Heterotrophs):</i> Animals that eat producers (herbivores) or other animals (carnivores).</li>
-            <li><i>Decomposers (Saprotrophs):</i> Fungi and bacteria that break down dead organic matter, recycling nutrients.</li>
-        </ul>
-    </li>
-    </ul>
-    
-    <p><b>(c) Oxygen Cycle:</b> The oxygen cycle is the biogeochemical cycle of oxygen within its three main reservoirs: the atmosphere, the biosphere, and the lithosphere.</p>
-    <ul>
-    <li><b>Photosynthesis (Source):</b> Plants and phytoplankton release oxygen into the atmosphere as a byproduct of producing glucose.</li>
-    <li><b>Respiration (Sink):</b> All aerobic organisms (including plants and animals) inhale oxygen to break down glucose for energy, releasing CO₂ back into the atmosphere.</li>
-    <li><b>Combustion & Decay (Sinks):</b> Burning of fossil fuels and the decomposition of organic matter also consume significant amounts of oxygen.</li>
-    </ul>
-    <p><b>Flowchart Diagram:</b></p>
-    <img src="assets/oxygen_cycle.png" alt="Oxygen Cycle Diagram" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); margin: 1.5rem 0;">
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>8. (a) What is global warming? (b) How do greenhouse gases cause global warming? (c) What are the adverse effects of global warming?</b></p>
-<p><b>(a) Global Warming:</b> It refers to the long-term, continuous rise in the average temperature of the Earth's climate system, primarily driven by human activities, especially the emission of greenhouse gases since the pre-industrial period.</p>
-    
-    <p><b>(b) How Greenhouse Gases cause Global Warming:</b></p>
-    <p>The sun emits shortwave radiation that passes easily through the Earth's atmosphere and warms the surface. The warmed Earth radiates this energy back out as longwave (infrared) thermal radiation. Greenhouse gases (like CO₂, Methane, and N₂O) are largely transparent to shortwave sunlight but highly opaque to longwave infrared radiation. These gases absorb the outgoing infrared radiation and re-radiate it in all directions, including back toward the surface. By artificially increasing the concentration of these gases through burning fossil fuels and deforestation, humans have thickened this "thermal blanket," trapping excess heat and causing the global temperature to rise.</p>
-    
-    <p><b>(c) Adverse Effects of Global Warming:</b></p>
-    <ul>
-    <li><b>Melting of Ice Caps and Glaciers:</b> Leading to loss of freshwater reserves and habitat destruction for polar species.</li>
-    <li><b>Sea Level Rise:</b> Expanding ocean water and melting ice cause sea levels to rise, threatening coastal cities and island nations with flooding and submergence.</li>
-    <li><b>Extreme Weather Events:</b> Increased frequency and severity of hurricanes, heatwaves, droughts, and heavy precipitation.</li>
-    <li><b>Biodiversity Loss:</b> Rapid climate shifts alter habitats faster than species can adapt, leading to mass extinctions and coral bleaching.</li>
-    <li><b>Agricultural Disruption:</b> Changes in rainfall patterns and extreme heat reduce crop yields, threatening global food security.</li>
-    </ul>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>9. a. Write a brief note about sustainable development. b. Define the terms: Total Fertility Rate, Total Mortality Rate, and Age Pyramid.</b></p>
-<p><b>(a) Sustainable Development:</b></p>
-    <p>Sustainable development is defined as "development that meets the needs of the present without compromising the ability of future generations to meet their own needs." It aims to achieve a balance between economic growth, environmental protection, and social equity. Key principles include minimizing the depletion of non-renewable resources, utilizing renewable resources within their capacity for regeneration, preventing pollution, and ensuring fair distribution of resources among all people.</p>
-    
-    <p><b>(b) Definitions:</b></p>
-    <ul>
-    <li><b>Total Fertility Rate (TFR):</b> The average number of children that would be born alive to a woman during her lifetime if she were to pass through her childbearing years (15-49) conforming to the age-specific fertility rates of a given year. A TFR of 2.1 is generally considered the "replacement rate" for a population to remain stable.</li>
-    <li><b>Total Mortality Rate (Death Rate):</b> The number of deaths occurring in a given population during a specific time period, typically expressed as the number of deaths per 1,000 individuals per year.</li>
-    <li><b>Age Pyramid (Population Pyramid):</b> A graphical illustration that shows the distribution of various age groups (cohorts) in a population, typically split by gender. The shape of the pyramid (e.g., expansive/broad base, constrictive/narrow base, or stationary) indicates whether the population is growing, shrinking, or stable.</li>
-    </ul>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>10. (a) What is biogeochemical cycle? (b) Discuss about the carbon and nitrogen cycle with diagram.</b></p>
-<p><b>(a) Biogeochemical Cycle:</b></p>
-    <p>A biogeochemical cycle is the pathway by which a chemical substance cycles the biotic and the abiotic compartments of Earth. "Bio" refers to living organisms, "geo" refers to rocks, soil, air, and water, and "chemical" implies the chemical processes involved. These cycles ensure that essential elements like Carbon, Nitrogen, and Phosphorus are continuously recycled in nature.</p>
-    
-    <p><b>(b) Carbon Cycle:</b> The movement of carbon through the biosphere, atmosphere, oceans, and geosphere.</p>
-    <ul>
-    <li><i>Atmosphere to Biosphere:</i> Plants absorb CO₂ during photosynthesis to create glucose.</li>
-    <li><i>Biosphere to Atmosphere:</i> Animals and plants release CO₂ through respiration.</li>
-    <li><i>Decomposition:</i> Dead organisms decompose, releasing carbon into the soil and atmosphere. Over millions of years, buried matter forms fossil fuels.</li>
-    <li><i>Human Impact:</i> Burning fossil fuels releases massive amounts of stored carbon back into the atmosphere as CO₂.</li>
-    </ul>
-    
-    <p><b>Nitrogen Cycle:</b> The complex process of nitrogen conversion.</p>
-    <ul>
-    <li><i>Nitrogen Fixation:</i> Atmospheric N₂ (unusable by plants) is converted to ammonia (NH₃) by specialized soil bacteria (e.g., Rhizobium) or lightning.</li>
-    <li><i>Nitrification:</i> Ammonia is converted into nitrites (NO₂⁻) and then nitrates (NO₃⁻) by nitrifying bacteria. Nitrates are easily absorbed by plants.</li>
-    <li><i>Assimilation:</i> Plants incorporate nitrates into proteins; animals eat plants to get nitrogen.</li>
-    <li><i>Ammonification:</i> Decomposers convert nitrogenous waste and dead tissue back into ammonia.</li>
-    <li><i>Denitrification:</i> Denitrifying bacteria convert soil nitrates back into atmospheric N₂ gas, completing the cycle.</li>
-    </ul>
-    <p><i>(Flowchart representations can be drawn showing these distinct steps flowing in a cycle).</i></p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>11. What is dissolve oxygen? What is its importance as water quality parameter?</b></p>
-<p><b>Dissolved Oxygen (DO):</b></p>
-    <p>Dissolved Oxygen refers to the level of free, non-compound oxygen present in water or other liquids. It is an important parameter in assessing water quality because of its influence on the organisms living within a body of water. Oxygen enters the water through direct absorption from the atmosphere, rapid movement (like in rapids or waterfalls), and as a byproduct of underwater plant photosynthesis.</p>
-    
-    <p><b>Importance as a Water Quality Parameter:</b></p>
-    <ol>
-    <li><b>Survival of Aquatic Life:</b> DO is absolutely critical for the survival of most aquatic organisms, including fish, invertebrates, and aerobic bacteria. Different species have different DO requirements; for example, trout require high DO levels, while catfish can survive in lower levels. If DO drops too low (hypoxia) or reaches zero (anoxia), massive fish kills can occur.</li>
-    <li><b>Indicator of Pollution:</b> High levels of organic pollution (like sewage or agricultural runoff) lead to an explosion of aerobic bacteria that consume the organic matter. Because these bacteria consume oxygen during this decomposition process, a sharp drop in DO is a primary indicator of severe organic water pollution.</li>
-    <li><b>Aesthetic and Odor Issues:</b> When DO levels are completely depleted (anoxic conditions), anaerobic bacteria take over decomposition. This process releases toxic and foul-smelling gases like hydrogen sulfide (smells like rotten eggs) and methane, drastically degrading the water quality aesthetically.</li>
-    <li><b>Chemical Stability:</b> Adequate DO prevents the release of heavy metals and phosphorus from the sediment into the water column. When DO is absent, chemical reactions at the bottom of the water body change, which can release stored toxins back into the water.</li>
-    </ol>
-    <p>Generally, a DO level of 5-6 ppm (parts per million) is required for diverse aquatic life, while levels below 3 ppm are stressful to most aquatic organisms.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>7. (i) What are different types of solid wastes? (ii) What are the methods of solid waste disposal and management? (iii) What are the advantages and disadvantages of Land filling of solid waste?</b></p>
-<p><b>(i) Types of Solid Waste:</b></p>
-    <ul>
-    <li><b>Municipal Solid Waste (MSW):</b> Household garbage, paper, plastics, food waste.</li>
-    <li><b>Industrial Waste:</b> Scrap metal, chemicals, ash from factories.</li>
-    <li><b>Biomedical/Hospital Waste:</b> Syringes, bandages, anatomical waste (highly infectious).</li>
-    <li><b>E-Waste (Electronic Waste):</b> Discarded computers, phones, batteries (contains heavy metals).</li>
-    <li><b>Agricultural Waste:</b> Crop residues, animal manure.</li>
-    </ul>
-    
-    <p><b>(ii) Methods of Solid Waste Disposal and Management:</b></p>
-    <ul>
-    <li><b>Source Reduction & Recycling:</b> The most preferred method. Reducing waste generation and reusing materials.</li>
-    <li><b>Composting:</b> Biological decomposition of organic waste into nutrient-rich fertilizer.</li>
-    <li><b>Incineration:</b> Burning waste at very high temperatures. Reduces volume significantly and can generate electricity, but requires expensive air pollution controls.</li>
-    <li><b>Sanitary Landfilling:</b> Disposing of waste in engineered pits lined with clay/plastic to prevent soil and water contamination.</li>
-    </ul>
-    
-    <p><b>(iii) Landfilling - Advantages and Disadvantages:</b></p>
-    <p><b>Advantages:</b></p>
-    <ul>
-    <li>Relatively inexpensive and simple compared to incineration.</li>
-    <li>Can handle vast quantities and all types of solid waste.</li>
-    <li>Methane gas generated during decomposition can be captured and used as fuel.</li>
-    </ul>
-    <p><b>Disadvantages:</b></p>
-    <ul>
-    <li>Requires large areas of land, which is scarce in urban areas.</li>
-    <li>Risk of <b>leachate</b> (toxic liquid) leaking and contaminating groundwater if linings fail.</li>
-    <li>Releases methane (a potent greenhouse gas) if not properly captured.</li>
-    <li>Creates odor, attracts pests, and lowers local property values.</li>
-    </ul>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>8. (i) What are Nutrient cycles and how are they important for our environment? (ii) Draw a flowchart for Nitrogen Cycle. (ii) Explain Biogeochemical cycle by a diagram.</b></p>
-<p><b>(i) Nutrient Cycles & Their Importance:</b></p>
-    <p>Nutrient cycles (or biogeochemical cycles) are the natural pathways by which essential elements of living matter (like Carbon, Nitrogen, Phosphorus, Oxygen) are circulated from the abiotic environment (air, water, soil) into the biotic environment (living organisms) and back again.</p>
-    <p><b>Importance:</b> They ensure that vital elements are never permanently lost but continuously recycled. Without these cycles, ecosystems would quickly deplete their nutrients, and life on Earth would cease to exist. They maintain ecological balance and regulate the climate.</p>
-    
-    <p><b>(ii) Nitrogen Cycle Flowchart:</b></p>
-    <img src="assets/nitrogen_cycle.png" alt="Nitrogen Cycle Diagram" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); margin: 1.5rem 0;">
-    
-    <p><b>(ii) Biogeochemical Cycle Concept Diagram:</b></p>
-    <p>A generalized biogeochemical cycle involves the flow between the primary "spheres" of Earth:</p>
-    <pre style="background: var(--bg-color); padding: 1rem; border: 1px solid var(--border-color); border-radius: 8px; overflow-x: auto;">
-      +------------------+
-      |  Atmosphere      | (Air/Gases)
-      +------------------+
-        ^              |
-        |              | (Precipitation, Absorption)
-  (Evaporation,        v
-   Respiration)  +------------------+
-                 |   Biosphere      | (Living Organisms)
-                 +------------------+
-        ^              |
-        |              | (Decomposition, Sedimentation)
-(Uptake by roots)      v
-      +------------------+
-      | Lithosphere /    | (Soil, Rocks, Water)
-      | Hydrosphere      |
-      +------------------+
-    </pre>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>9. (i) Mention various types of greenhouse gases and its effects on terrestrial ecosystems. (ii) How global warming and climate change are related? (iii) What is short wave and long wave radiation?</b></p>
-<p><b>(i) Greenhouse Gases & Effects on Terrestrial Ecosystems:</b></p>
-    <p><b>Gases:</b> Carbon Dioxide (CO₂), Methane (CH₄), Nitrous Oxide (N₂O), Chlorofluorocarbons (CFCs), and Water Vapor.</p>
-    <p><b>Effects on Terrestrial Ecosystems:</b> Increased temperatures alter growing seasons, forcing flora and fauna to migrate towards higher altitudes or latitudes. It causes increased frequency of forest fires, shifts in vegetation zones (e.g., deserts expanding), and disrupts synchronized ecological events (like flowering and pollination).</p>
-    
-    <p><b>(ii) Relationship between Global Warming and Climate Change:</b></p>
-    <p>While often used interchangeably, they are distinct. <b>Global Warming</b> refers specifically to the long-term heating of Earth's surface due to human-emitted greenhouse gases. <b>Climate Change</b> is a broader term; it includes global warming but also encompasses all the side effects of that warming—such as melting glaciers, heavier rainstorms, more frequent drought, and shifting weather patterns. Global warming is the <i>cause</i>; climate change is the <i>effect</i>.</p>
-    
-    <p><b>(iii) Short wave and Long wave radiation:</b></p>
-    <ul>
-    <li><b>Short Wave Radiation:</b> This is the energy emitted by the Sun. Because the Sun is extremely hot, it emits energy in short wavelengths (primarily visible light and ultraviolet). This radiation easily passes through the Earth's atmosphere.</li>
-    <li><b>Long Wave Radiation:</b> This is the energy re-emitted by the Earth. Because the Earth is much cooler than the Sun, it absorbs the shortwave energy and radiates it back into space as heat (infrared radiation) in longer wavelengths. Greenhouse gases are opaque to this long wave radiation, trapping it and causing the greenhouse effect.</li>
-    </ul>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>10. (i) Why sustainable growth is considered modern concept of development? (ii) How population growth in India can be controlled? (iii) If the present population of the World is 8.00 billion, what would be the population of the World after 25 years with a growth rate of 1% per year?</b></p>
-<p><b>(i) Sustainable Growth as a Modern Concept:</b></p>
-    <p>Historically, "development" was measured purely by economic growth (GDP, industrialization), often ignoring environmental destruction and social inequality. Sustainable growth is the modern concept because it introduces a holistic paradigm: development must balance economic progress with environmental conservation and social equity, ensuring that current progress does not ruin the resources future generations will need.</p>
-    
-    <p><b>(ii) Controlling Population Growth in India:</b></p>
-    <ul>
-    <li><b>Education and Empowerment:</b> Educating women significantly delays the age of marriage and increases awareness of family planning, directly lowering fertility rates.</li>
-    <li><b>Access to Contraceptives:</b> Widespread distribution and education regarding modern family planning methods.</li>
-    <li><b>Economic Development:</b> As standard of living increases, families traditionally choose to have fewer children (Demographic Transition).</li>
-    <li><b>Healthcare Improvements:</b> Lowering infant mortality rates reassures parents that their children will survive, reducing the desire for large families.</li>
-    </ul>
-    
-    <p><b>(iii) Population Math Problem:</b></p>
-    <p>We use the exponential growth formula: <b>P(t) = P(0) * (1 + r)^t</b></p>
-    <ul>
-    <li>P(0) = Initial Population = 8.00 billion</li>
-    <li>r = Growth rate = 1% = 0.01</li>
-    <li>t = Time = 25 years</li>
-    </ul>
-    <p>P(25) = 8.00 * (1 + 0.01)^25</p>
-    <p>P(25) = 8.00 * (1.01)^25</p>
-    <p>P(25) = 8.00 * 1.2824</p>
-    <p><b>P(25) ≈ 10.26 billion</b></p>
-    <p>The population after 25 years would be approximately 10.26 billion.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>11. (i) What is a groundwater aquifer, aquiclude and aquitard. Explain with neat diagram. (ii) How groundwater is recharged? (iv) What do you understand by Rooftop rainwater harvesting?</b></p>
-<p><b>(i) Groundwater Terms:</b></p>
-    <ul>
-    <li><b>Aquifer:</b> A highly permeable geological formation (like sand or gravel) that contains and transmits economically significant quantities of groundwater.</li>
-    <li><b>Aquiclude:</b> An impermeable geological formation (like solid clay) that may contain water but does not transmit it; it acts as a barrier to groundwater flow.</li>
-    <li><b>Aquitard:</b> A semi-permeable formation (like sandy clay) that stores water and transmits it very slowly from one aquifer to another.</li>
-    </ul>
-    <p><b>Diagrammatic Representation:</b></p>
-    <img src="assets/groundwater_aquifer.png" alt="Groundwater Aquifer Diagram" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); margin: 1.5rem 0;">
-    
-    <p><b>(ii) Groundwater Recharge:</b></p>
-    <p>Groundwater is recharged naturally when rain and snowmelt seep down through the soil and rock layers into the aquifers (infiltration and percolation). It can also be recharged artificially by redirecting surface water into recharge basins, trenches, or injection wells to replenish depleted aquifers.</p>
-    
-    <p><b>(iv) Rooftop Rainwater Harvesting:</b></p>
-    <p>Rooftop rainwater harvesting is the technique of capturing and storing rainwater directly from the roof of a house or building. Gutters and pipes channel the rainwater into a storage tank (for immediate domestic use) or direct it into a recharge pit (to replenish the local groundwater aquifer). This practice is highly effective in conserving water, reducing urban flooding, and mitigating the depletion of groundwater.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>7. Write a brief note about environmental impact assessment using flow chart. What are the objectives of EIA? How it is associated with sustainable development?</b></p>
-<p><b>Environmental Impact Assessment (EIA):</b></p>
-    <p>EIA is a formal process used to predict, evaluate, and mitigate the environmental consequences of a proposed major development project prior to making major decisions and commitments.</p>
-    
-    <p><b>Flowchart of EIA Process:</b></p>
-    <img src="assets/eia_flowchart.png" alt="EIA Process Flowchart" style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); margin: 1.5rem 0;">
-    
-    <p><b>Objectives of EIA:</b></p>
-    <ul>
-    <li>To identify and evaluate the potential environmental, social, and economic impacts of a project.</li>
-    <li>To propose preventative and mitigation measures to minimize adverse effects.</li>
-    <li>To promote public participation and transparency in decision-making.</li>
-    </ul>
-    
-    <p><b>Association with Sustainable Development:</b></p>
-    <p>EIA is the primary practical tool used to achieve sustainable development. By anticipating environmental damage before it happens, EIA ensures that economic development projects do not exhaust natural resources or cause irreversible ecological harm, thereby preserving the environment for future generations.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>8. (a) Define the terms: DO, BOD and COD. (b) Discuss the principle of BOD test. (c) Write a brief note about eutrophication.</b></p>
-<p><b>(a) Definitions:</b></p>
-    <ul>
-    <li><b>DO (Dissolved Oxygen):</b> The amount of gaseous oxygen dissolved in water, crucial for the survival of aquatic organisms.</li>
-    <li><b>BOD (Biochemical Oxygen Demand):</b> The amount of dissolved oxygen consumed by aerobic bacteria to biologically break down organic matter in a water sample over a specific period (usually 5 days at 20°C).</li>
-    <li><b>COD (Chemical Oxygen Demand):</b> The total amount of oxygen required to chemically oxidize all organic and inorganic contaminants in water using a strong chemical oxidizing agent (like potassium dichromate). COD is always higher than BOD.</li>
-    </ul>
-    
-    <p><b>(b) Principle of the BOD Test:</b></p>
-    <p>The BOD test measures the rate of oxygen uptake by microorganisms in a water sample at a controlled temperature (20°C) over 5 days in the dark (to prevent photosynthesis). The principle is based on measuring the initial Dissolved Oxygen (DO₁) of the sample, incubating it for 5 days, and then measuring the final Dissolved Oxygen (DO₅). The difference between these two values represents the amount of oxygen consumed by bacteria to degrade the organic waste. <br><i>Formula: BOD = (DO₁ - DO₅) * Dilution Factor.</i></p>
-    
-    <p><b>(c) Eutrophication:</b></p>
-    <p>Eutrophication is the process by which a water body becomes overly enriched with nutrients, primarily nitrates and phosphates (often from agricultural fertilizer runoff or untreated sewage). This excessive nutrient load triggers a rapid and massive overgrowth of algae, known as an "algal bloom." When the algae die, bacteria decompose them, consuming vast amounts of dissolved oxygen in the process. This depletion of oxygen creates "dead zones" where fish and other aquatic life cannot survive.</p>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>9. Write a brief note about different types of solid waste management.</b></p>
-<p>Solid Waste Management (SWM) involves various techniques depending on the nature of the waste:</p>
-    <ol>
-    <li><b>Recycling and Recovery:</b> The process of collecting, sorting, and processing discarded materials (paper, glass, metals, plastics) into new products, reducing the need for raw materials.</li>
-    <li><b>Composting:</b> A biological process where microorganisms break down organic (biodegradable) waste like food scraps and yard trimmings in the presence of oxygen, turning it into nutrient-rich humus (fertilizer).</li>
-    <li><b>Incineration (Waste-to-Energy):</b> The controlled combustion of solid waste at very high temperatures. It reduces waste volume by up to 90% and the heat generated can be used to produce electricity. However, it requires stringent pollution control mechanisms to prevent toxic emissions.</li>
-    <li><b>Sanitary Landfilling:</b> The most common method. Waste is compacted and buried in large, engineered pits lined with impermeable clay or synthetic liners to prevent groundwater contamination (leachate). Daily soil cover is applied to prevent odors and pests. Methane gas recovery systems are often installed.</li>
-    <li><b>Biomethanation:</b> Anaerobic decomposition of organic waste to produce biogas (methane), which can be used as a renewable fuel source.</li>
-    </ol>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>10. Discuss in details the different types of noise pollution. Describe the adverse effect of noise pollution. Give brief description of hearing mechanism of human beings.</b></p>
-<p><b>Types of Noise Pollution:</b></p>
-    <ol>
-    <li><b>Transport Noise:</b> The largest contributor, including road traffic (horns, engines), aircraft (jet engines), and railways.</li>
-    <li><b>Industrial Noise:</b> Generated by heavy machinery, generators, exhaust fans, and manufacturing processes inside factories.</li>
-    <li><b>Neighborhood/Community Noise:</b> Loud music, loudspeakers, construction activities, domestic appliances, and barking dogs.</li>
-    </ol>
-    
-    <p><b>Adverse Effects of Noise Pollution:</b></p>
-    <ul>
-    <li><b>Auditory Effects:</b> Temporary threshold shift (ringing in ears) or permanent Noise-Induced Hearing Loss (NIHL) due to damage to the hair cells in the inner ear.</li>
-    <li><b>Non-Auditory Effects:</b> Sleep deprivation, increased stress hormones, hypertension (high blood pressure), cardiovascular diseases, poor concentration, and psychological issues like irritability and anxiety.</li>
-    </ul>
-    
-    <p><b>Hearing Mechanism of Human Beings:</b></p>
-    <p>The human ear is divided into three parts:</p>
-    <ol>
-    <li><b>Outer Ear:</b> The pinna catches sound waves and funnels them down the ear canal to the eardrum (tympanic membrane), making it vibrate.</li>
-    <li><b>Middle Ear:</b> The vibrations are amplified and transmitted by three tiny bones (ossicles: malleus, incus, and stapes).</li>
-    <li><b>Inner Ear:</b> The stapes pushes against the fluid-filled cochlea. The fluid movement bends tiny sensory hair cells inside the cochlea. These hair cells convert the mechanical vibrations into electrical nerve impulses, which travel via the auditory nerve to the brain, where they are interpreted as sound.</li>
-    </ol>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-<p><b>11. List three basic elements that might require alteration or modification to solve a noise problem.</b></p>
-<p>To effectively solve a noise problem, acoustic engineering focuses on modifying three basic elements of the noise transmission system:</p>
-    <ol>
-    <li><b>The Source (Noise Generation):</b>
-        <p>Modification involves preventing or reducing the sound before it is radiated. This is the most effective element to alter. Solutions include substituting loud machinery with quieter alternatives, properly lubricating moving parts, installing vibration mounts, using silencers/mufflers on engines, and reducing the operating speed of the equipment.</p>
-    </li>
-    <li><b>The Path (Noise Transmission):</b>
-        <p>If the source cannot be quieted, the transmission path between the source and the receiver must be altered. Solutions include placing sound-absorbing enclosures around the machinery, installing acoustic barriers or sound walls (common along highways), planting dense trees, and increasing the physical distance between the noise source and people.</p>
-    </li>
-    <li><b>The Receiver (The Person Affected):</b>
-        <p>If neither the source nor the path can be adequately modified, the receiver must be protected. This involves administrative controls (limiting the time a worker is exposed to the noise), providing Personal Protective Equipment (PPE) like earplugs or earmuffs, and constructing soundproof control rooms or double-glazed windows in residential areas.</p>
-    </li>
-    </ol>
-<hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
-</div>
+    <!-- SUB NAV -->
+    <nav class="nav-bar">
+        <a href="../index.html" class="back-link">← Master Library</a>
+        <span class="imprint">Volume IV: Environmental Sciences</span>
+    </nav>
+
+    <!-- PAPERS GRID -->
+    <section class="chapters-grid">
+        
+        <!-- EXAM PREP Q&A -->
+        <a href="env_index.html" class="chapter-card" style="--chapter-color: #10b981;" id="module-exam-prep">
+            <div class="card-content">
+                <div class="chapter-header">
+                    <div class="chapter-num">Last Minute</div>
+                    <h2 class="chapter-title">Ultimate Exam Prep Q&amp;A</h2>
+                    <p class="chapter-desc">Most expected questions, high-priority definitions, and 1-mark hits for tomorrow's exam.</p>
+                </div>
+                
+                <div class="mini-toc">
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group A (1 Mark)</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">100%</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group B (5 Marks)</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">100%</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group C (15 Marks)</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">100%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="badge-count" style="color: #10b981; background-color: #10b98115; border-color: #10b98130;">Top Rated</span>
+                <span class="read-action">Open Prep Guide <span class="arrow">→</span></span>
+            </div>
+        </a>
+        
+        <!-- 2025 PAPER -->
+        <a href="env_2025.html" class="chapter-card" style="--chapter-color: #10b981;" id="module-2025">
+            <div class="card-content">
+                <div class="chapter-header">
+                    <div class="chapter-num">Solved PYQ</div>
+                    <h2 class="chapter-title">2025 Solved Paper</h2>
+                    <p class="chapter-desc">Detailed answers for the 2025 Environmental Sciences exam with complete diagrams and explanations.</p>
+                </div>
+                
+                <div class="mini-toc">
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group A: Short Qs</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">100%</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group B: Medium Qs</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">100%</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group C: Long Qs</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">100%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="badge-count" style="color: #10b981; background-color: #10b98115; border-color: #10b98130;">100% Solved</span>
+                <span class="read-action">Open Paper <span class="arrow">→</span></span>
+            </div>
+        </a>
+
+        <!-- 2024 PAPER -->
+        <a href="env_2024.html" class="chapter-card" style="--chapter-color: #10b981;" id="module-2024">
+            <div class="card-content">
+                <div class="chapter-header">
+                    <div class="chapter-num">Solved PYQ</div>
+                    <h2 class="chapter-title">2024 Solved Paper</h2>
+                    <p class="chapter-desc">Detailed answers for the 2024 Environmental Sciences exam.</p>
+                </div>
+                
+                <div class="mini-toc">
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group A: Short Qs</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">100%</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group B: Medium Qs</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">100%</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group C: Long Qs</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">100%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="badge-count" style="color: #10b981; background-color: #10b98115; border-color: #10b98130;">100% Solved</span>
+                <span class="read-action">Open Paper <span class="arrow">→</span></span>
+            </div>
+        </a>
+
+        <!-- 2023 PAPER -->
+        <a href="env_2023.html" class="chapter-card" style="--chapter-color: #10b981;" id="module-2023">
+            <div class="card-content">
+                <div class="chapter-header">
+                    <div class="chapter-num">Solved PYQ</div>
+                    <h2 class="chapter-title">2023 Solved Paper</h2>
+                    <p class="chapter-desc">Detailed answers for the 2023 Environmental Sciences exam.</p>
+                </div>
+                
+                <div class="mini-toc">
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group A: Short Qs</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">100%</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group B: Medium Qs</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">100%</span>
+                    </div>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group C: Long Qs</span>
+                        <span class="toc-dots"></span>
+                        <span class="toc-idx">100%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="badge-count" style="color: #10b981; background-color: #10b98115; border-color: #10b98130;">100% Solved</span>
+                <span class="read-action">Open Paper <span class="arrow">→</span></span>
+            </div>
+        </a>
+
+    </section>
+
+    <!-- FOOTER / COLOPHON -->
+    <footer>
+        <div class="colophon-ornament">❦</div>
+        <p class="colophon-text">
+            Compounded and published by <a href="#">Soumya Chakraborty</a>. Hand-crafted notes to crush exam preparation.
+        </p>
+    </footer>
+
 </div>
 
-    </div>
-</div>
-
-<script src="../notes.js"></script>
 </body>
 </html>
