@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Execute all functions
     initPageGutter();
     initTextbookHeaderFooter();
-    initFlashcardMode();
+    // initFlashcardMode(); // Disabled as per user request to make it a simple page
     initOutlineDrawer();
     initPageTurnNavigation();
 });
