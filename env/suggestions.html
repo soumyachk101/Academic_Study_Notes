@@ -9,6 +9,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- MathJax for rendering mathematical equations -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\(', '\)']],
+          displayMath: [['$$', '$$'], ['\[', '\]']],
+          processEscapes: true
+        },
+        options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+      };
+    </script>
+
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="stylesheet" href="../notes.css">
     <style>
@@ -136,6 +147,22 @@
         }
         .module-nav a:hover { background: #2563eb; color: #fff; }
         .comparison-table td b { color: #1e293b; }
+        html { scroll-behavior: smooth; }
+        .section h2[id] { scroll-margin-top: 90px; }
+        #module-jump {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #2563eb;
+            background: #fff;
+            border: 1px solid rgba(37, 99, 235, 0.35);
+            border-radius: 6px;
+            padding: 0.4rem 0.7rem;
+            cursor: pointer;
+            max-width: 60vw;
+        }
+        #module-jump:hover { border-color: #2563eb; }
+        #module-jump:focus { outline: 2px solid rgba(37, 99, 235, 0.4); outline-offset: 1px; }
     </style>
 </head>
 <body>
@@ -143,8 +170,18 @@
 <nav class="top-nav">
     <a href="Environmental%20Sciences.html">← Back to Environmental Sciences</a>
     <span class="nav-title">Suggestions — Module-wise Solved (68 Qs)</span>
-    <div style="display:flex;gap:0.5rem;">
-        <a href="#module-1" style="padding: 0.4rem 0.9rem; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; background: #2563eb; color: white; border-radius: 4px; text-decoration: none;">Jump to Modules ↓</a>
+    <div style="display:flex;gap:0.5rem;align-items:center;">
+        <label for="module-jump" style="font-size:0.8rem;font-weight:600;color:#64748b;">Jump to:</label>
+        <select id="module-jump" onchange="if(this.value){location.hash=this.value;}" aria-label="Jump to module">
+            <option value="">Select Module ▾</option>
+            <option value="#module-1">Module 1 · Fundamentals of Environment</option>
+            <option value="#module-2">Module 2 · Ecology</option>
+            <option value="#module-3">Module 3 · Air Pollution &amp; Control</option>
+            <option value="#module-4">Module 4 · Water Pollution &amp; Control</option>
+            <option value="#module-5">Module 5 · Land Pollution &amp; Control</option>
+            <option value="#module-6">Module 6 · Noise Pollution &amp; Control</option>
+            <option value="#module-7">Module 7 · Environmental Management</option>
+        </select>
     </div>
 </nav>
 
@@ -467,7 +504,7 @@
             <p>Such waste, when not properly treated or disposed, becomes a major source of air, water and soil pollution.</p>
             <p><b>Soil pollution:</b> Soil pollution is the <b>degradation or contamination of the land surface through the addition of harmful substances (chemicals, salts, toxins, pathogens) that adversely affect soil fertility, its physical/chemical/biological properties, and the organisms depending on it</b>. Major causes include:</p>
             <ul>
-                <li>Excessive use of <b>chemical fertilizers and pesticides</b>.</li>
+                <li>Excessive use of <b>chemical fertilisers and pesticides</b>.</li>
                 <li>Dumping of <b>industrial and municipal solid waste</b>, and non-biodegradable plastics.</li>
                 <li>Discharge of untreated effluents and <b>acid rain</b> leaching nutrients.</li>
                 <li>Deforestation and soil erosion; <b>salinity and waterlogging</b> from over-irrigation.</li>
@@ -1204,8 +1241,8 @@
 
             <!-- Q1 -->
             <p><b>1. What is Biological Oxygen Demand (BOD)? Discuss the principle of the 5-day BOD test; solve related numerical (ultimate BOD/dilution factor).</b></p>
-            <p><b>Biochemical (Biological) Oxygen Demand (BOD)</b> is defined as the amount of dissolved oxygen (in $\text{mg/L}$ or $\text{ppm}$) consumed by <b>aerobic microorganisms</b> to biochemically oxidize and stabilize the biodegradable organic matter present in a water sample, under standard conditions of temperature ($20^\circ\text{C}$) and time (5 days). It is the single most important index of <b>organic pollution load</b> in sewage and surface waters — a high BOD indicates heavy organic contamination and a correspondingly severe depletion of oxygen available to aquatic life.</p>
-            <p><b>Principle of the 5-Day BOD Test ($\text{BOD}_5$):</b> Aerobic bacteria oxidize organic matter, consuming dissolved oxygen ($\text{O}_2$):</p>
+            <p><b>Biochemical (Biological) Oxygen Demand (BOD)</b> is defined as the amount of dissolved oxygen (in $\text{mg/L}$ or $\text{ppm}$) consumed by <b>aerobic microorganisms</b> to biochemically oxidise and stabilise the biodegradable organic matter present in a water sample, under standard conditions of temperature ($20^\circ\text{C}$) and time (5 days). It is the single most important index of <b>organic pollution load</b> in sewage and surface waters — a high BOD indicates heavy organic contamination and a correspondingly severe depletion of oxygen available to aquatic life.</p>
+            <p><b>Principle of the 5-Day BOD Test ($\text{BOD}_5$):</b> Aerobic bacteria oxidise organic matter, consuming dissolved oxygen ($\text{O}_2$):</p>
             <div class="formula-box">
                 <p style="margin-bottom: 0.4rem;">$$\text{Organic matter} + \text{O}_2 \xrightarrow{\text{aerobic microbes}} \text{CO}_2 + \text{H}_2\text{O} + \text{Energy} + \text{New cells}$$</p>
             </div>
@@ -1228,7 +1265,7 @@
             <p><b>Ultimate BOD ($L_0$) and the first-order rate model:</b> BOD exertion follows first-order kinetics — the rate of oxidation is proportional to the organic matter remaining:</p>
             <div class="formula-box">
                 <p style="margin-bottom: 0.5rem;">$$BOD_t = L_0\left(1 - e^{-kt}\right)$$</p>
-                <p style="margin-bottom: 0.3rem;">where $BOD_t$ = oxygen demand exerted up to time $t$; $L_0$ = <b>ultimate (total) BOD</b> = oxygen required to oxidize <i>all</i> the biodegradable organic matter ($t \to \infty$); and $k$ = deoxygenation rate constant (day$^{-1}$, base $e$; typically $0.2$–$0.3\ \text{day}^{-1}$ for domestic sewage at $20^\circ\text{C}$).</p>
+                <p style="margin-bottom: 0.3rem;">where $BOD_t$ = oxygen demand exerted up to time $t$; $L_0$ = <b>ultimate (total) BOD</b> = oxygen required to oxidise <i>all</i> the biodegradable organic matter ($t \to \infty$); and $k$ = deoxygenation rate constant (day$^{-1}$, base $e$; typically $0.2$–$0.3\ \text{day}^{-1}$ for domestic sewage at $20^\circ\text{C}$).</p>
             </div>
             <p><b>Worked Example (ultimate BOD):</b> If $\text{BOD}_5 = 200\ \text{mg/L}$ and $k = 0.23\ \text{day}^{-1}$, find $L_0$.</p>
             <p>$$L_0 = \frac{BOD_5}{1 - e^{-k(5)}} = \frac{200}{1 - e^{-1.15}} = \frac{200}{1 - 0.3166} = \frac{200}{0.6834} \approx \boxed{292.7\ \text{mg/L}}$$</p>
@@ -1237,23 +1274,23 @@
 
             <!-- Q2 -->
             <p><b>2. What is Chemical Oxygen Demand (COD)? How is it related to BOD? Differentiate BOD and COD.</b></p>
-            <p><b>Chemical Oxygen Demand (COD)</b> is the amount of oxygen (expressed in $\text{mg/L}$) required to <b>chemically oxidize</b> the total oxidizable matter — both biodegradable and non-biodegradable organic compounds plus oxidizable inorganic substances — present in a water sample, using a strong chemical oxidant. The sample is refluxed with an excess of standard <b>potassium dichromate</b> ($\text{K}_2\text{Cr}_2\text{O}_7$) in a boiling $50\%$ sulfuric acid medium, with $\text{Ag}_2\text{SO}_4$ as catalyst and $\text{HgSO}_4$ to mask chlorides:</p>
+            <p><b>Chemical Oxygen Demand (COD)</b> is the amount of oxygen (expressed in $\text{mg/L}$) required to <b>chemically oxidise</b> the total oxidisable matter — both biodegradable and non-biodegradable organic compounds plus oxidisable inorganic substances — present in a water sample, using a strong chemical oxidant. The sample is refluxed with an excess of standard <b>potassium dichromate</b> ($\text{K}_2\text{Cr}_2\text{O}_7$) in a boiling $50\%$ sulphuric acid medium, with $\text{Ag}_2\text{SO}_4$ as catalyst and $\text{HgSO}_4$ to mask chlorides:</p>
             <div class="formula-box">
                 <p style="margin-bottom: 0.3rem;">$$\text{Organic matter} + \text{Cr}_2\text{O}_7^{2-} + \text{H}^+ \xrightarrow{\Delta,\ \text{Ag}_2\text{SO}_4} \text{CO}_2 + \text{H}_2\text{O} + \text{Cr}^{3+}$$</p>
             </div>
-            <p>The unreacted dichromate is back-titrated against standard <b>ferrous ammonium sulfate (FAS)</b> using ferroin indicator; the oxidant consumed gives the COD. The test takes only <b>about 3 hours</b> versus 5 days for BOD.</p>
-            <p><b>Relationship between COD and BOD:</b> Because chemical oxidation attacks <i>all</i> oxidizable matter while biological oxidation only attacks the <i>biodegradable</i> fraction, <b>COD is always greater than or equal to BOD</b> for the same sample ($\text{COD} \ge \text{BOD}_5$; often $\text{COD} \approx 1.5$–$3 \times \text{BOD}_5$). The ratio $\dfrac{\text{BOD}_5}{\text{COD}}$ is a useful <b>biodegradability index</b>: a value $> 0.5$ indicates readily biodegradable (amenable to biological treatment) wastewater, whereas $< 0.3$ indicates a largely non-biodegradable/toxic effluent better suited to physico-chemical treatment.</p>
+            <p>The unreacted dichromate is back-titrated against standard <b>ferrous ammonium sulphate (FAS)</b> using ferroin indicator; the oxidant consumed gives the COD. The test takes only <b>about 3 hours</b> versus 5 days for BOD.</p>
+            <p><b>Relationship between COD and BOD:</b> Because chemical oxidation attacks <i>all</i> oxidisable matter while biological oxidation only attacks the <i>biodegradable</i> fraction, <b>COD is always greater than or equal to BOD</b> for the same sample ($\text{COD} \ge \text{BOD}_5$; often $\text{COD} \approx 1.5$–$3 \times \text{BOD}_5$). The ratio $\dfrac{\text{BOD}_5}{\text{COD}}$ is a useful <b>biodegradability index</b>: a value $> 0.5$ indicates readily biodegradable (amenable to biological treatment) wastewater, whereas $< 0.3$ indicates a largely non-biodegradable/toxic effluent better suited to physico-chemical treatment.</p>
             <table class="comparison-table">
                 <thead>
                     <tr><th>Basis</th><th>BOD (Biochemical Oxygen Demand)</th><th>COD (Chemical Oxygen Demand)</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td><b>Oxidizing agent</b></td><td>Aerobic microorganisms (biological)</td><td>Strong chemical oxidant ($\text{K}_2\text{Cr}_2\text{O}_7 / \text{KMnO}_4$)</td></tr>
-                    <tr><td><b>Matter measured</b></td><td>Only biodegradable organic matter</td><td>Both biodegradable &amp; non-biodegradable + oxidizable inorganics</td></tr>
+                    <tr><td><b>Oxidising agent</b></td><td>Aerobic microorganisms (biological)</td><td>Strong chemical oxidant ($\text{K}_2\text{Cr}_2\text{O}_7 / \text{KMnO}_4$)</td></tr>
+                    <tr><td><b>Matter measured</b></td><td>Only biodegradable organic matter</td><td>Both biodegradable &amp; non-biodegradable + oxidisable inorganics</td></tr>
                     <tr><td><b>Time required</b></td><td>5 days (at $20^\circ\text{C}$)</td><td>About 3 hours</td></tr>
                     <tr><td><b>Magnitude</b></td><td>Lower value</td><td>Higher value ($\text{COD} \ge \text{BOD}$)</td></tr>
                     <tr><td><b>Reproducibility</b></td><td>Lower (living organisms, sensitive to toxins)</td><td>High (purely chemical, precise)</td></tr>
-                    <tr><td><b>Effect of toxic wastes</b></td><td>Fails / underestimates (bacteria are inhibited)</td><td>Unaffected — still oxidizes chemically</td></tr>
+                    <tr><td><b>Effect of toxic wastes</b></td><td>Fails / underestimates (bacteria are inhibited)</td><td>Unaffected — still oxidises chemically</td></tr>
                     <tr><td><b>Best use</b></td><td>Assessing biotreatability &amp; natural self-purification</td><td>Rapid monitoring of industrial/toxic effluents</td></tr>
                 </tbody>
             </table>
@@ -1265,23 +1302,23 @@
             <p><b>Importance as a water-quality parameter:</b></p>
             <ul>
                 <li>It is <b>essential for the survival</b> of fish and aerobic aquatic life; most game fish require $> 4$–$5\ \text{mg/L}$.</li>
-                <li>It sustains the <b>aerobic self-purification</b> of rivers — bacteria need DO to stabilize organic wastes.</li>
+                <li>It sustains the <b>aerobic self-purification</b> of rivers — bacteria need DO to stabilise organic wastes.</li>
                 <li>A <b>low DO</b> signals heavy organic pollution / high BOD, eutrophication, or anaerobic (foul, $\text{H}_2\text{S}$-producing) conditions.</li>
                 <li>It governs the <b>oxygen sag</b> in streams below a waste outfall (see Q10) and is the master variable in stream-quality modelling.</li>
             </ul>
-            <p><b>Winkler's (Iodometric) Method:</b> The classical titrimetric determination of DO, based on the fact that DO oxidizes manganous hydroxide to a higher-valency manganic state, which subsequently liberates an equivalent amount of iodine that is titrated.</p>
+            <p><b>Winkler's (Iodometric) Method:</b> The classical titrimetric determination of DO, based on the fact that DO oxidises manganous hydroxide to a higher-valency manganic state, which subsequently liberates an equivalent amount of iodine that is titrated.</p>
             <ol>
-                <li><b>Fixation of oxygen:</b> To the sample (collected without air bubbles) add manganous sulfate ($\text{MnSO}_4$) and alkaline potassium iodide ($\text{KOH} + \text{KI}$, "alkali-iodide-azide"). A white $\text{Mn(OH)}_2$ precipitate forms and is immediately oxidized by the dissolved oxygen to a brown manganic (hydrated $\text{MnO}_2$) precipitate:
+                <li><b>Fixation of oxygen:</b> To the sample (collected without air bubbles) add manganous sulphate ($\text{MnSO}_4$) and alkaline potassium iodide ($\text{KOH} + \text{KI}$, "alkali-iodide-azide"). A white $\text{Mn(OH)}_2$ precipitate forms and is immediately oxidised by the dissolved oxygen to a brown manganic (hydrated $\text{MnO}_2$) precipitate:
                     <div class="formula-box"><p style="margin:0;">$$\text{Mn}^{2+} + 2\text{OH}^- \rightarrow \text{Mn(OH)}_2 \downarrow \qquad 2\text{Mn(OH)}_2 + \text{O}_2 \rightarrow 2\text{MnO(OH)}_2 \downarrow \ (\text{brown})$$</p></div>
                 </li>
-                <li><b>Acidification &amp; iodine release:</b> Concentrated $\text{H}_2\text{SO}_4$ is added; the brown precipitate dissolves and the manganic ion oxidizes iodide to liberate free iodine, in exact proportion to the original DO:
+                <li><b>Acidification &amp; iodine release:</b> Concentrated $\text{H}_2\text{SO}_4$ is added; the brown precipitate dissolves and the manganic ion oxidises iodide to liberate free iodine, in exact proportion to the original DO:
                     <div class="formula-box"><p style="margin:0;">$$\text{MnO(OH)}_2 + 2\text{I}^- + 4\text{H}^+ \rightarrow \text{Mn}^{2+} + \text{I}_2 + 3\text{H}_2\text{O}$$</p></div>
                 </li>
-                <li><b>Titration:</b> The liberated iodine is titrated against standard <b>sodium thiosulfate</b> ($\text{Na}_2\text{S}_2\text{O}_3$) using freshly prepared <b>starch</b> as indicator; the blue colour disappears at the end point:
+                <li><b>Titration:</b> The liberated iodine is titrated against standard <b>sodium thiosulphate</b> ($\text{Na}_2\text{S}_2\text{O}_3$) using freshly prepared <b>starch</b> as indicator; the blue colour disappears at the end point:
                     <div class="formula-box"><p style="margin:0;">$$\text{I}_2 + 2\text{Na}_2\text{S}_2\text{O}_3 \rightarrow 2\text{NaI} + \text{Na}_2\text{S}_4\text{O}_6$$</p></div>
                 </li>
             </ol>
-            <p>The volume of thiosulfate consumed gives the DO directly (with standard normalities, $1\ \text{mL of } 0.025\ \text{N Na}_2\text{S}_2\text{O}_3 \equiv 0.2\ \text{mg O}_2$). Interference by nitrites is removed by <b>sodium azide</b> (the modified Winkler–Azide method).</p>
+            <p>The volume of thiosulphate consumed gives the DO directly (with standard normalities, $1\ \text{mL of } 0.025\ \text{N Na}_2\text{S}_2\text{O}_3 \equiv 0.2\ \text{mg O}_2$). Interference by nitrites is removed by <b>sodium azide</b> (the modified Winkler–Azide method).</p>
             <hr style="margin: 2.5rem 0; border: none; border-top: 1px solid var(--border-color); opacity: 0.3;">
 
             <!-- Q4 -->
@@ -1289,7 +1326,7 @@
             <p><b>Hardness</b> is the property of water that prevents lather formation with soap, caused by the presence of dissolved <b>multivalent metallic cations</b>, principally calcium ($\text{Ca}^{2+}$) and magnesium ($\text{Mg}^{2+}$). Hardness is classified as:</p>
             <ul>
                 <li><b>Temporary (carbonate) hardness:</b> due to bicarbonates of Ca and Mg, $\text{Ca(HCO}_3)_2$ and $\text{Mg(HCO}_3)_2$; removable by boiling.</li>
-                <li><b>Permanent (non-carbonate) hardness:</b> due to chlorides and sulfates of Ca and Mg ($\text{CaCl}_2, \text{MgSO}_4$, etc.); not removed by boiling.</li>
+                <li><b>Permanent (non-carbonate) hardness:</b> due to chlorides and sulphates of Ca and Mg ($\text{CaCl}_2, \text{MgSO}_4$, etc.); not removed by boiling.</li>
             </ul>
             <p>By universal convention, all hardness is expressed as an <b>equivalent amount of $\text{CaCO}_3$</b> (molar mass $100$, equivalent weight $50$), since it allows different ions to be added on a common scale.</p>
             <div class="formula-box">
@@ -1361,7 +1398,7 @@
             <p><b>7. Discuss the Activated Sludge process for wastewater treatment with a flow diagram; describe primary and secondary treatment stages.</b></p>
             <p>Municipal wastewater treatment proceeds in graded stages; the <b>Activated Sludge Process (ASP)</b> is the most widely used <b>secondary (biological) treatment</b>.</p>
             <p><b>Primary Treatment (physical):</b> Removes settleable and floating solids. Wastewater passes through <b>screens</b> (removing rags/large debris) and <b>grit chambers</b> (removing sand/grit), then enters a <b>primary sedimentation (settling) tank</b> where suspended solids settle as raw sludge and grease is skimmed. Primary treatment removes about <b>60% of suspended solids and 30–35% of BOD</b>, but no dissolved organics.</p>
-            <p><b>Secondary Treatment — the Activated Sludge Process (biological):</b> The primary effluent, still rich in dissolved and colloidal organics, flows to an <b>aeration tank</b> where it is mixed with <b>activated sludge</b> (a flocculent mass of aerobic bacteria and protozoa). Air (or pure $\text{O}_2$) is continuously blown in to keep the mixed liquor aerated and in suspension. The microorganisms oxidize the organic matter to $\text{CO}_2$, $\text{H}_2\text{O}$ and new microbial cells:</p>
+            <p><b>Secondary Treatment — the Activated Sludge Process (biological):</b> The primary effluent, still rich in dissolved and colloidal organics, flows to an <b>aeration tank</b> where it is mixed with <b>activated sludge</b> (a flocculent mass of aerobic bacteria and protozoa). Air (or pure $\text{O}_2$) is continuously blown in to keep the mixed liquor aerated and in suspension. The microorganisms oxidise the organic matter to $\text{CO}_2$, $\text{H}_2\text{O}$ and new microbial cells:</p>
             <ul class="step-list">
                 <li><b>Aeration &amp; biological oxidation:</b> Microbes assimilate dissolved organics over a detention time of 4–8 hours, forming a settleable biological floc and lowering BOD by 85–95%.</li>
                 <li><b>Secondary settling (clarification):</b> The mixed liquor flows to a secondary clarifier where the microbial floc settles out, leaving a clear supernatant effluent that is disinfected (chlorination) and discharged.</li>
@@ -1408,8 +1445,8 @@
 
             <!-- Q8 -->
             <p><b>8. Discuss the working principle of Trickling Filters and the Rotating Biological Contactor (RBC).</b></p>
-            <p>Both are <b>attached-growth (fixed-film) aerobic biological</b> secondary-treatment units in which microorganisms grow as a <b>biofilm on a solid medium</b> and oxidize the organic matter of the wastewater flowing past them — in contrast to the suspended-growth Activated Sludge Process.</p>
-            <p><b>(a) Trickling Filter:</b> It is a circular tank packed with a bed of coarse <b>filter medium</b> (crushed rock, gravel, or plastic modules, 1–2 m deep) over which the settled sewage is sprinkled from a slowly rotating distributor arm. As the wastewater <b>trickles</b> down over the media, a gelatinous <b>biological slime layer (zoogleal film)</b> of aerobic bacteria, fungi and protozoa develops on the media surface. Organic matter and oxygen diffuse from the trickling liquid into the film, where microbes adsorb and oxidize the organics:</p>
+            <p>Both are <b>attached-growth (fixed-film) aerobic biological</b> secondary-treatment units in which microorganisms grow as a <b>biofilm on a solid medium</b> and oxidise the organic matter of the wastewater flowing past them — in contrast to the suspended-growth Activated Sludge Process.</p>
+            <p><b>(a) Trickling Filter:</b> It is a circular tank packed with a bed of coarse <b>filter medium</b> (crushed rock, gravel, or plastic modules, 1–2 m deep) over which the settled sewage is sprinkled from a slowly rotating distributor arm. As the wastewater <b>trickles</b> down over the media, a gelatinous <b>biological slime layer (zoogleal film)</b> of aerobic bacteria, fungi and protozoa develops on the media surface. Organic matter and oxygen diffuse from the trickling liquid into the film, where microbes adsorb and oxidise the organics:</p>
             <ul>
                 <li>The bed is <b>naturally ventilated</b> — air passes upward through the void spaces, supplying oxygen for aerobic oxidation.</li>
                 <li>As the film thickens, its deeper layers become anaerobic, lose their grip, and slough off ("sloughing"); this detached humus is removed in a following <b>secondary clarifier</b>.</li>
@@ -1429,20 +1466,20 @@
             <p><b>Eutrophication</b> is the progressive <b>nutrient enrichment</b> of a water body — chiefly by nitrates ($\text{NO}_3^-$) and phosphates ($\text{PO}_4^{3-}$) — that triggers excessive growth of algae and aquatic plants (<b>algal blooms</b>), whose subsequent death and microbial decay consume the dissolved oxygen, producing hypoxia/anoxia and mass mortality of fish and other aquatic life. It represents the natural ageing of a lake, greatly accelerated by human activity (<b>cultural eutrophication</b>).</p>
             <p><b>Causes:</b></p>
             <ul>
-                <li>Agricultural <b>runoff</b> carrying nitrogen and phosphorus fertilizers.</li>
+                <li>Agricultural <b>runoff</b> carrying nitrogen and phosphorus fertilisers.</li>
                 <li>Discharge of untreated/partially treated <b>domestic sewage</b> and <b>phosphate-rich detergents</b>.</li>
                 <li>Industrial effluents and animal-farm wastes rich in organic nutrients.</li>
             </ul>
             <p><b>Effects:</b> Dense algal mats reduce light penetration, kill submerged plants, deplete DO on decay, release toxins (some blue-green algae), foul odour and taste, and ultimately convert the lake into a marsh.</p>
             <p><b>Control measures:</b></p>
             <ul>
-                <li><b>Reducing nutrient input at source</b> — advanced (tertiary) nutrient removal from sewage, banning/limiting phosphate detergents, buffer strips and controlled fertilizer use around catchments.</li>
+                <li><b>Reducing nutrient input at source</b> — advanced (tertiary) nutrient removal from sewage, banning/limiting phosphate detergents, buffer strips and controlled fertiliser use around catchments.</li>
                 <li><b>In-lake remediation</b> — aeration/oxygenation of bottom waters, mechanical harvesting of weeds and algae, dredging nutrient-rich bottom sediments, and dilution/flushing with fresh water.</li>
                 <li><b>Chemical/biological methods</b> — precipitation of phosphorus (e.g. alum dosing) and biomanipulation of the food web.</li>
             </ul>
             <p><b>The Hydrological (Water) Cycle:</b> The continuous, sun-driven circulation of water among the <b>oceans, atmosphere, and land</b> through change of physical state. The chief processes are:</p>
             <ul>
-                <li><b>Evaporation &amp; transpiration (evapotranspiration):</b> Solar energy vaporizes water from oceans, lakes and soil, and plants release water vapour.</li>
+                <li><b>Evaporation &amp; transpiration (evapotranspiration):</b> Solar energy vaporises water from oceans, lakes and soil, and plants release water vapour.</li>
                 <li><b>Condensation:</b> Rising vapour cools and condenses into clouds.</li>
                 <li><b>Precipitation:</b> Water returns to the surface as rain, snow or hail.</li>
                 <li><b>Runoff &amp; infiltration:</b> Surface runoff feeds rivers back to the oceans, while infiltration recharges groundwater/aquifers.</li>
@@ -1456,12 +1493,12 @@
 
             <!-- Q10 -->
             <p><b>10. Write short notes on: (a) Oxidation Pond (b) Oxygen Sag Curve.</b></p>
-            <p><b>(a) Oxidation Pond (Stabilization Pond):</b> A shallow (1–1.5 m deep), large earthen basin used for the <b>natural biological treatment</b> of sewage, relying on a <b>symbiotic algae–bacteria relationship</b> driven by sunlight. Aerobic <b>bacteria</b> oxidize the organic waste, consuming oxygen and releasing $\text{CO}_2$, nutrients and ammonia; the <b>algae</b> use this $\text{CO}_2$ and nutrients for photosynthesis and, in turn, release the oxygen the bacteria need:</p>
+            <p><b>(a) Oxidation Pond (Stabilisation Pond):</b> A shallow (1–1.5 m deep), large earthen basin used for the <b>natural biological treatment</b> of sewage, relying on a <b>symbiotic algae–bacteria relationship</b> driven by sunlight. Aerobic <b>bacteria</b> oxidise the organic waste, consuming oxygen and releasing $\text{CO}_2$, nutrients and ammonia; the <b>algae</b> use this $\text{CO}_2$ and nutrients for photosynthesis and, in turn, release the oxygen the bacteria need:</p>
             <div class="formula-box">
                 <p style="margin:0;">$$\underbrace{\text{Organic matter} + \text{O}_2 \xrightarrow{\text{bacteria}} \text{CO}_2 + \text{NH}_3 + \text{nutrients}}_{\text{bacterial oxidation}} \qquad \underbrace{\text{CO}_2 + \text{H}_2\text{O} \xrightarrow[\text{algae}]{\text{sunlight}} \text{new algal cells} + \text{O}_2}_{\text{photosynthesis}}$$</p>
             </div>
             <p>The bottom sludge undergoes anaerobic digestion. Oxidation ponds are cheap, need no machinery or energy and little skilled attention, but require large land area and long detention (20–60 days). They are ideal for small towns and rural areas with warm, sunny climates.</p>
-            <p><b>(b) Oxygen Sag Curve (Streeter–Phelps curve):</b> When organic waste is discharged into a flowing river, the dissolved oxygen falls below the outfall as bacteria consume $\text{O}_2$ to oxidize the waste (<b>deoxygenation</b>), then recovers downstream as atmospheric re-aeration replenishes it (<b>reaeration</b>). Plotting DO versus distance (or time of travel) downstream gives a characteristic <b>spoon-shaped "sag" curve</b>. The lowest DO point is the <b>critical point ($D_c$)</b>, where deoxygenation rate exactly equals reaeration rate; it is the zone of maximum oxygen stress and greatest danger to fish. The net oxygen deficit is governed by:</p>
+            <p><b>(b) Oxygen Sag Curve (Streeter–Phelps curve):</b> When organic waste is discharged into a flowing river, the dissolved oxygen falls below the outfall as bacteria consume $\text{O}_2$ to oxidise the waste (<b>deoxygenation</b>), then recovers downstream as atmospheric re-aeration replenishes it (<b>reaeration</b>). Plotting DO versus distance (or time of travel) downstream gives a characteristic <b>spoon-shaped "sag" curve</b>. The lowest DO point is the <b>critical point ($D_c$)</b>, where deoxygenation rate exactly equals reaeration rate; it is the zone of maximum oxygen stress and greatest danger to fish. The net oxygen deficit is governed by:</p>
             <div class="formula-box">
                 <p style="margin-bottom:0.3rem;">$$\frac{dD}{dt} = \underbrace{k_d L}_{\text{deoxygenation}} - \underbrace{k_r D}_{\text{reaeration}}$$</p>
                 <p style="margin:0;">where $D$ = DO deficit (saturation DO − actual DO), $L$ = remaining BOD, $k_d$ = deoxygenation constant, $k_r$ = reaeration constant. The four downstream zones are: <b>degradation, active decomposition (sag), recovery, and clean water</b>.</p>
@@ -2128,7 +2165,7 @@
             <ul>
                 <li><b>Long-Term Temperature Goal:</b> Hold the rise in global average temperature to <b>well below $2^\circ\text{C}$</b> above pre-industrial levels and pursue efforts to limit it to <b>$1.5^\circ\text{C}$</b>.</li>
                 <li><b>Nationally Determined Contributions (NDCs):</b> Each country sets and progressively strengthens its own voluntary emission-reduction pledges, reviewed every five years (the "ratchet mechanism").</li>
-                <li><b>Climate Finance:</b> Developed nations committed to mobilise <b>US $100 billion per year</b> for mitigation and adaptation in developing countries.</li>
+                <li><b>Climate Finance:</b> Developed nations committed to mobilise <b>US \$100 billion per year</b> for mitigation and adaptation in developing countries.</li>
                 <li><b>Carbon Neutrality:</b> Achieve a balance between anthropogenic emissions and removals by sinks in the second half of the century (net-zero).</li>
                 <li><b>Principle of Equity:</b> Based on <b>Common But Differentiated Responsibilities and Respective Capabilities (CBDR-RC)</b>.</li>
             </ul>
