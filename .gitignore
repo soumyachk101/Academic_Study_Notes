@@ -5,3 +5,9 @@ _notebook_demo.html
 *.swift
 *.py
 pdf_images/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.webp
