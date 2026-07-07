@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPS Important Q&amp;A Bank (ESCS201)</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Shared Stylesheets -->
+    <link rel="stylesheet" href="../notes.css">
+    <link rel="stylesheet" href="notes.css">
+    
+    <style>
+        :root {
+            --primary-color: #0d9488; /* Teal Accent */
+            --primary-light: rgba(13, 148, 136, 0.06);
+            --border-color: rgba(13, 148, 136, 0.2);
+            --code-bg: #0f172a;
+            --code-text: #e2e8f0;
+        }
+
+        .mark-badge {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            white-space: nowrap;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .section-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin: 3.5rem 0 1.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .section-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            background: var(--primary-light);
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .qa-card {
+            background: #ffffff;
+            border: 1px solid rgba(44, 62, 80, 0.12);
+            border-radius: 8px;
+            padding: 1.8rem;
+            margin-bottom: 1.8rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .qa-card:hover {
+            border-color: rgba(13, 148, 136, 0.35);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .qa-question {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .qa-question span.q-text {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .answer {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #334155;
+        }
+
+        .answer p {
+            margin-bottom: 0.9rem;
+        }
+
+        .answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            background-color: rgba(13, 148, 136, 0.08);
+            color: #0f766e;
+            font-weight: 600;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .code-block {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            padding: 1.25rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            line-height: 1.6;
+            border: 1px solid #334155;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .output-box {
+            background-color: #f8fafc;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: #1e293b;
+            border-radius: 0 6px 6px 0;
+            border-top: 1px solid #e2e8f0;
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .output-label {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.35rem;
+            display: block;
+        }
+
+        table.comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.95rem;
+        }
+
+        table.comp-table th, table.comp-table td {
+            border: 1px solid #cbd5e1;
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+
+        table.comp-table th {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        table.comp-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .top-nav {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto 1.5rem auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1rem;
+            background: #fff;
+            border: 1px solid rgba(44, 62, 80, 0.15);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .top-nav a:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        .nav-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <a href="pps_index.html">← PPS Menu</a>
+    <span class="nav-title">Curated Exam Bank · Important Q&amp;A</span>
+    <div style="display:flex;gap:0.5rem;">
+        <a href="pps_pyq_2023.html">← 2022–23 Paper</a>
+        <a href="../index.html">Main Library →</a>
+    </div>
+</nav>
+
+<div class="container" style="max-width: 1100px; margin: 0 auto; background: #fff; padding: 4rem 3.5rem; border-radius: 8px; border: 1px solid rgba(44,62,80,0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+    <header style="text-align: center; margin-bottom: 3rem;">
+        <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-color); text-transform: uppercase; letter-spacing: 0.2em; background: var(--primary-light); padding: 0.4rem 1.2rem; border-radius: 20px; border: 1px solid var(--border-color);">Comprehensive Question Bank</span>
+        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; color: #1e293b; margin: 1rem 0 0.5rem 0;">Important Q&amp;A Bank</h1>
+        <p style="font-size: 1.1rem; color: #64748b; font-weight: 500;">Programming for Problem Solving (ESCS201) · Curated Top-Frequency Exam Questions</p>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.5rem;">
+            <span style="height: 1px; width: 60px; background: #cbd5e1;"></span>
+            <span style="color: var(--primary-color); font-size: 1.2rem;">❖</span>
+            <span style="height: 1px; width: 60px; background: #cbd5e1;"></span>
+        </div>
+    </header>
+    
+    <!-- ============================================================ -->
+    <!-- MODULE 1: FUNDAMENTALS & STORAGE CLASSES -->
+    <!-- ============================================================ -->
+    <div class="section">
+        <div class="section-heading">
+            <span>Module 1: C Fundamentals &amp; Storage Classes</span>
+            <span class="section-sub">Core Foundations</span>
+        </div>
+        
+        <div class="qa-card">
+            <h4 class="qa-question">
+                <span class="q-text">1. Explain the four storage classes in C (<code>auto</code>, <code>static</code>, <code>extern</code>, <code>register</code>) with their default initial values, scope, and lifetime.</span>
+                <span class="mark-badge">[ 10 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <table class="comp-table">
+                    <tr>
+                        <th style="width: 15%;">Storage Class</th>
+                        <th style="width: 20%;">Storage Location</th>
+                        <th style="width: 20%;">Default Initial Value</th>
+                        <th style="width: 25%;">Scope (Visibility)</th>
+                        <th style="width: 20%;">Lifetime</th>
+                    </tr>
+                    <tr>
+                        <td><b><code>auto</code></b></td>
+                        <td>RAM Call Stack</td>
+                        <td>Garbage Value (random uninitialized bytes)</td>
+                        <td>Local (within the enclosing function/block only)</td>
+                        <td>Destroyed automatically upon block exit.</td>
+                    </tr>
+                    <tr>
+                        <td><b><code>static</code></b></td>
+                        <td>RAM Data Segment</td>
+                        <td>Zero (<code>0</code>)</td>
+                        <td>Local to the declaring function/block (or file if global)</td>
+                        <td>Persists across function calls for entire program runtime.</td>
+                    </tr>
+                    <tr>
+                        <td><b><code>extern</code></b></td>
+                        <td>RAM Data Segment</td>
+                        <td>Zero (<code>0</code>)</td>
+                        <td>Global (accessible across all translation units/files)</td>
+                        <td>Entire program execution runtime.</td>
+                    </tr>
+                    <tr>
+                        <td><b><code>register</code></b></td>
+                        <td>CPU Registers (if available)</td>
+                        <td>Garbage Value</td>
+                        <td>Local to block</td>
+                        <td>Destroyed upon block exit. Note: Cannot take address <code>&amp;reg</code>.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="qa-card">
+            <h4 class="qa-question">
+                <span class="q-text">2. Differentiate between type casting and type conversion in C with examples.</span>
+                <span class="mark-badge">[ 5 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Type Conversion (Implicit Conversion):</b> Automatically performed by the C compiler when operands of different data types are mixed in an expression. Smaller types are automatically promoted to larger types (e.g., <code>int</code> to <code>float</code>) to prevent data loss.
+                <br><b>Type Casting (Explicit Conversion):</b> Manually performed by the programmer using the cast operator <code>(data_type)expr</code> to forcibly convert an expression from one data type to another.</p>
+                <div class="code-block">int x = 10; float y = 5.5;
+float res1 = x + y;       // Implicit conversion: x is automatically promoted to 5.0f
+
+int res2 = (int)3.14159;  // Explicit casting: truncates float to integer 3</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MODULE 2: ARRAYS & POINTERS -->
+    <!-- ============================================================ -->
+    <div class="section">
+        <div class="section-heading">
+            <span>Module 2: Arrays, Pointers &amp; Dynamic Memory</span>
+            <span class="section-sub">Memory Management</span>
+        </div>
+
+        <div class="qa-card">
+            <h4 class="qa-question">
+                <span class="q-text">3. Explain dynamic memory allocation functions (<code>malloc</code>, <code>calloc</code>, <code>realloc</code>, <code>free</code>) in C with examples.</span>
+                <span class="mark-badge">[ 10 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p>Dynamic memory allocation functions (defined in <code>&lt;stdlib.h&gt;</code>) allocate heap memory at runtime:</p>
+                <ul style="margin-left:1.5rem; line-height:1.8;">
+                    <li><b><code>malloc(size_t size)</code>:</b> Allocates a single contiguous block of memory of specified size in bytes. Contains uninitialized garbage values.
+                    <br><code>int *ptr = (int*)malloc(10 * sizeof(int));</code></li>
+                    <li><b><code>calloc(size_t num, size_t size)</code>:</b> Allocates memory for an array of <code>num</code> elements of <code>size</code> bytes each, and automatically initializes all bytes to <b>zero</b>.
+                    <br><code>int *arr = (int*)calloc(10, sizeof(int));</code></li>
+                    <li><b><code>realloc(void *ptr, size_t new_size)</code>:</b> Resizes an already allocated memory block without losing previously stored data (expanding or shrinking).
+                    <br><code>ptr = (int*)realloc(ptr, 20 * sizeof(int));</code></li>
+                    <li><b><code>free(void *ptr)</code>:</b> Deallocates heap memory previously allocated by malloc/calloc/realloc, returning it to the operating system to prevent memory leaks.
+                    <br><code>free(ptr); ptr = NULL;</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="qa-card">
+            <h4 class="qa-question">
+                <span class="q-text">4. What is array of pointers and pointer to an array? Explain with syntax.</span>
+                <span class="mark-badge">[ 5 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>1. Array of Pointers (<code>int *arr[5];</code>):</b> This is an array containing 5 pointer elements. Every element <code>arr[i]</code> stores the memory address of an integer variable.
+                <br><b>2. Pointer to an Array (<code>int (*ptr)[5];</code>):</b> Notice the parentheses around <code>*ptr</code>. This declares a single pointer variable that points to an entire 1-dimensional array of 5 integers. When incremented (<code>ptr++</code>), its memory address jumps by \(5 \times \text{sizeof(int)} = 20\) bytes!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- MODULE 3: STRINGS, STRUCTS & FILES -->
+    <!-- ============================================================ -->
+    <div class="section">
+        <div class="section-heading">
+            <span>Module 3: Strings, Structures &amp; File Handling</span>
+            <span class="section-sub">Data &amp; I/O</span>
+        </div>
+
+        <div class="qa-card">
+            <h4 class="qa-question">
+                <span class="q-text">5. Write a C program to copy one text file to another using file handling functions.</span>
+                <span class="mark-badge">[ 8 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <div class="code-block">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main() {
+    FILE *sourceFile, *destFile;
+    char ch;
+
+    // Open source file in read mode
+    sourceFile = fopen("source.txt", "r");
+    if (sourceFile == NULL) {
+        printf("Error: Cannot open source.txt for reading!\n");
+        return 1;
+    }
+
+    // Open destination file in write mode
+    destFile = fopen("destination.txt", "w");
+    if (destFile == NULL) {
+        printf("Error: Cannot open destination.txt for writing!\n");
+        fclose(sourceFile);
+        return 1;
+    }
+
+    // Copy character by character until End-Of-File (EOF)
+    while ((ch = fgetc(sourceFile)) != EOF) {
+        fputc(ch, destFile);
+    }
+
+    printf("File copied successfully from source.txt to destination.txt!\n");
+
+    // Close both file streams
+    fclose(sourceFile);
+    fclose(destFile);
+
+    return 0;
+}</div>
+            </div>
+        </div>
+
+        <div class="qa-card">
+            <h4 class="qa-question">
+                <span class="q-text">6. Explain self-referential structures in C with an example of a Linked List node.</span>
+                <span class="mark-badge">[ 5 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p>A <span class="highlight">self-referential structure</span> is a structure definition that includes one or more pointer members pointing to a structure of the exact same type. They form the foundational building blocks for dynamic data structures like Linked Lists, Trees, and Graphs.</p>
+                <div class="code-block">struct Node {
+    int data;           // Data field holding integer value
+    struct Node *next;  // Pointer pointing to the next Node of identical structure!
+};</div>
+            </div>
+        </div>
+    </div> <!-- End Section -->
+
+    <footer style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(44,62,80,0.15); color: #64748b; font-size: 0.95rem;">
+        <p>Programming for Problem Solving · Important Q&amp;A Bank (ESCS201) · <a href="pps_index.html" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">Return to PPS Menu</a></p>
+    </footer>
+</div>
+
+</body>
+</html>

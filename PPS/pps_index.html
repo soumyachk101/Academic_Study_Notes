@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming for Problem Solving (ESCS201) Notes & PYQs</title>
+    <meta name="description" content="Complete solved previous year questions (2022-2025) and important point-wise Q&A for Programming for Problem Solving in C (ESCS201).">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Link to Shared Notes Stylesheet -->
+    <link rel="stylesheet" href="../notes.css">
+    <link rel="stylesheet" href="notes.css">
+    
+    <style>
+        /* Page Specific Theme Variables */
+        :root {
+            --primary-color: #0d9488; /* Teal / Emerald Accent for PPS */
+            --primary-light: rgba(13, 148, 136, 0.05);
+            --border-color: rgba(13, 148, 136, 0.15);
+            
+            --bg-desk: #eae6db;
+            --bg-paper: #fefdfb;
+            --text-main: #1e293b;
+            --text-muted: #57687e;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background-color: var(--bg-desk);
+            background-image: 
+                radial-gradient(rgba(30, 41, 59, 0.03) 1px, transparent 1px), 
+                radial-gradient(rgba(30, 41, 59, 0.03) 1px, var(--bg-desk) 1px);
+            background-size: 24px 24px;
+            background-position: 0 0, 12px 12px;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2rem 1rem;
+        }
+
+        .folio-page {
+            max-width: 1100px;
+            width: 100%;
+            background-color: var(--bg-paper);
+            border: 1px solid rgba(44, 62, 80, 0.15);
+            border-radius: 6px;
+            padding: 4.5rem 3.5rem;
+            position: relative;
+            box-shadow: 
+                0 1px 2px rgba(0, 0, 0, 0.05),
+                0 8px 32px -4px rgba(0, 0, 0, 0.08),
+                0 24px 64px -12px rgba(0, 0, 0, 0.12),
+                inset 0 0 100px rgba(253, 252, 251, 0.8);
+        }
+
+        .folio-page::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 1px dashed rgba(44, 62, 80, 0.08);
+            pointer-events: none;
+            border-radius: 3px;
+        }
+
+        .title-page {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            max-width: 760px;
+            margin: 0 auto 3.5rem;
+        }
+
+        .book-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+            display: inline-block;
+            background: var(--primary-light);
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .book-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .book-subtitle {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .book-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .book-divider .line {
+            height: 1px;
+            width: 80px;
+            background-color: var(--border-color);
+        }
+
+        .book-divider .ornament {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .book-stats {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+            padding: 1.25rem 2rem;
+            background: rgba(13, 148, 136, 0.03);
+            border-radius: 8px;
+            border: 1px solid rgba(13, 148, 136, 0.1);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-val {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-lbl {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-divider {
+            width: 1px;
+            height: 30px;
+            background-color: rgba(13, 148, 136, 0.15);
+        }
+
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .chapter-card {
+            background: #fff;
+            border: 1px solid rgba(44, 62, 80, 0.1);
+            border-radius: 8px;
+            padding: 2rem;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+        }
+
+        .chapter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: var(--primary-color);
+            opacity: 0.8;
+            transition: opacity 0.3s ease, height 0.3s ease;
+        }
+
+        .chapter-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -5px rgba(0, 0, 0, 0.03);
+            border-color: rgba(13, 148, 136, 0.3);
+        }
+
+        .chapter-card:hover::before {
+            height: 6px;
+            opacity: 1;
+        }
+
+        .chapter-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .chapter-num {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+            line-height: 1.25;
+        }
+
+        .chapter-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid rgba(44, 62, 80, 0.06);
+        }
+
+        .badge-count {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.35rem 0.75rem;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            letter-spacing: 0.03em;
+        }
+
+        .read-action {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: gap 0.2s ease;
+        }
+
+        .read-action .arrow {
+            transition: transform 0.2s ease;
+        }
+
+        .chapter-card:hover .read-action {
+            gap: 0.5rem;
+        }
+
+        .chapter-card:hover .read-action .arrow {
+            transform: translateX(3px);
+        }
+
+        .top-nav {
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .top-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-paper);
+            border: 1px solid rgba(44, 62, 80, 0.1);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+
+        .top-nav a:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateX(-2px);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(44, 62, 80, 0.08);
+            position: relative;
+            z-index: 2;
+        }
+
+        .colophon-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .folio-page { padding: 3rem 1.5rem; }
+            .book-title { font-size: 2.5rem; }
+            .book-stats { flex-wrap: wrap; gap: 1.5rem; }
+            .stat-divider { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <a href="../index.html">← Back to Main Menu</a>
+    <span style="font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 700; color: var(--primary-color);">ESCS201 · C Programming</span>
+</nav>
+
+<main class="folio-page">
+    <header class="title-page">
+        <div class="book-badge">Paper Code : ESCS201</div>
+        <h1 class="book-title">Programming for Problem Solving</h1>
+        
+        <div class="book-divider">
+            <span class="line"></span>
+            <span class="ornament">❖</span>
+            <span class="line"></span>
+        </div>
+        
+        <p class="book-subtitle">
+            A comprehensive, marks-wise structured curriculum library containing complete solved question papers from MAKAUT (2022 to 2025) along with a curated bank of important questions, C code implementations, and step-by-step logic breakdowns.
+        </p>
+        
+        <div class="book-stats">
+            <div class="stat-item">
+                <span class="stat-val">3</span>
+                <span class="stat-lbl">Solved PYQs</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-val">100%</span>
+                <span class="stat-lbl">Marks-Wise Q&amp;A</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <span class="stat-val">C99/C11</span>
+                <span class="stat-lbl">Tested Programs</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="chapters-grid">
+        
+        <!-- 2024-2025 PYQ CARD -->
+        <a href="pps_pyq_2025.html" class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-num">Latest Exam · SEM-2 / 2024-25</div>
+                <h2 class="chapter-title">2024–2025 Solved Paper</h2>
+                <p class="chapter-desc">Complete solutions for Group A (Very Short - 10 Marks), Group B (Short - 15 Marks), and Group C (Long - 45 Marks). Features recursion, Ackermann function, string manipulations, arrays, and pointer arithmetic.</p>
+            </div>
+            <div class="card-footer">
+                <span class="badge-count">70 / 70 Marks Solved</span>
+                <span class="read-action">Read Paper <span class="arrow">→</span></span>
+            </div>
+        </a>
+
+        <!-- 2023-2024 PYQ CARD -->
+        <a href="pps_pyq_2024.html" class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-num">Past Exam · SEM-2 / 2023-24</div>
+                <h2 class="chapter-title">2023–2024 Solved Paper</h2>
+                <p class="chapter-desc">Detailed answers covering 2D array zero-initialization, switch statement double compilation errors, Merge Sort algorithm with time complexity proof, asymptotic notations, and palindrome range programs.</p>
+            </div>
+            <div class="card-footer">
+                <span class="badge-count">70 / 70 Marks Solved</span>
+                <span class="read-action">Read Paper <span class="arrow">→</span></span>
+            </div>
+        </a>
+
+        <!-- 2022-2023 PYQ CARD -->
+        <a href="pps_pyq_2023.html" class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-num">Past Exam · SEM-2 / 2022-23</div>
+                <h2 class="chapter-title">2022–2023 Solved Paper</h2>
+                <p class="chapter-desc">In-depth explanations of structure vs union, array of structures for 10 students, ternary operator, char-to-ascii comparison logic traps, 2's complement binary arithmetic, and operating system basics.</p>
+            </div>
+            <div class="card-footer">
+                <span class="badge-count">70 / 70 Marks Solved</span>
+                <span class="read-action">Read Paper <span class="arrow">→</span></span>
+            </div>
+        </a>
+
+        <!-- IMPORTANT Q&A BANK CARD -->
+        <a href="pps_important_questions.html" class="chapter-card">
+            <div class="chapter-header">
+                <div class="chapter-num">Curated Exam Bank</div>
+                <h2 class="chapter-title">Important Q&amp;A Bank</h2>
+                <p class="chapter-desc">A master collection of high-frequency exam questions categorized by module: C Fundamentals, Control Flow, Arrays &amp; Pointers, Storage Classes, String Algorithms, Structures, Unions, and File Handling.</p>
+            </div>
+            <div class="card-footer">
+                <span class="badge-count">Top 60+ Concepts</span>
+                <span class="read-action">Explore Q&amp;A <span class="arrow">→</span></span>
+            </div>
+        </a>
+
+    </section>
+
+    <footer>
+        <div class="colophon-text">
+            Programming for Problem Solving · MAKAUT Course Code: ESCS201 · <a href="../index.html">Return to Academic Study Notes Library</a>
+        </div>
+    </footer>
+</main>
+
+</body>
+</html>

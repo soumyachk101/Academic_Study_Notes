@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPS 2022-2023 Solved Paper (ESCS201)</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Shared Stylesheets -->
+    <link rel="stylesheet" href="../notes.css">
+    <link rel="stylesheet" href="notes.css">
+    
+    <!-- MathJax for formulas -->
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        :root {
+            --primary-color: #0d9488; /* Teal Accent */
+            --primary-light: rgba(13, 148, 136, 0.06);
+            --border-color: rgba(13, 148, 136, 0.2);
+            --code-bg: #0f172a;
+            --code-text: #e2e8f0;
+        }
+
+        .mark-badge {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            white-space: nowrap;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .section-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin: 3.5rem 0 1.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .section-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            background: var(--primary-light);
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .qa-card {
+            background: #ffffff;
+            border: 1px solid rgba(44, 62, 80, 0.12);
+            border-radius: 8px;
+            padding: 1.8rem;
+            margin-bottom: 1.8rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .qa-card:hover {
+            border-color: rgba(13, 148, 136, 0.35);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .qa-question {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .qa-question span.q-text {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .answer {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #334155;
+        }
+
+        .answer p {
+            margin-bottom: 0.9rem;
+        }
+
+        .answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            background-color: rgba(13, 148, 136, 0.08);
+            color: #0f766e;
+            font-weight: 600;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .code-block {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            padding: 1.25rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            line-height: 1.6;
+            border: 1px solid #334155;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .output-box {
+            background-color: #f8fafc;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: #1e293b;
+            border-radius: 0 6px 6px 0;
+            border-top: 1px solid #e2e8f0;
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .output-label {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.35rem;
+            display: block;
+        }
+
+        table.comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.95rem;
+        }
+
+        table.comp-table th, table.comp-table td {
+            border: 1px solid #cbd5e1;
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+
+        table.comp-table th {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        table.comp-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .top-nav {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto 1.5rem auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1rem;
+            background: #fff;
+            border: 1px solid rgba(44, 62, 80, 0.15);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .top-nav a:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        .nav-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <a href="pps_index.html">← PPS Menu</a>
+    <span class="nav-title">SEM-2 · 2022–2023 Solved Paper</span>
+    <div style="display:flex;gap:0.5rem;">
+        <a href="pps_pyq_2024.html">← 2023–24 Paper</a>
+        <a href="pps_important_questions.html">Important Q&amp;A →</a>
+    </div>
+</nav>
+
+<div class="container" style="max-width: 1100px; margin: 0 auto; background: #fff; padding: 4rem 3.5rem; border-radius: 8px; border: 1px solid rgba(44,62,80,0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+    <header style="text-align: center; margin-bottom: 3rem;">
+        <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-color); text-transform: uppercase; letter-spacing: 0.2em; background: var(--primary-light); padding: 0.4rem 1.2rem; border-radius: 20px; border: 1px solid var(--border-color);">MAKAUT Solved Paper · UPID : 002008</span>
+        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; color: #1e293b; margin: 1rem 0 0.5rem 0;">Programming for Problem Solving</h1>
+        <p style="font-size: 1.1rem; color: #64748b; font-weight: 500;">B.Tech Even Semester Examination 2022–2023 · Paper Code: ESCS201 · Full Marks: 70</p>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.5rem;">
+            <span style="height: 1px; width: 60px; background: #cbd5e1;"></span>
+            <span style="color: var(--primary-color); font-size: 1.2rem;">❖</span>
+            <span style="height: 1px; width: 60px; background: #cbd5e1;"></span>
+        </div>
+    </header>
+    
+    <!-- ============================================================ -->
+    <!-- GROUP A -->
+    <!-- ============================================================ -->
+    <div class="section">
+        <div class="section-heading">
+            <span>Group-A: Very Short Answer Type Questions</span>
+            <span class="section-sub">Answer Any 10 · [ 1 x 10 = 10 Marks ]</span>
+        </div>
+        
+        <!-- Q1 (I) -->
+        <div class="qa-card" id="q1-i">
+            <h4 class="qa-question">
+                <span class="q-text">1. (I) What is the use of <code>continue</code> in loop?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> The <span class="highlight"><code>continue</code></span> statement is used inside loop structures (<code>for</code>, <code>while</code>, <code>do-while</code>) to prematurely skip the remaining statements inside the loop body for the current iteration and jump directly to the loop's continuation or condition evaluation for the next cycle.</p>
+            </div>
+        </div>
+
+        <!-- Q1 (II) -->
+        <div class="qa-card" id="q1-ii">
+            <h4 class="qa-question">
+                <span class="q-text">1. (II) What is the string function used to reverse a string?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> In legacy non-standard C libraries (like Borland Turbo C), the function <span class="highlight"><code>strrev()</code></span> is used to reverse a string in-place.
+                <br><i>Note: Because <code>strrev()</code> is not part of the standard ANSI/ISO C library, standard C programs implement string reversal manually using two pointers swapping characters from the start and end of the string.</i></p>
+            </div>
+        </div>
+
+        <!-- Q1 (III) -->
+        <div class="qa-card" id="q1-iii">
+            <h4 class="qa-question">
+                <span class="q-text">1. (III) What is the time complexity of Bubble sort?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b>
+                <br>• <b>Worst and Average Case:</b> <span class="highlight">\(O(n^2)\)</span> (quadratic time).
+                <br>• <b>Best Case:</b> <span class="highlight">\(O(n)\)</span> (linear time, when an optimized boolean swap flag is used on an already sorted input array).</p>
+            </div>
+        </div>
+
+        <!-- Q1 (IV) -->
+        <div class="qa-card" id="q1-iv">
+            <h4 class="qa-question">
+                <span class="q-text">1. (IV) What are preprocessor?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> The <span class="highlight">C Preprocessor</span> is a system program that processes the C source code text before the compiler begins syntax analysis. It executes preprocessor directives starting with `#` (such as <code>#include</code> for header file inclusion, <code>#define</code> for macro constants, and <code>#ifdef</code> for conditional compilation) and produces an expanded source code translation unit.</p>
+            </div>
+        </div>
+
+        <!-- Q1 (V) -->
+        <div class="qa-card" id="q1-v">
+            <h4 class="qa-question">
+                <span class="q-text">1. (V) Recursion uses which data structure?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> <span class="highlight">Stack (specifically, the Runtime Call Stack)</span>.</p>
+                <p><b>Explanation:</b> Every time a recursive function calls itself, a new stack frame (activation record) containing local variables, parameters, and return memory addresses is pushed onto the call stack. When the base case is reached and functions return, their frames are popped sequentially in LIFO (Last-In, First-Out) order.</p>
+            </div>
+        </div>
+
+        <!-- Q1 (VI) -->
+        <div class="qa-card" id="q1-vi">
+            <h4 class="qa-question">
+                <span class="q-text">1. (VI) What header file is used for string operation?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> <span class="highlight"><b><code>&lt;string.h&gt;</code></b></span>.</p>
+                <p><b>Explanation:</b> This standard library header declares essential string manipulation and memory handling functions such as <code>strlen()</code>, <code>strcpy()</code>, <code>strcat()</code>, <code>strcmp()</code>, <code>memcpy()</code>, and <code>memset()</code>.</p>
+            </div>
+        </div>
+
+        <!-- Q1 (VII) -->
+        <div class="qa-card" id="q1-vii">
+            <h4 class="qa-question">
+                <span class="q-text">1. (VII) What is nested if-else?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> A <span class="highlight">nested <code>if-else</code></span> statement refers to placing an entire <code>if</code> or <code>if-else</code> conditional block inside the body of another outer <code>if</code> or <code>else</code> block. It is used to test multi-level, hierarchical, or dependent logical decisions.</p>
+            </div>
+        </div>
+
+        <!-- Q1 (VIII) & (XII) -->
+        <div class="qa-card" id="q1-viii">
+            <h4 class="qa-question">
+                <span class="q-text">1. (VIII) &amp; (XII) What is the use of <code>goto</code> statement in C?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> The <span class="highlight"><code>goto</code></span> statement performs an unconditional jump from its current execution line to a user-defined label inside the same function scope (e.g., <code>goto error_handler; ... error_handler:</code>).</p>
+                <p>While generally discouraged in structured programming due to creating tangled "spaghetti code", its legitimate use case in C is clean error handling and jumping out of deeply nested multi-level loops where a simple <code>break</code> cannot reach.</p>
+            </div>
+        </div>
+
+        <!-- Q1 (IX) -->
+        <div class="qa-card" id="q1-ix">
+            <h4 class="qa-question">
+                <span class="q-text">1. (IX) What is linear searching in an array?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> <span class="highlight">Linear Search</span> (sequential search) is the simplest searching algorithm where we examine each array element sequentially from the beginning (index 0) to the end until a match for the target search key is found or the list is exhausted. Its worst-case time complexity is \(O(n)\).</p>
+            </div>
+        </div>
+
+        <!-- Q1 (X) -->
+        <div class="qa-card" id="q1-x">
+            <h4 class="qa-question">
+                <span class="q-text">1. (X) What is Macro?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> A <span class="highlight">Macro</span> is a fragment of code or a symbolic constant that has been assigned a name using the <code>#define</code> preprocessor directive. When the preprocessor runs, it performs inline text replacement—substituting every occurrence of the macro name in the code with its defined replacement text before compilation.</p>
+            </div>
+        </div>
+
+        <!-- Q1 (XI) -->
+        <div class="qa-card" id="q1-xi">
+            <h4 class="qa-question">
+                <span class="q-text">1. (XI) What is the value of the following if a=2 ?<br>
+                <code>printf("%d",--a);</code></span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <div class="output-box">
+                    <span class="output-label">Console Output</span>
+                    1
+                </div>
+                <p><b>Explanation:</b> The operator <code>--a</code> is the <b>pre-decrement operator</b>. It decrements the value of variable <code>a</code> by 1 <i>before</i> the expression is evaluated or passed to <code>printf</code>. Thus, if \(a = 2\), `--a` changes \(a\) to 1 and immediately prints <b><code>1</code></b>.</p>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- GROUP B -->
+        <!-- ============================================================ -->
+        <div class="section-heading">
+            <span>Group-B: Short Answer Type Questions</span>
+            <span class="section-sub">Answer Any 3 · [ 5 x 3 = 15 Marks ]</span>
+        </div>
+
+        <!-- Q2 -->
+        <div class="qa-card" id="q2">
+            <h4 class="qa-question">
+                <span class="q-text">2. What is structure? What is array of structures? Show with an example.</span>
+                <span class="mark-badge">[ 5 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Structure Definition:</b> A <span class="highlight">structure (<code>struct</code>)</span> is a user-defined composite data type in C that groups together related variables of different data types under a single unified name. Each variable inside a structure is called a member.</p>
+                <p><b>Array of Structures:</b> An <span class="highlight">array of structures</span> is an array where each individual element is a structure variable of the same type. It is widely used to store tabular records, such as databases of students, employees, or books.</p>
+                
+                <div class="code-block">#include &lt;stdio.h&gt;
+
+// Defining a structure for a Book record
+struct Book {
+    int id;
+    char title[50];
+    float price;
+};
+
+int main() {
+    // Declaring and initializing an Array of 3 Book Structures
+    struct Book library[3] = {
+        {101, "Let Us C", 350.50},
+        {102, "Programming in ANSI C", 420.00},
+        {103, "Data Structures Using C", 550.75}
+    };
+
+    printf("=== Library Book Catalog (Array of Structures) ===\n");
+    for (int i = 0; i < 3; i++) {
+        printf("Book %d: ID=%d | Title: %-25s | Price: ₹%.2f\n", 
+               i + 1, library[i].id, library[i].title, library[i].price);
+    }
+
+    return 0;
+}</div>
+                <div class="output-box">
+                    <span class="output-label">Sample Execution</span>
+=== Library Book Catalog (Array of Structures) ===
+Book 1: ID=101 | Title: Let Us C                  | Price: ₹350.50
+Book 2: ID=102 | Title: Programming in ANSI C     | Price: ₹420.00
+Book 3: ID=103 | Title: Data Structures Using C   | Price: ₹550.75
+                </div>
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="qa-card" id="q3">
+            <h4 class="qa-question">
+                <span class="q-text">3. Write a program to find roots of a quadratic equation.</span>
+                <span class="mark-badge">[ 5 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Mathematical Formula:</b> For a quadratic equation \(ax^2 + bx + c = 0\), the discriminant is \(D = b^2 - 4ac\).
+                <br>• If \(D > 0\): Two real and distinct roots: \(r_1, r_2 = \frac{-b \pm \sqrt{D}}{2a}\).
+                <br>• If \(D = 0\): Two real and equal roots: \(r_1 = r_2 = \frac{-b}{2a}\).
+                <br>• If \(D < 0\): Complex conjugate roots: \(\text{Real Part} = \frac{-b}{2a}, \text{Imaginary Part} = \frac{\sqrt{-D}}{2a}\).</p>
+                
+                <div class="code-block">#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+int main() {
+    double a, b, c, discriminant, root1, root2, realPart, imagPart;
+
+    printf("Enter coefficients a, b and c: ");
+    if (scanf("%lf %lf %lf", &a, &b, &c) != 3 || a == 0) {
+        printf("Error: Coefficient 'a' cannot be zero in a quadratic equation!\n");
+        return 1;
+    }
+
+    discriminant = b * b - 4 * a * c;
+
+    printf("\n=== Quadratic Equation Roots Analysis ===\n");
+    printf("Equation : %.2fx^2 + %.2fx + %.2f = 0\n", a, b, c);
+
+    if (discriminant > 0) {
+        root1 = (-b + sqrt(discriminant)) / (2 * a);
+        root2 = (-b - sqrt(discriminant)) / (2 * a);
+        printf("Nature   : Two Real and Distinct Roots\n");
+        printf("Root 1   = %.4f\n", root1);
+        printf("Root 2   = %.4f\n", root2);
+    } 
+    else if (discriminant == 0) {
+        root1 = root2 = -b / (2 * a);
+        printf("Nature   : Two Real and Equal Roots\n");
+        printf("Root 1 = Root 2 = %.4f\n", root1);
+    } 
+    else {
+        realPart = -b / (2 * a);
+        imagPart = sqrt(-discriminant) / (2 * a);
+        printf("Nature   : Complex / Imaginary Conjugate Roots\n");
+        printf("Root 1   = %.4f + %.4fi\n", realPart, imagPart);
+        printf("Root 2   = %.4f - %.4fi\n", realPart, imagPart);
+    }
+
+    return 0;
+}</div>
+                <div class="output-box">
+                    <span class="output-label">Sample Output Cases</span>
+Case 1 (Real Distinct): Enter coefficients a, b and c: 1 -5 6
+        Nature   : Two Real and Distinct Roots
+        Root 1   = 3.0000 | Root 2 = 2.0000
+
+Case 2 (Complex Roots): Enter coefficients a, b and c: 1 2 5
+        Nature   : Complex / Imaginary Conjugate Roots
+        Root 1   = -1.0000 + 2.0000i | Root 2 = -1.0000 - 2.0000i
+                </div>
+            </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="qa-card" id="q4">
+            <h4 class="qa-question">
+                <span class="q-text">4. Draw flowchart to evaluate factorial of a numbers.</span>
+                <span class="mark-badge">[ 5 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p>Below is the standard diagrammatic flowchart representation for calculating factorial \(N!\):</p>
+                <div style="background:#f1f5f9; padding:1.5rem; border-radius:6px; font-family:'Fira Code',monospace; font-size:0.9rem; line-height:1.8; border:1px solid #cbd5e1; margin:1rem 0;">
+  [ START ]<br>
+      |<br>
+      v<br>
+  [ Input integer N ]<br>
+      |<br>
+      v<br>
+  / Is N &lt; 0 ? \ ----( YES )----&gt; [ Print "Error: Negative Input" ] --&gt; [ STOP ]<br>
+  \            /<br>
+      | ( NO )<br>
+      v<br>
+  [ Initialize FACT = 1, I = 1 ]<br>
+      |<br>
+      +-------------+<br>
+      |             |<br>
+      v             |<br>
+  / Is I &lt;= N ? \   | (NO: Loop Exits)<br>
+  \             / --+----------------------------------+<br>
+      | ( YES )                                        |<br>
+      v                                                v<br>
+  [ FACT = FACT * I ]                           [ Print FACT ]<br>
+      |                                                |<br>
+      v                                                v<br>
+  [ I = I + 1 ]                                    [ STOP ]<br>
+      |<br>
+      +-----( Jump back to loop condition )
+                </div>
+            </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="qa-card" id="q5">
+            <h4 class="qa-question">
+                <span class="q-text">5. What is conditional operator?</span>
+                <span class="mark-badge">[ 5 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> The <span class="highlight">conditional operator</span> (also known as the <b>ternary operator</b>) is the only operator in C that takes three operands. Its symbols are a question mark and a colon: <code>? :</code>.</p>
+                <p><b>Syntax:</b> <code>condition ? expression_if_true : expression_if_false;</code>
+                <br><b>How it works:</b> The compiler evaluates <code>condition</code>. If it evaluates to true (non-zero), the entire ternary expression yields the value of <code>expression_if_true</code>. If false (zero), it yields the value of <code>expression_if_false</code>. It serves as a compact, inline shorthand for simple <code>if-else</code> statements.</p>
+                <div class="code-block">// Finding maximum of two numbers using ternary conditional operator
+int a = 45, b = 78;
+int max = (a > b) ? a : b; // Evaluates to b (78)
+printf("Maximum value is %d\n", max);</div>
+            </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="qa-card" id="q6">
+            <h4 class="qa-question">
+                <span class="q-text">6. What will be output of the code below?<br>
+                <code>#include &lt;stdio.h&gt;<br>int main() {<br>&nbsp;&nbsp;int a[5] = {1, 2, 3, 4, 5};<br>&nbsp;&nbsp;int i;<br>&nbsp;&nbsp;for (i = 0; i &lt; 5; i++)<br>&nbsp;&nbsp;&nbsp;&nbsp;if ((char)a[i] == '5')<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf("%d\n", a[i]);<br>&nbsp;&nbsp;&nbsp;&nbsp;else<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf("FAIL\n");<br>}</code></span>
+                <span class="mark-badge">[ 5 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <div class="output-box">
+                    <span class="output-label">Console Output</span>
+FAIL
+FAIL
+FAIL
+FAIL
+FAIL
+                </div>
+                <p><b>Detailed Logic Breakdown:</b>
+                <br>1. Notice the condition in the if statement: <code>if ((char)a[i] == '5')</code>.
+                <br>2. The integer array contains numbers: <code>1, 2, 3, 4, 5</code>. When element <code>a[4]</code> (which is the integer <code>5</code>) is cast to a character via <code>(char)a[i]</code>, it results in the character with ASCII decimal code <b>5</b> (an unprintable control code).
+                <br>3. However, on the right side of the comparison, the character literal <b><code>'5'</code></b> (in single quotes) represents the ASCII digit '5', whose numeric decimal code is exactly <b>53</b>!
+                <br>4. Since integer <code>5</code> never equals ASCII code <code>53</code>, the condition is false for all 5 array iterations! Thus, the <code>else</code> branch executes 5 times, printing <code>FAIL</code> on 5 lines.</p>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- GROUP C -->
+        <!-- ============================================================ -->
+        <div class="section-heading">
+            <span>Group-C: Long Answer Type Questions</span>
+            <span class="section-sub">Answer Any 3 · [ 15 x 3 = 45 Marks ]</span>
+        </div>
+
+        <!-- Q7 -->
+        <div class="qa-card" id="q7">
+            <h4 class="qa-question">
+                <span class="q-text">7. (a) What is the difference between Array and Structure? Show with example.<br>
+                (b) What are the differences between Structure and Union? Show with example.<br>
+                (c) Write a program using structure to take 10 students name, roll, marks and print the records with average marks.</span>
+                <span class="mark-badge">[ 4 + 3 + 8 = 15 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>(a) Difference Between Array and Structure [4 Marks]:</b></p>
+                <table class="comp-table">
+                    <tr>
+                        <th style="width: 25%;">Feature</th>
+                        <th style="width: 37.5%;">Array</th>
+                        <th style="width: 37.5%;">Structure (<code>struct</code>)</th>
+                    </tr>
+                    <tr>
+                        <td><b>Data Types</b></td>
+                        <td>Homogeneous collection: all elements must have the exact same data type (e.g., all ints).</td>
+                        <td>Heterogeneous collection: members can be of completely different data types (int, float, char, array).</td>
+                    </tr>
+                    <tr>
+                        <td><b>Element Access</b></td>
+                        <td>Elements are accessed via integer indices (subscripts) like <code>arr[0]</code>.</td>
+                        <td>Members are accessed using dot operator (<code>.</code>) or arrow operator (<code>-&gt;</code>) like <code>s.name</code>.</td>
+                    </tr>
+                </table>
+
+                <hr style="margin:1.5rem 0; border:0; border-top:1px dashed #cbd5e1;">
+
+                <p><b>(b) Difference Between Structure and Union [3 Marks]:</b></p>
+                <p>In a structure, memory is allocated independently for all members simultaneously, making total size equal to the sum of members. In a union, all members share the exact same starting memory address, making total size equal to the largest single member. Thus, only one union member can be active at any given time.</p>
+
+                <hr style="margin:1.5rem 0; border:0; border-top:1px dashed #cbd5e1;">
+
+                <p><b>(c) Program Using Structure for 10 Students with Average Marks [8 Marks]:</b></p>
+                <div class="code-block">#include &lt;stdio.h&gt;
+#define N 10
+
+struct Student {
+    int roll;
+    char name[50];
+    float marks;
+};
+
+int main() {
+    struct Student st[N];
+    float total_marks = 0.0, average;
+
+    printf("=== Enter details for %d Students ===\n", N);
+    for (int i = 0; i < N; i++) {
+        printf("\nStudent %d:\n", i + 1);
+        printf("Enter Roll Number : ");
+        scanf("%d", &st[i].roll);
+        printf("Enter First Name  : ");
+        scanf("%49s", st[i].name);
+        printf("Enter Marks (0-100): ");
+        scanf("%f", &st[i].marks);
+
+        total_marks += st[i].marks;
+    }
+
+    average = total_marks / N;
+
+    printf("\n=======================================================\n");
+    printf("                  STUDENT ACADEMIC RECORDS             \n");
+    printf("=======================================================\n");
+    printf("Roll No    Name                          Marks         \n");
+    printf("-------------------------------------------------------\n");
+    for (int i = 0; i < N; i++) {
+        printf("%-10d %-29s %-8.2f\n", st[i].roll, st[i].name, st[i].marks);
+    }
+    printf("-------------------------------------------------------\n");
+    printf("Total Class Marks   : %.2f / %d\n", total_marks, N * 100);
+    printf("Class Average Marks : %.2f\n", average);
+    printf("=======================================================\n");
+
+    return 0;
+}</div>
+            </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="qa-card" id="q8">
+            <h4 class="qa-question">
+                <span class="q-text">8. (a) Write a program to check a number is even or odd.<br>
+                (b) Write a program to check a number is prime or not.<br>
+                (c) Add all even numbers from an array.</span>
+                <span class="mark-badge">[ 5 + 5 + 5 = 15 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>(a), (b), (c) Integrated C Program Solving All Three Parts:</b></p>
+                <div class="code-block">#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+// Function for Part (a): Check Even or Odd
+void checkEvenOdd(int num) {
+    if (num % 2 == 0)
+        printf("%d is an EVEN number.\n", num);
+    else
+        printf("%d is an ODD number.\n", num);
+}
+
+// Function for Part (b): Check Prime or Not
+int isPrime(int num) {
+    if (num <= 1) return 0;
+    if (num == 2) return 1;
+    if (num % 2 == 0) return 0;
+    for (int i = 3; i <= sqrt(num); i += 2) {
+        if (num % i == 0) return 0;
+    }
+    return 1;
+}
+
+// Function for Part (c): Sum of Even Numbers in Array
+int sumEvenInArray(const int arr[], int size) {
+    int sum = 0;
+    for (int i = 0; i < size; i++) {
+        if (arr[i] % 2 == 0) {
+            sum += arr[i];
+        }
+    }
+    return sum;
+}
+
+int main() {
+    int val, n;
+
+    // Part (a) Demo
+    printf("--- Part (a): Even/Odd Test ---\nEnter an integer: ");
+    scanf("%d", &val);
+    checkEvenOdd(val);
+
+    // Part (b) Demo
+    printf("\n--- Part (b): Prime Test ---\nEnter an integer: ");
+    scanf("%d", &val);
+    if (isPrime(val)) printf("%d is a PRIME number.\n", val);
+    else printf("%d is NOT a prime number.\n", val);
+
+    // Part (c) Demo
+    printf("\n--- Part (c): Sum of Even Array Elements ---\nEnter array size: ");
+    scanf("%d", &n);
+    int arr[n];
+    printf("Enter %d integers: ", n);
+    for (int i = 0; i < n; i++) scanf("%d", &arr[i]);
+    
+    printf("Sum of all even numbers in array = %d\n", sumEvenInArray(arr, n));
+
+    return 0;
+}</div>
+            </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="qa-card" id="q9">
+            <h4 class="qa-question">
+                <span class="q-text">9. (a) What is an Operating system?<br>
+                (b) What are the functions of operation system?<br>
+                (c) What is booting?<br>
+                (d) What are the differences between compiler and Interpreter?</span>
+                <span class="mark-badge">[ 4 + 4 + 3 + 4 = 15 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>(a) Operating System Definition [4 Marks]:</b> An <span class="highlight">Operating System (OS)</span> is system software that manages computer hardware and software resources and acts as an intermediary interface between computer users and physical CPU/memory hardware. Examples: Windows, Linux, macOS, Android.</p>
+                <p><b>(b) Functions of an OS [4 Marks]:</b>
+                <br>1. <b>Process &amp; Processor Management:</b> Scheduling CPU time among concurrent running processes (multitasking).
+                <br>2. <b>Memory Management:</b> Allocating and deallocating RAM memory space to programs dynamically.
+                <br>3. <b>File &amp; Storage Management:</b> Organizing data into hierarchical directories and files on disk drives.
+                <br>4. <b>I/O Device Management:</b> Communicating with peripherals via hardware device drivers.</p>
+                <p><b>(c) What is Booting? [3 Marks]:</b> <span class="highlight">Booting</span> is the initial startup sequence executed by a computer when powered on. The BIOS/UEFI firmware runs Power-On Self-Tests (POST), locates the Master Boot Record (MBR), and loads the Operating System kernel from disk storage into active RAM memory.</p>
+                <p><b>(d) Compiler vs Interpreter [4 Marks]:</b> A compiler translates the entire source code into a standalone machine code executable file in one pre-run batch, executing faster. An interpreter translates and executes source code line-by-line during runtime without creating a standalone binary file.</p>
+            </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="qa-card" id="q10">
+            <h4 class="qa-question">
+                <span class="q-text">10. (a) Write a program to print diagonal matrix from 5 x 5 matrix.<br>
+                (b) Write a program to concatenate two strings without using <code>strcat()</code> function in C.<br>
+                (c) Write a program to sort n elements from an array.</span>
+                <span class="mark-badge">[ 5 + 5 + 5 = 15 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>(a) Print Diagonal Elements of 5 x 5 Matrix [5 Marks]:</b></p>
+                <div class="code-block">#include &lt;stdio.h&gt;
+int main() {
+    int mat[5][5] = {
+        {10, 2,  3,  4,  50},
+        {6,  20, 8,  90, 10},
+        {11, 12, 30, 14, 15},
+        {16, 70, 18, 40, 20},
+        {80, 22, 23, 24, 50}
+    };
+    printf("Main Diagonal (i == j): ");
+    for (int i = 0; i < 5; i++) printf("%d ", mat[i][i]);
+    printf("\nSecondary Diagonal (i + j == 4): ");
+    for (int i = 0; i < 5; i++) printf("%d ", mat[i][4 - i]);
+    printf("\n");
+    return 0;
+}</div>
+
+                <hr style="margin:1.5rem 0; border:0; border-top:1px dashed #cbd5e1;">
+
+                <p><b>(b) Concatenate Two Strings Without <code>strcat()</code> [5 Marks]:</b></p>
+                <div class="code-block">#include &lt;stdio.h&gt;
+int main() {
+    char str1[100] = "Hello, ";
+    char str2[] = "MAKAUT Students!";
+    int i = 0, j = 0;
+
+    while (str1[i] != '\0') i++; // Find end of first string
+    while (str2[j] != '\0') {
+        str1[i] = str2[j];       // Append character by character
+        i++;
+        j++;
+    }
+    str1[i] = '\0';              // Null-terminate concatenated string
+    printf("Concatenated String: %s\n", str1);
+    return 0;
+}</div>
+
+                <hr style="margin:1.5rem 0; border:0; border-top:1px dashed #cbd5e1;">
+
+                <p><b>(c) Sort n Elements from an Array using Bubble Sort [5 Marks]:</b></p>
+                <div class="code-block">#include &lt;stdio.h&gt;
+int main() {
+    int n = 6, arr[] = {64, 34, 25, 12, 22, 11};
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j]; arr[j] = arr[j + 1]; arr[j + 1] = temp;
+            }
+        }
+    }
+    printf("Sorted Array: ");
+    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
+    printf("\n");
+    return 0;
+}</div>
+            </div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="qa-card" id="q11">
+            <h4 class="qa-question">
+                <span class="q-text">11. (a) Convert Binary to Decimal of \((1101.01)_2\).<br>
+                (b) What is 2's Complement? Show by example.<br>
+                (c) Using 2's Complement do \(10101_2 - 00111_2\).<br>
+                (d) Convert Decimal to Octal \((5673)_{10}\).</span>
+                <span class="mark-badge">[ 4 + 4 + 4 + 3 = 15 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>(a) Convert Binary to Decimal \((1101.01)_2\) [4 Marks]:</b>
+                <br>• Integer part: \(1 \times 2^3 + 1 \times 2^2 + 0 \times 2^1 + 1 \times 2^0 = 8 + 4 + 0 + 1 = 13\).
+                <br>• Fractional part: \(0 \times 2^{-1} + 1 \times 2^{-2} = 0 + 0.25 = 0.25\).
+                <br>• Total Decimal Value: <span class="highlight">\((13.25)_{10}\)</span>.</p>
+
+                <p><b>(b) What is 2's Complement? [4 Marks]:</b>
+                <br>The 2's complement of a binary number is obtained by first inverting all its bits (1's complement) and then adding 1 to the least significant bit (LSB). It is the universal standard representation for signed negative integers in computers because it allows arithmetic subtraction to be performed using addition circuitry without having two representations for zero.
+                <br><i>Example:</i> To find 2's complement of \(00111_2\) (+7):
+                <br>1's complement (invert bits): `11000`
+                <br>Add 1 to LSB: `11000 + 1` = <span class="highlight"><code>11001</code></span> (-7 in 5-bit 2's complement).</p>
+
+                <p><b>(c) Subtraction Using 2's Complement: \(10101_2 - 00111_2\) [4 Marks]:</b>
+                <br>We perform: \(10101_2 + (\text{2's complement of } 00111_2)\).
+                <br>From (b), 2's complement of `00111` is `11001`.
+                <br>Now add:
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;`10101` (21 in decimal)
+                <br>+ &nbsp;&nbsp;`11001` (-7 in decimal)
+                <br>---
+                <br>= `101110`
+                <br>Since this is 5-bit arithmetic, we discard the final carry out (the 6th bit `1`).
+                <br>Result: <span class="highlight"><b>\(01110_2\)</b></span> (which is exactly \(21 - 7 = 14_{10}\)!).</p>
+
+                <p><b>(d) Convert Decimal to Octal \((5673)_{10}\) [3 Marks]:</b>
+                <br>Divide repeatedly by 8 and record remainders from bottom to top:
+                <br>• \(5673 \div 8 = 709\), remainder <b>1</b>
+                <br>• \(709 \div 8 = 88\), remainder <b>5</b>
+                <br>• \(88 \div 8 = 11\), remainder <b>0</b>
+                <br>• \(11 \div 8 = 1\), remainder <b>3</b>
+                <br>• \(1 \div 8 = 0\), remainder <b>1</b>
+                <br>Reading remainders from bottom to top: <span class="highlight"><b>\((13051)_8\)</b></span>.</p>
+            </div>
+        </div>
+
+    </div> <!-- End Section -->
+
+    <footer style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(44,62,80,0.15); color: #64748b; font-size: 0.95rem;">
+        <p>Programming for Problem Solving · B.Tech SEM-2 Solved Paper (2022–2023) · <a href="pps_index.html" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">Return to PPS Menu</a></p>
+    </footer>
+</div>
+
+</body>
+</html>

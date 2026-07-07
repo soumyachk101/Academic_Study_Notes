@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPS 2023-2024 Solved Paper (ESCS201)</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Shared Stylesheets -->
+    <link rel="stylesheet" href="../notes.css">
+    <link rel="stylesheet" href="notes.css">
+    
+    <!-- MathJax for formulas -->
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <style>
+        :root {
+            --primary-color: #0d9488; /* Teal Accent */
+            --primary-light: rgba(13, 148, 136, 0.06);
+            --border-color: rgba(13, 148, 136, 0.2);
+            --code-bg: #0f172a;
+            --code-text: #e2e8f0;
+        }
+
+        .mark-badge {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            white-space: nowrap;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .section-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin: 3.5rem 0 1.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .section-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            background: var(--primary-light);
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .qa-card {
+            background: #ffffff;
+            border: 1px solid rgba(44, 62, 80, 0.12);
+            border-radius: 8px;
+            padding: 1.8rem;
+            margin-bottom: 1.8rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .qa-card:hover {
+            border-color: rgba(13, 148, 136, 0.35);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .qa-question {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .qa-question span.q-text {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .answer {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #334155;
+        }
+
+        .answer p {
+            margin-bottom: 0.9rem;
+        }
+
+        .answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            background-color: rgba(13, 148, 136, 0.08);
+            color: #0f766e;
+            font-weight: 600;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .code-block {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            padding: 1.25rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            line-height: 1.6;
+            border: 1px solid #334155;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .output-box {
+            background-color: #f8fafc;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: #1e293b;
+            border-radius: 0 6px 6px 0;
+            border-top: 1px solid #e2e8f0;
+            border-right: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .output-label {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.35rem;
+            display: block;
+        }
+
+        table.comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0;
+            font-size: 0.95rem;
+        }
+
+        table.comp-table th, table.comp-table td {
+            border: 1px solid #cbd5e1;
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+
+        table.comp-table th {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        table.comp-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .top-nav {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto 1.5rem auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1rem;
+            background: #fff;
+            border: 1px solid rgba(44, 62, 80, 0.15);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .top-nav a:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        .nav-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <a href="pps_index.html">← PPS Menu</a>
+    <span class="nav-title">SEM-2 · 2023–2024 Solved Paper</span>
+    <div style="display:flex;gap:0.5rem;">
+        <a href="pps_pyq_2025.html">← 2024–25 Paper</a>
+        <a href="pps_pyq_2023.html">2022–23 Paper →</a>
+    </div>
+</nav>
+
+<div class="container" style="max-width: 1100px; margin: 0 auto; background: #fff; padding: 4rem 3.5rem; border-radius: 8px; border: 1px solid rgba(44,62,80,0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+    <header style="text-align: center; margin-bottom: 3rem;">
+        <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary-color); text-transform: uppercase; letter-spacing: 0.2em; background: var(--primary-light); padding: 0.4rem 1.2rem; border-radius: 20px; border: 1px solid var(--border-color);">MAKAUT Solved Paper · UPID : 002008</span>
+        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; color: #1e293b; margin: 1rem 0 0.5rem 0;">Programming for Problem Solving</h1>
+        <p style="font-size: 1.1rem; color: #64748b; font-weight: 500;">B.Tech Even Semester Examination 2023–2024 · Paper Code: ESCS201 · Full Marks: 70</p>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.5rem;">
+            <span style="height: 1px; width: 60px; background: #cbd5e1;"></span>
+            <span style="color: var(--primary-color); font-size: 1.2rem;">❖</span>
+            <span style="height: 1px; width: 60px; background: #cbd5e1;"></span>
+        </div>
+    </header>
+    
+    <!-- ============================================================ -->
+    <!-- GROUP A -->
+    <!-- ============================================================ -->
+    <div class="section">
+        <div class="section-heading">
+            <span>Group-A: Very Short Answer Type Questions</span>
+            <span class="section-sub">Answer Any 10 · [ 1 x 10 = 10 Marks ]</span>
+        </div>
+        
+        <!-- Q1 (I) -->
+        <div class="qa-card" id="q1-i">
+            <h4 class="qa-question">
+                <span class="q-text">1. (I) What will be the output of the following C code?<br>
+                <code>#include &lt;stdio.h&gt;<br>void main() {<br>&nbsp;&nbsp;int a[2][3] = {1, 2, 3, 4, 5};<br>&nbsp;&nbsp;int i = 0, j = 0;<br>&nbsp;&nbsp;for (i = 0; i &lt; 2; i++)<br>&nbsp;&nbsp;&nbsp;&nbsp;for (j = 0; j &lt; 3; j++)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf("%d", a[i][j]);<br>}</code></span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <div class="output-box">
+                    <span class="output-label">Console Output</span>
+                    123450
+                </div>
+                <p><b>Explanation:</b> In C, when an array is partially initialized (here, a \(2 \times 3\) matrix with 6 elements is initialized with only 5 values: <code>{1, 2, 3, 4, 5}</code>), the compiler automatically fills all remaining uninitialized elements with <b>zero (<code>0</code>)</b>.
+                <br>Memory layout: <code>a[0][0]=1, a[0][1]=2, a[0][2]=3, a[1][0]=4, a[1][1]=5, a[1][2]=0</code>. Printing them sequentially yields <code>123450</code>.</p>
+            </div>
+        </div>
+
+        <!-- Q1 (II) -->
+        <div class="qa-card" id="q1-ii">
+            <h4 class="qa-question">
+                <span class="q-text">1. (II) What is the worst case complexity of bubble sort?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> <span class="highlight">\(O(n^2)\)</span> (Quadratic Time Complexity).</p>
+                <p><b>Explanation:</b> In the worst-case scenario (when the input array is sorted in completely reverse order), Bubble Sort requires \((n-1)\) passes. The total number of comparisons and swaps is:
+                \[ (n-1) + (n-2) + \dots + 2 + 1 = \frac{n(n-1)}{2} = \Theta(n^2) \]</p>
+            </div>
+        </div>
+
+        <!-- Q1 (III) -->
+        <div class="qa-card" id="q1-iii">
+            <h4 class="qa-question">
+                <span class="q-text">1. (III) What is the default return type of function definition?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> <span class="highlight"><code>int</code> (Integer)</span>.</p>
+                <p><b>Explanation:</b> In traditional C (K&amp;R and ISO C89/C90 standards), if a function is defined or declared without an explicit return type specifier (e.g., <code>myFunc() { ... }</code>), the compiler implicitly assumes the return type to be <b><code>int</code></b>. Note that in modern C99/C11 standards, implicit int return is deprecated and causes a compiler warning/error, requiring explicit return types like <code>void</code> or <code>int</code>.</p>
+            </div>
+        </div>
+
+        <!-- Q1 (IV) -->
+        <div class="qa-card" id="q1-iv">
+            <h4 class="qa-question">
+                <span class="q-text">1. (IV) What will be the output of the following C code?<br>
+                <code>#include&lt;stdio.h&gt;<br>main() { int n; n=f1(4); printf("%d", n); }<br>f1(int x) {<br>&nbsp;&nbsp;int b;<br>&nbsp;&nbsp;if(x==1) return 1;<br>&nbsp;&nbsp;else b=x*f1(x-1);<br>&nbsp;&nbsp;return b;<br>}</code></span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <div class="output-box">
+                    <span class="output-label">Console Output</span>
+                    24
+                </div>
+                <p><b>Explanation:</b> The recursive function <code>f1(x)</code> computes the factorial of integer <code>x</code>.
+                <br>Call stack trace for <code>f1(4)</code>:
+                <br>• <code>f1(4) = 4 * f1(3)</code>
+                <br>• <code>f1(3) = 3 * f1(2)</code>
+                <br>• <code>f1(2) = 2 * f1(1)</code>
+                <br>• <code>f1(1) = 1</code> (Base case reached!)
+                <br>Unwinding the stack: \(2 \times 1 = 2 \implies 3 \times 2 = 6 \implies 4 \times 6 = \mathbf{24}\).</p>
+            </div>
+        </div>
+
+        <!-- Q1 (V) -->
+        <div class="qa-card" id="q1-v">
+            <h4 class="qa-question">
+                <span class="q-text">1. (V) What is the size of a C structure?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> The total memory size of a C structure is greater than or equal to the <b>sum of the byte sizes of all its individual members</b>, plus any additional <b>structure padding (slop bytes)</b> added by the compiler for memory alignment.</p>
+                <p>It can always be precisely determined at compile time using the <code>sizeof()</code> operator on the structure type or variable (e.g., <code>sizeof(struct Student)</code>).</p>
+            </div>
+        </div>
+
+        <!-- Q1 (VI) -->
+        <div class="qa-card" id="q1-vi">
+            <h4 class="qa-question">
+                <span class="q-text">1. (VI) What will be the output?<br>
+                <code>#include &lt;stdio.h&gt;<br>int main(){<br>&nbsp;&nbsp;int a=3, *b = &amp;a;<br>&nbsp;&nbsp;printf("%d", a*b);<br>}</code></span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> <span class="highlight">Compilation Error: invalid operands to binary * (have 'int' and 'int *')</span>.</p>
+                <p><b>Detailed Explanation:</b>
+                <br>In the expression <code>a * b</code>, variable <code>a</code> is an integer (<code>int</code>) while <code>b</code> is a pointer to an integer (<code>int*</code>). In C, the multiplication operator <code>*</code> is only defined for arithmetic numeric types; multiplying an integer by a memory address (pointer) is illegal and prohibited by the type system.
+                <br><i>Note: If the programmer intended to dereference pointer <code>b</code> using parentheses as <b><code>a * (*b)</code></b>, the output would be \(3 \times 3 = \mathbf{9}\).</i></p>
+            </div>
+        </div>
+
+        <!-- Q1 (VII) -->
+        <div class="qa-card" id="q1-vii">
+            <h4 class="qa-question">
+                <span class="q-text">1. (VII) Which language is written in binary codes only?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> <span class="highlight">Machine Language</span> (or First-Generation Programming Language / 1GL).</p>
+                <p><b>Explanation:</b> Machine language is the lowest-level programming language consisting entirely of binary 0s and 1s (opcodes and operands). It is the only language that is directly understood and executed by the computer's CPU hardware without requiring an assembler, compiler, or interpreter.</p>
+            </div>
+        </div>
+
+        <!-- Q1 (VIII) -->
+        <div class="qa-card" id="q1-viii">
+            <h4 class="qa-question">
+                <span class="q-text">1. (VIII) The C-preprocessors are specified with which symbol?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> The hash / pound / octothorpe symbol: <span class="highlight"><b><code>#</code></b></span>.</p>
+                <p><b>Explanation:</b> Every preprocessor directive in C must start with the <code>#</code> symbol (e.g., <code>#include</code>, <code>#define</code>, <code>#ifdef</code>, <code>#pragma</code>). This symbol instructs the preprocessor compiler phase to execute macro instructions before tokenizing and compiling the standard C syntax.</p>
+            </div>
+        </div>
+
+        <!-- Q1 (IX) -->
+        <div class="qa-card" id="q1-ix">
+            <h4 class="qa-question">
+                <span class="q-text">1. (IX) What will be the output of the following C code? (Assuming we enter value 1 in standard input)<br>
+                <code>#include &lt;stdio.h&gt;<br>void main() {<br>&nbsp;&nbsp;double ch;<br>&nbsp;&nbsp;printf("enter a value between 1 to 2:");<br>&nbsp;&nbsp;scanf("%lf", &amp;ch);<br>&nbsp;&nbsp;switch (ch) {<br>&nbsp;&nbsp;&nbsp;&nbsp;case 1: printf("1"); break;<br>&nbsp;&nbsp;&nbsp;&nbsp;case 2: printf("2"); break;<br>&nbsp;&nbsp;}<br>}</code></span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> <span class="highlight">Compilation Error: switch quantity not an integer</span>.</p>
+                <p><b>Why?</b> According to ISO C specifications, the controlling expression inside a <code>switch(expr)</code> statement MUST have an <b>integral type</b> (such as <code>int</code>, <code>char</code>, <code>short</code>, <code>long</code>) or an enumeration type. Here, <code>ch</code> is declared as a floating-point data type (<code>double</code>). Using float/double in a switch expression is strictly prohibited because floating-point precision issues make exact equality testing unreliable in hardware!</p>
+            </div>
+        </div>
+
+        <!-- Q1 (X) -->
+        <div class="qa-card" id="q1-x">
+            <h4 class="qa-question">
+                <span class="q-text">1. (X) What will happen if in a C program you assign a value to an array element whose subscript exceeds the size of array?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> It results in <span class="highlight">Undefined Behavior (Buffer Overflow / Memory Corruption)</span>.</p>
+                <p><b>Explanation:</b> C does not perform runtime array boundary checks (bounds checking). When a programmer writes beyond array limits (e.g., accessing <code>arr[10]</code> in an array declared as <code>int arr[5]</code>), the compiled program will simply calculate the target memory address and overwrite whatever data resides there—which could corrupt adjacent variables, destroy stack frame return addresses (segmentation fault / core dump), or create serious security vulnerabilities.</p>
+            </div>
+        </div>
+
+        <!-- Q1 (XI) -->
+        <div class="qa-card" id="q1-xi">
+            <h4 class="qa-question">
+                <span class="q-text">1. (XI) What is the advantage of selection sort over other sorting techniques?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> It performs the <span class="highlight">absolute minimum number of data memory swaps</span> among quadratic sorting algorithms—requiring at most exactly \((n - 1)\) swaps for an array of size \(n\).</p>
+                <p><b>Why is this beneficial?</b> In systems where write operations to memory (such as Flash memory, EEPROM, or slow disk storage) are significantly more expensive or slower than read operations, Selection Sort is superior to algorithms like Bubble Sort or Insertion Sort that perform \(O(n^2)\) swaps.</p>
+            </div>
+        </div>
+
+        <!-- Q1 (XII) -->
+        <div class="qa-card" id="q1-xii">
+            <h4 class="qa-question">
+                <span class="q-text">1. (XII) What is the limit for number of functions in a C Program?</span>
+                <span class="mark-badge">[ 1 Mark ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Answer:</b> There is <span class="highlight">no theoretical or language-specified limit</span> in the ISO/ANSI C standards.</p>
+                <p><b>Explanation:</b> A C program can contain as many functions as required. The only practical limitations are imposed by the host system's physical resources—such as available RAM, compiler symbol table memory limits, disk space for the compiled object binary, and operating system architectural constraints.</p>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- GROUP B -->
+        <!-- ============================================================ -->
+        <div class="section-heading">
+            <span>Group-B: Short Answer Type Questions</span>
+            <span class="section-sub">Answer Any 3 · [ 5 x 3 = 15 Marks ]</span>
+        </div>
+
+        <!-- Q2 -->
+        <div class="qa-card" id="q2">
+            <h4 class="qa-question">
+                <span class="q-text">2. Write the differences between call by value and call by reference.</span>
+                <span class="mark-badge">[ 5 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <table class="comp-table">
+                    <tr>
+                        <th style="width: 25%;">Comparison Parameter</th>
+                        <th style="width: 37.5%;">Call by Value</th>
+                        <th style="width: 37.5%;">Call by Reference / Address (via Pointers)</th>
+                    </tr>
+                    <tr>
+                        <td><b>What is Passed?</b></td>
+                        <td>A copy of the actual argument's value is passed into the function's formal parameters.</td>
+                        <td>The memory address (reference) of the actual argument is passed using pointer variables.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Effect on Actual Data</b></td>
+                        <td>Modifications made inside the function affect only local stack copies; original caller variables remain unchanged.</td>
+                        <td>Modifications inside the function directly alter the original variables in the caller's memory space.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Memory Allocation</b></td>
+                        <td>New memory locations are allocated on the call stack for formal parameters to store copies.</td>
+                        <td>No new storage is created for data values; formal pointer parameters simply point to existing memory addresses.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Performance &amp; Overhead</b></td>
+                        <td>Slower and memory-heavy when passing large structures or arrays due to deep copying.</td>
+                        <td>Highly efficient \(O(1)\) time and space overhead, passing only a 4-byte or 8-byte pointer regardless of data size.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Syntax Example</b></td>
+                        <td><code>void func(int x) { x = 10; }<br>// Called as: func(val);</code></td>
+                        <td><code>void func(int *x) { *x = 10; }<br>// Called as: func(&amp;val);</code></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="qa-card" id="q3">
+            <h4 class="qa-question">
+                <span class="q-text">3. Write a program to compute factorial of a number using recursion.</span>
+                <span class="mark-badge">[ 5 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Mathematical Basis:</b>
+                \[ n! = \begin{cases} 1 & \text{if } n = 0 \text{ or } n = 1 \\ n \times (n-1)! & \text{if } n > 1 \end{cases} \]</p>
+                <div class="code-block">#include &lt;stdio.h&gt;
+
+// Recursive function prototype
+unsigned long long calculateFactorial(int n);
+
+int main() {
+    int num;
+    printf("Enter a positive integer: ");
+    if (scanf("%d", &num) != 1 || num < 0) {
+        printf("Error: Please enter a valid non-negative integer.\n");
+        return 1;
+    }
+
+    // Call recursive function
+    unsigned long long fact = calculateFactorial(num);
+    printf("Factorial of %d (%d!) = %llu\n", num, num, fact);
+
+    return 0;
+}
+
+// Recursive factorial definition
+unsigned long long calculateFactorial(int n) {
+    // Base Case
+    if (n == 0 || n == 1) {
+        return 1;
+    }
+    // Recursive Step
+    return (unsigned long long)n * calculateFactorial(n - 1);
+}</div>
+                <div class="output-box">
+                    <span class="output-label">Sample Output</span>
+Enter a positive integer: 6
+Factorial of 6 (6!) = 720
+                </div>
+            </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="qa-card" id="q4">
+            <h4 class="qa-question">
+                <span class="q-text">4. What is the difference between <code>break</code> and <code>continue</code> statement?</span>
+                <span class="mark-badge">[ 5 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <table class="comp-table">
+                    <tr>
+                        <th style="width: 25%;">Feature</th>
+                        <th style="width: 37.5%;"><code>break</code> Statement</th>
+                        <th style="width: 37.5%;"><code>continue</code> Statement</th>
+                    </tr>
+                    <tr>
+                        <td><b>Core Functionality</b></td>
+                        <td>Terminates the execution of the entire enclosing loop or switch statement immediately.</td>
+                        <td>Skips the remaining statements in the current iteration and jumps directly to the loop's next evaluation.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Loop Termination</b></td>
+                        <td>Ends the loop completely; execution resumes at the first statement after the loop body.</td>
+                        <td>Does not terminate the loop; it merely aborts the current cycle and proceeds with the next iteration.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Applicability</b></td>
+                        <td>Can be used inside all loop structures (<code>for</code>, <code>while</code>, <code>do-while</code>) AND inside <code>switch</code> statements.</td>
+                        <td>Can ONLY be used inside loop structures (<code>for</code>, <code>while</code>, <code>do-while</code>). Illegal in standalone <code>switch</code>.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Use Case Example</b></td>
+                        <td>Exiting a linear search loop as soon as the target item is found (early exit optimization).</td>
+                        <td>Skipping processing for negative numbers or invalid records while continuing to process remaining items in a file.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="qa-card" id="q5">
+            <h4 class="qa-question">
+                <span class="q-text">5. Differentiate between Compiler and Interpreter?</span>
+                <span class="mark-badge">[ 5 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <table class="comp-table">
+                    <tr>
+                        <th style="width: 25%;">Basis of Comparison</th>
+                        <th style="width: 37.5%;">Compiler</th>
+                        <th style="width: 37.5%;">Interpreter</th>
+                    </tr>
+                    <tr>
+                        <td><b>Translation Mechanism</b></td>
+                        <td>Scans and translates the entire high-level source code program into machine code (object binary) in a single batch process before execution.</td>
+                        <td>Translates and executes the high-level source code line-by-line or statement-by-statement at runtime.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Execution Speed</b></td>
+                        <td>Execution is extremely fast because pre-compiled machine binaries run directly on CPU without translation overhead.</td>
+                        <td>Execution is comparatively slower because translation occurs continuously during runtime for every instruction.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Error Detection</b></td>
+                        <td>Analyzes syntax errors across the entire code and reports all compilation errors together at the end of compilation.</td>
+                        <td>Stops translation and execution immediately upon encountering the very first error on a line, making debugging interactive.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Object Code Generation</b></td>
+                        <td>Generates a standalone executable binary file (e.g., <code>.exe</code> or <code>.out</code>) which can run without source code or compiler present.</td>
+                        <td>Never generates a persistent object or machine code file; the source code and interpreter must be present every time the app runs.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Representative Languages</b></td>
+                        <td>C, C++, Rust, Go, Fortran.</td>
+                        <td>Python, JavaScript, Ruby, PHP, MATLAB.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="qa-card" id="q6">
+            <h4 class="qa-question">
+                <span class="q-text">6. Write a C program to perform addition, subtraction, multiplication and division of two numbers by using switch case.</span>
+                <span class="mark-badge">[ 5 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <div class="code-block">#include &lt;stdio.h&gt;
+
+int main() {
+    char operator;
+    double num1, num2, result;
+
+    printf("=== Menu-Driven Calculator ===\n");
+    printf("Enter an arithmetic operator (+, -, *, /): ");
+    scanf(" %c", &operator);
+
+    printf("Enter two numeric operands separated by space: ");
+    if (scanf("%lf %lf", &num1, &num2) != 2) {
+        printf("Error: Invalid numeric input!\n");
+        return 1;
+    }
+
+    // Switch statement evaluating character operator
+    switch (operator) {
+        case '+':
+            result = num1 + num2;
+            printf("\nResult: %.2f + %.2f = %.2f\n", num1, num2, result);
+            break;
+
+        case '-':
+            result = num1 - num2;
+            printf("\nResult: %.2f - %.2f = %.2f\n", num1, num2, result);
+            break;
+
+        case '*':
+            result = num1 * num2;
+            printf("\nResult: %.2f * %.2f = %.2f\n", num1, num2, result);
+            break;
+
+        case '/':
+            if (num2 == 0.0) {
+                printf("\nError: Division by zero is undefined and illegal!\n");
+            } else {
+                result = num1 / num2;
+                printf("\nResult: %.2f / %.2f = %.2f\n", num1, num2, result);
+            }
+            break;
+
+        default:
+            printf("\nError: '%c' is an invalid operator! Please use +, -, *, or /.\n", operator);
+            break;
+    }
+
+    return 0;
+}</div>
+                <div class="output-box">
+                    <span class="output-label">Sample Execution</span>
+=== Menu-Driven Calculator ===
+Enter an arithmetic operator (+, -, *, /): *
+Enter two numeric operands separated by space: 14.5 4.0
+
+Result: 14.50 * 4.00 = 58.00
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- GROUP C -->
+        <!-- ============================================================ -->
+        <div class="section-heading">
+            <span>Group-C: Long Answer Type Questions</span>
+            <span class="section-sub">Answer Any 3 · [ 15 x 3 = 45 Marks ]</span>
+        </div>
+
+        <!-- Q7 -->
+        <div class="qa-card" id="q7">
+            <h4 class="qa-question">
+                <span class="q-text">7. Describe different types of asymptotic notation of complexity analysis of algorithms.</span>
+                <span class="mark-badge">[ 15 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>Introduction to Asymptotic Notations:</b> When analyzing the efficiency of algorithms, we evaluate how the runtime or memory space grows as the input size \(n\) increases toward infinity (\(n \to \infty\)). Asymptotic notations provide mathematical bounds to categorize algorithm performance, stripping away hardware-dependent constants and lower-order terms.</p>
+                <p>There are 5 fundamental asymptotic notations used in computer science:</p>
+                
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>
+                        <b>1. Big-O Notation (\(O\)) — Asymptotic Upper Bound:</b>
+                        <br>Big-O defines the absolute worst-case growth rate. It guarantees that an algorithm will never execute slower than a specified curve.
+                        <br><i>Formal Definition:</i> \(f(n) = O(g(n))\) if there exist positive constants \(c\) and \(n_0\) such that:
+                        \[ 0 \le f(n) \le c \cdot g(n) \quad \forall n \ge n_0 \]
+                        <i>Example:</i> For linear search, worst-case runtime is \(O(n)\).
+                    </li>
+                    <li style="margin-top: 1rem;">
+                        <b>2. Big-Omega Notation (\(\Omega\)) — Asymptotic Lower Bound:</b>
+                        <br>Big-Omega defines the best-case minimum time required. It guarantees that an algorithm will take at least this much time for large inputs.
+                        <br><i>Formal Definition:</i> \(f(n) = \Omega(g(n))\) if there exist positive constants \(c\) and \(n_0\) such that:
+                        \[ 0 \le c \cdot g(n) \le f(n) \quad \forall n \ge n_0 \]
+                        <i>Example:</i> Any comparison-based sorting algorithm has a lower bound of \(\Omega(n \log n)\).
+                    </li>
+                    <li style="margin-top: 1rem;">
+                        <b>3. Big-Theta Notation (\(\Theta\)) — Asymptotic Tight Bound:</b>
+                        <br>Big-Theta provides an exact growth rate bounding the runtime from both above and below within constant factors. It applies when worst-case and best-case complexities match.
+                        <br><i>Formal Definition:</i> \(f(n) = \Theta(g(n))\) if there exist positive constants \(c_1, c_2,\) and \(n_0\) such that:
+                        \[ 0 \le c_1 \cdot g(n) \le f(n) \le c_2 \cdot g(n) \quad \forall n \ge n_0 \]
+                        <i>Example:</i> Merge Sort always takes \(\Theta(n \log n)\) time in all cases.
+                    </li>
+                    <li style="margin-top: 1rem;">
+                        <b>4. Little-o Notation (\(o\)) — Strict Upper Bound:</b>
+                        <br>Represents an upper bound that is <i>not asymptotically tight</i>. It implies that \(f(n)\) grows strictly slower than \(g(n)\).
+                        <br><i>Formal Definition:</i> \(\lim_{n \to \infty} \frac{f(n)}{g(n)} = 0\). For example, \(2n = o(n^2)\), but \(2n^2 \neq o(n^2)\).
+                    </li>
+                    <li style="margin-top: 1rem;">
+                        <b>5. Little-omega Notation (\(\omega\)) — Strict Lower Bound:</b>
+                        <br>Represents a lower bound that is <i>not asymptotically tight</i>. It implies that \(f(n)\) grows strictly faster than \(g(n)\).
+                        <br><i>Formal Definition:</i> \(\lim_{n \to \infty} \frac{f(n)}{g(n)} = \infty\). For example, \(n^2 = \omega(n)\).
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="qa-card" id="q8">
+            <h4 class="qa-question">
+                <span class="q-text">8. (a) Write a C program to find the maximum and minimum of some values using a function that returns an array.<br>
+                (b) Write a program in C to print all palindrome numbers in a given range using the function.</span>
+                <span class="mark-badge">[ 7 + 8 = 15 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>(a) Find Max and Min Using a Function Returning an Array [7 Marks]:</b></p>
+                <p><b>Important Concept:</b> In C, functions cannot return a standard local array directly by value because local arrays are deallocated from stack memory upon function return. To return an array safely, we can either return a pointer to a dynamically allocated array using <code>malloc()</code>, return a pointer to a <code>static</code> array, or wrap the array inside a <code>struct</code>. Below, we demonstrate using a <b><code>static int[]</code> array</b> returned by pointer!</p>
+                <div class="code-block">#include &lt;stdio.h&gt;
+
+// Function returning a pointer to a static array holding {min, max}
+int* findMinMax(const int arr[], int size) {
+    static int result[2]; // static storage persists across function calls!
+    
+    result[0] = arr[0]; // Index 0 stores Minimum
+    result[1] = arr[0]; // Index 1 stores Maximum
+
+    for (int i = 1; i < size; i++) {
+        if (arr[i] < result[0]) {
+            result[0] = arr[i];
+        }
+        if (arr[i] > result[1]) {
+            result[1] = arr[i];
+        }
+    }
+    return result; // Returning base pointer of static array
+}
+
+int main() {
+    int n;
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    int data[n];
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &data[i]);
+    }
+
+    // Receive array pointer from function
+    int *minMaxPtr = findMinMax(data, n);
+
+    printf("\n--- Analysis Result ---\n");
+    printf("Minimum Value : %d\n", minMaxPtr[0]);
+    printf("Maximum Value : %d\n", minMaxPtr[1]);
+
+    return 0;
+}</div>
+                <div class="output-box">
+                    <span class="output-label">Sample Output</span>
+Enter number of elements: 6
+Enter 6 integers:
+45 12 89 3 67 21
+
+--- Analysis Result ---
+Minimum Value : 3
+Maximum Value : 89
+                </div>
+
+                <hr style="margin:1.5rem 0; border:0; border-top:1px dashed #cbd5e1;">
+
+                <p><b>(b) Palindrome Numbers in a Given Range Using Function [8 Marks]:</b></p>
+                <p>A numeric palindrome is an integer that remains unchanged when its digits are reversed (e.g., <code>121</code>, <code>1331</code>, <code>404</code>). We implement a function <code>int isPalindrome(int num)</code> which reverses the number algebraically using modulo 10 extraction and division.</p>
+                <div class="code-block">#include &lt;stdio.h&gt;
+
+// Function returns 1 if num is a palindrome, 0 otherwise
+int isPalindrome(int num) {
+    if (num < 0) return 0; // Negative numbers are not palindromes
+    
+    int original = num;
+    int reversed = 0;
+
+    while (num > 0) {
+        int remainder = num % 10;
+        reversed = reversed * 10 + remainder;
+        num /= 10;
+    }
+
+    return (original == reversed);
+}
+
+int main() {
+    int lower, upper, count = 0;
+
+    printf("Enter lower bound of range: ");
+    scanf("%d", &lower);
+    printf("Enter upper bound of range: ");
+    scanf("%d", &upper);
+
+    printf("\nPalindrome numbers between %d and %d:\n", lower, upper);
+    for (int i = lower; i <= upper; i++) {
+        if (isPalindrome(i)) {
+            printf("%d ", i);
+            count++;
+            if (count % 10 == 0) printf("\n");
+        }
+    }
+
+    printf("\n\nTotal palindrome numbers found: %d\n", count);
+    return 0;
+}</div>
+                <div class="output-box">
+                    <span class="output-label">Sample Execution</span>
+Enter lower bound of range: 100
+Enter upper bound of range: 200
+
+Palindrome numbers between 100 and 200:
+101 111 121 131 141 151 161 171 181 191 
+
+Total palindrome numbers found: 10
+                </div>
+            </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="qa-card" id="q9">
+            <h4 class="qa-question">
+                <span class="q-text">9. (a) Write an algorithm to sort an array using the Merge sort algorithm.<br>
+                (b) Calculate the time complexity of Merge sort.</span>
+                <span class="mark-badge">[ 10 + 5 = 15 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>(a) Merge Sort Algorithm (Divide and Conquer) [10 Marks]:</b></p>
+                <p>Merge Sort splits the unsorted array into two halves recursively until each sub-array contains only 1 element (which is inherently sorted), then merges the sorted halves back together in linear time.</p>
+                
+                <div style="background:#f8fafc; padding:1.25rem; border:1px solid #cbd5e1; border-radius:6px; font-family:'Fira Code',monospace; font-size:0.9rem; line-height:1.7; margin:1rem 0;">
+<b>Algorithm MERGE-SORT(ARR, left, right):</b><br>
+1. IF left &lt; right THEN:<br>
+2. &nbsp;&nbsp;&nbsp;&nbsp;mid = floor((left + right) / 2)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Step 1: Divide<br>
+3. &nbsp;&nbsp;&nbsp;&nbsp;MERGE-SORT(ARR, left, mid)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Step 2: Conquer left half<br>
+4. &nbsp;&nbsp;&nbsp;&nbsp;MERGE-SORT(ARR, mid + 1, right)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Step 3: Conquer right half<br>
+5. &nbsp;&nbsp;&nbsp;&nbsp;MERGE(ARR, left, mid, right)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Step 4: Combine<br>
+<br>
+<b>Algorithm MERGE(ARR, left, mid, right):</b><br>
+1. Create temporary arrays L[] of size (mid - left + 1) and R[] of size (right - mid)<br>
+2. Copy data to temporary arrays L[] and R[]<br>
+3. Initialize pointers: i = 0 (for L), j = 0 (for R), k = left (for merged ARR)<br>
+4. WHILE i &lt; size(L) AND j &lt; size(R) DO:<br>
+5. &nbsp;&nbsp;&nbsp;&nbsp;IF L[i] &lt;= R[j] THEN ARR[k] = L[i], increment i<br>
+6. &nbsp;&nbsp;&nbsp;&nbsp;ELSE ARR[k] = R[j], increment j<br>
+7. &nbsp;&nbsp;&nbsp;&nbsp;increment k<br>
+8. Copy remaining elements of L[] (if any) to ARR[]<br>
+9. Copy remaining elements of R[] (if any) to ARR[]
+                </div>
+
+                <hr style="margin:1.5rem 0; border:0; border-top:1px dashed #cbd5e1;">
+
+                <p><b>(b) Time Complexity Calculation of Merge Sort [5 Marks]:</b></p>
+                <p>Let \(T(n)\) be the time taken by Merge Sort to sort an array of \(n\) elements.
+                <br>• The divide step takes constant time: \(\Theta(1)\).
+                <br>• The recursion solves two sub-problems of size \(n/2\), taking \(2T(n/2)\) time.
+                <br>• The MERGE procedure combines two sorted halves of total size \(n\) in linear time: \(\Theta(n)\).</p>
+                <p>Thus, we formulate the recurrence relation:
+                \[ T(n) = 2T\left(\frac{n}{2}\right) + c \cdot n \]</p>
+                <p><b>Solving using Master Theorem:</b>
+                <br>Comparing \(T(n) = aT(n/b) + f(n)\) with \(a = 2, b = 2, f(n) = \Theta(n^1)\):
+                <br>We compute \(n^{\log_b a} = n^{\log_2 2} = n^1 = n\).
+                <br>Since \(f(n) = \Theta(n^{\log_b a})\), this falls directly into <b>Case 2 of Master Theorem</b>.
+                <br>Multiplying by \(\log n\) yields:
+                \[ T(n) = \Theta(n \log_2 n) \]</p>
+                <p><b>Conclusion:</b> The Best-case, Average-case, and Worst-case time complexity of Merge Sort are all identically <span class="highlight"><b>\(\Theta(n \log n)\)</b></span>!</p>
+            </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="qa-card" id="q10">
+            <h4 class="qa-question">
+                <span class="q-text">10. What are the different types of Computer?</span>
+                <span class="mark-badge">[ 15 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p>Computers can be systematically categorized based on two fundamental criteria: <b>Operating Data Principles</b> and <b>Size / Processing Power</b>.</p>
+                
+                <h5 style="color:var(--primary-color); font-size:1.1rem; margin-top:1.2rem; margin-bottom:0.6rem;">A. Classification Based on Operating Principles (Data Handling)</h5>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li><b>1. Analog Computers:</b> Operate on continuous physical variables (such as voltage, pressure, temperature, or fluid flow) rather than discrete numbers. They excel at real-time physical simulations. <i>Examples: Speedometers, thermometers, analog flight simulators.</i></li>
+                    <li><b>2. Digital Computers:</b> Process information represented as discrete binary numbers (0s and 1s). They perform high-speed logical and arithmetic operations with absolute accuracy. <i>Examples: Desktop PCs, laptops, smartphones, digital servers.</i></li>
+                    <li><b>3. Hybrid Computers:</b> Combine the desirable features of both analog (real-time continuous measurement speed) and digital computers (precision and data storage). <i>Examples: ICU patient monitoring systems in hospitals, radar defense systems.</i></li>
+                </ul>
+
+                <h5 style="color:var(--primary-color); font-size:1.1rem; margin-top:1.5rem; margin-bottom:0.6rem;">B. Classification Based on Size, Speed, and Processing Power</h5>
+                <table class="comp-table">
+                    <tr>
+                        <th style="width: 22%;">Computer Type</th>
+                        <th style="width: 48%;">Key Characteristics &amp; Capabilities</th>
+                        <th style="width: 30%;">Real-World Examples</th>
+                    </tr>
+                    <tr>
+                        <td><b>Supercomputers</b></td>
+                        <td>The fastest and most expensive computers on Earth. Capable of processing quadrillions of floating-point calculations per second (petaflops) using thousands of parallel CPUs/GPUs.</td>
+                        <td>Weather forecasting, quantum physics modeling, climate research (e.g., PARAM Siddhi, IBM Summit, Fugaku).</td>
+                    </tr>
+                    <tr>
+                        <td><b>Mainframes</b></td>
+                        <td>Massive, enterprise-grade systems designed for extreme reliability, high data throughput, and handling simultaneous I/O transactions for thousands of concurrent users.</td>
+                        <td>Bank ATM transaction processing, airline ticketing reservation databases, government census computing.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Minicomputers / Midrange Servers</b></td>
+                        <td>Mid-sized multi-user servers ranking between microcomputers and mainframes. Capable of supporting hundreds of users simultaneously.</td>
+                        <td>Departmental databases, university campus servers, factory manufacturing controllers.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Microcomputers (Personal Computers)</b></td>
+                        <td>General-purpose single-user systems built around a microprocessor chip (CPU on a single integrated circuit). Compact and cost-effective.</td>
+                        <td>Desktop PCs, laptops, tablets, smartphones, gaming consoles.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Workstations</b></td>
+                        <td>High-performance personal computers optimized for intensive graphics, scientific computing, engineering CAD, and 3D rendering.</td>
+                        <td>Engineering CAD/CAM workstations, video editing rigs, medical imaging analysis terminals.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Embedded Computers</b></td>
+                        <td>Specialized microcontrollers dedicated to performing a single specific control task within a larger mechanical or electrical system.</td>
+                        <td>Automotive engine control units (ECU), microwave oven timers, smart washing machines, IoT sensors.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="qa-card" id="q11">
+            <h4 class="qa-question">
+                <span class="q-text">11. (a) Write a program in C language to print the factorial of a number.<br>
+                (b) Write a C program to print the Fibonacci series upto nth term.</span>
+                <span class="mark-badge">[ 8 + 7 = 15 Marks ]</span>
+            </h4>
+            <div class="answer">
+                <p><b>(a) C Program for Factorial of a Number (Iterative Approach) [8 Marks]:</b></p>
+                <p>We use an iterative loop multiplying integers from 1 up to \(n\). To handle large factorial values without overflow, we declare the accumulator as <code>unsigned long long</code>.</p>
+                <div class="code-block">#include &lt;stdio.h&gt;
+
+int main() {
+    int n, i;
+    unsigned long long factorial = 1;
+
+    printf("Enter a positive integer to compute factorial: ");
+    if (scanf("%d", &n) != 1 || n < 0) {
+        printf("Error: Factorial is not defined for negative numbers!\n");
+        return 1;
+    }
+
+    for (i = 1; i <= n; ++i) {
+        factorial *= i;
+    }
+
+    printf("Factorial of %d = %llu\n", n, factorial);
+    return 0;
+}</div>
+                <div class="output-box">
+                    <span class="output-label">Sample Execution</span>
+Enter a positive integer to compute factorial: 7
+Factorial of 7 = 5040
+                </div>
+
+                <hr style="margin:1.5rem 0; border:0; border-top:1px dashed #cbd5e1;">
+
+                <p><b>(b) C Program to Print Fibonacci Series Upto n-th Term [7 Marks]:</b></p>
+                <div class="code-block">#include &lt;stdio.h&gt;
+
+int main() {
+    int terms, count;
+    unsigned long long first = 0, second = 1, next;
+
+    printf("Enter the number of Fibonacci terms to display: ");
+    if (scanf("%d", &terms) != 1 || terms <= 0) {
+        printf("Please enter a positive integer greater than 0.\n");
+        return 1;
+    }
+
+    printf("\nFirst %d terms of Fibonacci Sequence:\n", terms);
+
+    for (count = 1; count <= terms; count++) {
+        if (count == 1) {
+            printf("%llu", first);
+            continue;
+        }
+        if (count == 2) {
+            printf(", %llu", second);
+            continue;
+        }
+        next = first + second;
+        printf(", %llu", next);
+        
+        first = second;
+        second = next;
+    }
+    printf("\n");
+
+    return 0;
+}</div>
+                <div class="output-box">
+                    <span class="output-label">Sample Output</span>
+Enter the number of Fibonacci terms to display: 12
+First 12 terms of Fibonacci Sequence:
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- End Section -->
+
+    <footer style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid rgba(44,62,80,0.15); color: #64748b; font-size: 0.95rem;">
+        <p>Programming for Problem Solving · B.Tech SEM-2 Solved Paper (2023–2024) · <a href="pps_index.html" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">Return to PPS Menu</a></p>
+    </footer>
+</div>
+
+</body>
+</html>

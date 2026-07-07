@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Study Notes</title>
-    <meta name="description" content="A comprehensive curriculum library containing simple answers, key points, and PYQ solutions for various subjects including Computer Architecture and Chemistry.">
+    <title>FLAT Notes</title>
+    <meta name="description" content="Simple answers and key points for Formal Language and Automata Theory (FLAT). Covers PYQ solutions for 2023 and 2024.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,10 +45,11 @@
             background-position: 0 0, 12px 12px;
             color: var(--text-main);
             min-height: 100vh;
-            padding: 2rem 1rem;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
+            padding-bottom: 2rem;
         }
 
         /* FOLIO PAGE WRAPPER (Visual book simulator page) */
@@ -293,18 +294,9 @@
 
         .toc-item {
             display: flex;
-            align-items: center;
-            font-size: 0.85rem;
-            color: var(--text-main);
-            padding: 0.35rem 0.5rem;
-            border-radius: 4px;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-            cursor: pointer;
-        }
-        
-        .toc-item:hover {
-            background-color: rgba(44, 62, 80, 0.05);
-            transform: translateX(2px);
+            align-items: baseline;
+            font-size: 0.78rem;
+            color: #475569;
         }
 
         .toc-lbl {
@@ -361,8 +353,6 @@
             align-items: center;
             gap: 0.25rem;
             transition: gap 0.2s ease;
-            white-space: nowrap;
-            flex-shrink: 0;
         }
 
         .read-action .arrow {
@@ -480,11 +470,17 @@
 </head>
 <body>
 
+<nav class="top-nav" style="width: 100%; padding: 1rem 2rem; background: var(--bg-paper); border-bottom: 1px solid rgba(44,62,80,0.1); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 10; margin-bottom: 2rem;">
+    <a href="../index.html" style="text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.9rem;">← Main Library</a>
+    <span style="font-family: 'Cormorant Garamond', serif; font-weight: 700; color: var(--text-main); font-size: 1.2rem;">Formal Language & Automata Theory</span>
+    <span style="width: 80px;"></span>
+</nav>
+
 <main class="folio-page">
     <!-- TITLE PAGE HEADER -->
     <header class="title-page">
         <div class="book-badge">Academic Solved Notes</div>
-        <h1 class="book-title">Academic Study Notes</h1>
+        <h1 class="book-title">Formal Language &<br>Automata Theory</h1>
         
         <div class="book-divider">
             <span class="line"></span>
@@ -493,18 +489,18 @@
         </div>
         
         <p class="book-subtitle">
-            A comprehensive curriculum library containing simple, point-wise question-and-answer solutions designed to simplify exam preparation.
+            A comprehensive library containing simple, point-wise solutions to PYQs designed for FLAT exam preparation.
         </p>
         
         <div class="book-stats">
             <div class="stat-item">
-                <span class="stat-val">7</span>
-                <span class="stat-lbl">Subjects</span>
+                <span class="stat-val">4</span>
+                <span class="stat-lbl">Modules</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat-item">
-                <span class="stat-val">420+</span>
-                <span class="stat-lbl">Questions</span>
+                <span class="stat-val">100%</span>
+                <span class="stat-lbl">Solved</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat-item">
@@ -517,269 +513,140 @@
     <!-- CHAPTERS GRID -->
     <section class="chapters-grid">
         
-        <!-- COMPUTER ARCHITECTURE FOLDER -->
-        <a href="architecture/architecture_index.html" class="chapter-card" style="--chapter-color: var(--color-u1);" id="module-coa">
+        <!-- FLAT 2023 CS -->
+        <a href="automata_pyq_2023_cs.html" class="chapter-card" style="--chapter-color: var(--color-u1);" id="module-1">
             <div class="card-content">
                 <div class="chapter-header">
-                    <div class="chapter-num">Subject</div>
-                    <h2 class="chapter-title">Computer Architecture</h2>
-                    <p class="chapter-desc">Comprehensive curriculum library containing simple answers, key points, and PYQ solutions for Computer Architecture.</p>
+                    <div class="chapter-num">PCC-CS</div>
+                    <h2 class="chapter-title">2023 Solved Paper</h2>
+                    <p class="chapter-desc">Detailed step-by-step solutions to the 2023 Formal Language and Automata Theory (PCC-CS) examination paper.</p>
                 </div>
                 
                 <div class="mini-toc">
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='architecture/pipelining.html';">
-                        <span class="toc-lbl">Pipelining & Memory</span>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group A</span>
                         <span class="toc-dots"></span>
-                        <span class="toc-idx">Ch 1-2</span>
+                        <span class="toc-idx">MCQs</span>
                     </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='architecture/ilp.html';">
-                        <span class="toc-lbl">ILP & Vector Processing</span>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group B</span>
                         <span class="toc-dots"></span>
-                        <span class="toc-idx">Ch 3-4</span>
+                        <span class="toc-idx">Short Qs</span>
                     </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='architecture/multiprocessor.html';">
-                        <span class="toc-lbl">Multiprocessor Systems</span>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group C</span>
                         <span class="toc-dots"></span>
-                        <span class="toc-idx">Ch 5</span>
-                    </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='architecture/pyq.html';">
-                        <span class="toc-lbl">PYQs & Important QA</span>
-                        <span class="toc-dots"></span>
-                        <span class="toc-idx">Bonus</span>
+                        <span class="toc-idx">Long Qs</span>
                     </div>
                 </div>
             </div>
             <div class="card-footer">
-                <span class="badge-count">7 Sections</span>
-                <span class="read-action">Open Folder <span class="arrow">→</span></span>
+                <span class="badge-count">100% Solved</span>
+                <span class="read-action">Open Paper <span class="arrow">→</span></span>
             </div>
         </a>
 
-        <!-- FLAT FOLDER -->
-        <a href="automata/automata_index.html" class="chapter-card" style="--chapter-color: var(--color-u2);" id="module-flat">
+        <!-- FLAT 2023 CSE -->
+        <a href="automata_pyq_2023_cse.html" class="chapter-card" style="--chapter-color: var(--color-u2);" id="module-2">
             <div class="card-content">
                 <div class="chapter-header">
-                    <div class="chapter-num">Subject</div>
-                    <h2 class="chapter-title">Formal Language & Automata</h2>
-                    <p class="chapter-desc">Detailed PYQ solutions and notes for Formal Language and Automata Theory (FLAT).</p>
+                    <div class="chapter-num">PCC-CSE</div>
+                    <h2 class="chapter-title">2023 Solved Paper</h2>
+                    <p class="chapter-desc">Detailed step-by-step solutions to the 2023 Formal Language and Automata Theory (PCC-CSE) examination paper.</p>
                 </div>
                 
                 <div class="mini-toc">
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='automata/automata_pyq_2023_cs.html';">
-                        <span class="toc-lbl">2023 Solved Paper (CS)</span>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group A</span>
                         <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
+                        <span class="toc-idx">MCQs</span>
                     </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='automata/automata_pyq_2023_cse.html';">
-                        <span class="toc-lbl">2023 Solved Paper (CSE)</span>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group B</span>
                         <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
+                        <span class="toc-idx">Short Qs</span>
                     </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='automata/automata_pyq_2024.html';">
-                        <span class="toc-lbl">2024 Solved Paper (CS)</span>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group C</span>
                         <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
-                    </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='automata/toc_important_qa.html';">
-                        <span class="toc-lbl">Complete Q&A Bank</span>
-                        <span class="toc-dots"></span>
-                        <span class="toc-idx">Featured</span>
+                        <span class="toc-idx">Long Qs</span>
                     </div>
                 </div>
             </div>
             <div class="card-footer">
-                <span class="badge-count">4 Modules</span>
-                <span class="read-action">Open Folder <span class="arrow">→</span></span>
+                <span class="badge-count">100% Solved</span>
+                <span class="read-action">Open Paper <span class="arrow">→</span></span>
             </div>
         </a>
 
-        <!-- CHEMISTRY PYQ -->
-        <a href="chemistry/chemistry_pyq.html" class="chapter-card" style="--chapter-color: #3b82f6;" id="module-chem-pyq">
+        <!-- FLAT 2024 -->
+        <a href="automata_pyq_2024.html" class="chapter-card" style="--chapter-color: var(--color-u3);" id="module-3">
             <div class="card-content">
                 <div class="chapter-header">
-                    <div class="chapter-num">Bonus</div>
-                    <h2 class="chapter-title">Chemistry PYQs</h2>
-                    <p class="chapter-desc">Detailed solutions for Chemistry-1 Previous Year Questions from 2019 to 2025.</p>
+                    <div class="chapter-num">PCC-CS</div>
+                    <h2 class="chapter-title">2024 Solved Paper</h2>
+                    <p class="chapter-desc">Detailed step-by-step solutions to the 2024 Formal Language and Automata Theory (PCC-CS) examination paper.</p>
                 </div>
                 
                 <div class="mini-toc">
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='chemistry/chemistry_pyq_2025.html';">
-                        <span class="toc-lbl">2025 Solved Paper</span>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group A</span>
                         <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
+                        <span class="toc-idx">MCQs</span>
                     </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='chemistry/chemistry_pyq_2024.html';">
-                        <span class="toc-lbl">2024 Solved Paper</span>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group B</span>
                         <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
+                        <span class="toc-idx">Short Qs</span>
                     </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='chemistry/chemistry_pyq_2023_sem1.html';">
-                        <span class="toc-lbl">2023 Solved Papers</span>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Group C</span>
                         <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
-                    </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='chemistry/chemistry_pyq_2019.html';">
-                        <span class="toc-lbl">2019 Solved Paper</span>
-                        <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
+                        <span class="toc-idx">Long Qs</span>
                     </div>
                 </div>
             </div>
             <div class="card-footer">
-                <span class="badge-count">5 Papers</span>
-                <span class="read-action">Open Divider <span class="arrow">→</span></span>
+                <span class="badge-count">100% Solved</span>
+                <span class="read-action">Open Paper <span class="arrow">→</span></span>
             </div>
         </a>
 
-        <!-- DAA FOLDER -->
-        <a href="algorithms/algorithms_index.html" class="chapter-card" style="--chapter-color: #2563eb;" id="module-daa">
+        <!-- FLAT IMPORTANT Q&A -->
+        <a href="toc_important_qa.html" class="chapter-card" style="--chapter-color: #ef4444;" id="module-qa">
             <div class="card-content">
                 <div class="chapter-header">
-                    <div class="chapter-num">Subject</div>
-                    <h2 class="chapter-title">Design & Analysis of Algorithms</h2>
-                    <p class="chapter-desc">Comprehensive solved previous year questions (2017, 2023, 2024) and detailed algorithm design solutions.</p>
+                    <div class="chapter-num">Featured</div>
+                    <h2 class="chapter-title">Complete Q&A Bank</h2>
+                    <p class="chapter-desc">Comprehensive question bank containing solutions extracted from the 7 uploaded TOC/FLAT question images.</p>
                 </div>
                 
                 <div class="mini-toc">
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='algorithms/algorithms_important_questions.html';">
-                        <span class="toc-lbl">Important Q&amp;A Bank</span>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Automata Basics</span>
                         <span class="toc-dots"></span>
-                        <span class="toc-idx">69 Qs</span>
+                        <span class="toc-idx">Sec 1</span>
                     </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='algorithms/algorithms_pyq_2024.html';">
-                        <span class="toc-lbl">2023-24 Solved Paper</span>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Regular Expressions</span>
                         <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
+                        <span class="toc-idx">Sec 2</span>
                     </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='algorithms/algorithms_pyq_2023.html';">
-                        <span class="toc-lbl">2022-23 Solved Paper</span>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Grammars & PDA</span>
                         <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
+                        <span class="toc-idx">Sec 3-4</span>
                     </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='algorithms/algorithms_pyq_2017.html';">
-                        <span class="toc-lbl">2016-17 Solved Paper</span>
+                    <div class="toc-item">
+                        <span class="toc-lbl">Turing Machines</span>
                         <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
+                        <span class="toc-idx">Sec 5</span>
                     </div>
                 </div>
             </div>
             <div class="card-footer">
-                <span class="badge-count">4 Sections</span>
-                <span class="read-action">Open Folder <span class="arrow">→</span></span>
-            </div>
-        </a>
-
-        <!-- ENVIRONMENTAL SCIENCES FOLDER -->
-        <a href="environment/Environmental_Sciences.html" class="chapter-card" style="--chapter-color: #10b981;" id="module-env">
-            <div class="card-content">
-                <div class="chapter-header">
-                    <div class="chapter-num">Subject</div>
-                    <h2 class="chapter-title">Environmental Sciences</h2>
-                    <p class="chapter-desc">Detailed solutions for Environmental Sciences Previous Year Questions and Most Probable Questions.</p>
-                </div>
-                
-                <div class="mini-toc">
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='environment/environment_index.html';">
-                        <span class="toc-lbl">Important Q&amp;A Bank</span>
-                        <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
-                    </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='environment/environment_2025.html';">
-                        <span class="toc-lbl">2025 Solved Paper</span>
-                        <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
-                    </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='environment/environment_2024.html';">
-                        <span class="toc-lbl">2024 Solved Paper</span>
-                        <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
-                    </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='environment/environment_2023.html';">
-                        <span class="toc-lbl">2023 Solved Paper</span>
-                        <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer">
-                <span class="badge-count">4 SECTIONS</span>
-                <span class="read-action">Open Folder <span class="arrow">→</span></span>
-            </div>
-        </a>
-
-        <!-- BIOLOGY FOLDER -->
-        <a href="biology/Biology.html" class="chapter-card" style="--chapter-color: #8b5cf6;" id="module-bio">
-            <div class="card-content">
-                <div class="chapter-header">
-                    <div class="chapter-num">Subject</div>
-                    <h2 class="chapter-title">Biology</h2>
-                    <p class="chapter-desc">Detailed solutions for Biology Previous Year Questions from 2023 to 2025.</p>
-                </div>
-                
-                <div class="mini-toc">
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='biology/Biology_index.html';">
-                        <span class="toc-lbl">Important Q&amp;A Bank</span>
-                        <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
-                    </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='biology/biology_2025.html';">
-                        <span class="toc-lbl">2025 Solved Paper</span>
-                        <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
-                    </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='biology/biology_2024.html';">
-                        <span class="toc-lbl">2024 Solved Paper</span>
-                        <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
-                    </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='biology/biology_2023.html';">
-                        <span class="toc-lbl">2023 Solved Paper</span>
-                        <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer">
-                <span class="badge-count">4 SECTIONS</span>
-                <span class="read-action">Open Folder <span class="arrow">→</span></span>
-            </div>
-        </a>
-
-        <!-- PROGRAMMING FOR PROBLEM SOLVING FOLDER -->
-        <a href="PPS/pps_index.html" class="chapter-card" style="--chapter-color: #0d9488;" id="module-pps">
-            <div class="card-content">
-                <div class="chapter-header">
-                    <div class="chapter-num">Subject</div>
-                    <h2 class="chapter-title">Programming for Problem Solving</h2>
-                    <p class="chapter-desc">Comprehensive C programming notes, algorithms, data structures, and complete marks-wise PYQ solutions (2023–2025).</p>
-                </div>
-                
-                <div class="mini-toc">
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='PPS/pps_important_questions.html';">
-                        <span class="toc-lbl">Important Q&amp;A Bank</span>
-                        <span class="toc-dots"></span>
-                        <span class="toc-idx">100%</span>
-                    </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='PPS/pps_pyq_2025.html';">
-                        <span class="toc-lbl">2024–25 Solved Paper</span>
-                        <span class="toc-dots"></span>
-                        <span class="toc-idx">70/70 M</span>
-                    </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='PPS/pps_pyq_2024.html';">
-                        <span class="toc-lbl">2023–24 Solved Paper</span>
-                        <span class="toc-dots"></span>
-                        <span class="toc-idx">70/70 M</span>
-                    </div>
-                    <div class="toc-item" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='PPS/pps_pyq_2023.html';">
-                        <span class="toc-lbl">2022–23 Solved Paper</span>
-                        <span class="toc-dots"></span>
-                        <span class="toc-idx">70/70 M</span>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer">
-                <span class="badge-count">4 SECTIONS</span>
-                <span class="read-action">Open Folder <span class="arrow">→</span></span>
+                <span class="badge-count">20+ Solved Qs</span>
+                <span class="read-action">Open Bank <span class="arrow">→</span></span>
             </div>
         </a>
 
@@ -798,11 +665,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 2. Dynamic Progress Bars on Cards
     const modules = [
-        { id: 'module-1', key: 'pipelining.html', total: 39 },
-        { id: 'module-2', key: 'memory.html', total: 23 },
-        { id: 'module-3', key: 'ilp.html', total: 22 },
-        { id: 'module-4', key: 'vector.html', total: 19 },
-        { id: 'module-5', key: 'multiprocessor.html', total: 26 }
+        { id: 'module-1', key: 'flat_pyq_2023_cs.html', total: 30 },
+        { id: 'module-2', key: 'flat_pyq_2023_cse.html', total: 30 },
+        { id: 'module-3', key: 'flat_pyq_2024.html', total: 30 }
     ];
     
     modules.forEach(mod => {
